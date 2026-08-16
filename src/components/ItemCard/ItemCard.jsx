@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styles from './ItemCard.module.css';
 
 const getPreviewUrl = (url) => {
@@ -9,21 +10,23 @@ const getPreviewUrl = (url) => {
 
 const ItemCard = ({ item, onClick }) => {
   const previewUrl = getPreviewUrl(item.url);
+  const [imgError, setImgError] = useState(false);
 
   return (
     <article className={styles.card} onClick={() => onClick(item)}>
       <div className={styles.card__preview}>
-        {previewUrl ? (
+        {previewUrl && !imgError ? (
           <img
             src={previewUrl}
             alt={`Vista previa de ${item.title}`}
             className={styles.card__img}
             loading="lazy"
+            onError={() => setImgError(true)}
           />
         ) : (
           <div className={styles['card__img--placeholder']}>
             <span>{item.type === 'player' ? '🎵' : '🌐'}</span>
-            <p>Vista previa local</p>
+            <p>Vista previa no disponible</p>
           </div>
         )}
         <div className={styles.card__overlay}>

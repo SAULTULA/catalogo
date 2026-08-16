@@ -30,14 +30,14 @@ const playersData = [
   },
   {
     id: 'p5',
-    title: 'Radio Player (Local)',
-    url: '/players/radioplayer.html',
+    title: 'Radio Player',
+    url: 'https://catalogo.ksmservicios.com.ar/players/radioplayer.html',
     type: 'player'
   },
   {
     id: 'p6',
-    title: 'Radio Player 2 (Local)',
-    url: '/players/radio_player2.html',
+    title: 'Radio Player 2',
+    url: 'https://catalogo.ksmservicios.com.ar/players/radio_player2.html',
     type: 'player'
   }
 ];
@@ -81,20 +81,20 @@ const websData = [
   },
   {
     id: 'w7',
-    title: 'Skins Demo (Local)',
-    url: '/webs/os-web-skins-demo.html',
+    title: 'Skins Demo',
+    url: 'https://catalogo.ksmservicios.com.ar/webs/os-web-skins-demo.html',
     type: 'web'
   },
   {
     id: 'w8',
-    title: 'Visual Catalog (Local)',
-    url: '/webs/visual-catalog.html',
+    title: 'Visual Catalog',
+    url: 'https://catalogo.ksmservicios.com.ar/webs/visual-catalog.html',
     type: 'web'
   },
   {
     id: 'w9',
-    title: 'Catalogo 2 (Local)',
-    url: '/webs/catalogo2.html',
+    title: 'Catalogo 2',
+    url: 'https://catalogo.ksmservicios.com.ar/webs/catalogo2.html',
     type: 'web'
   }
 ];
