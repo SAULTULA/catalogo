@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radio Player — KSM Servicios</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=SF+Pro+Display:wght@400;700&display=swap');
+
+:root {
+  /* Skin 1: Mac OS Dark (Por defecto) */
+  --bg: #000000;
+  --bg-image: none;
+  
+  --cabinet-bg: #1c1c1e;
+  --cabinet-shadow: 0 20px 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1), 0 0 0 1px rgba(255,255,255,0.05);
+  --cabinet-blur: none;
+  --cabinet-border: none;
+  
+  --panel-bg: #2c2c2e;
+  --panel-border: rgba(255,255,255,0.05);
+  --panel-shadow: inset 0 2px 10px rgba(0,0,0,0.3);
+  
+  --text-main: #f5f5f7;
+  --text-dim: #86868b;
+  --accent: #0a84ff;
+  --accent-dim: rgba(10, 132, 255, 0.4);
+  
+  --input-bg: #2c2c2e;
+  --input-border: #3a3a3c;
+  
+  --btn-primary-bg: #0a84ff;
+  --btn-primary-border: transparent;
+  --btn-primary-color: #fff;
+  --btn-primary-shadow: none;
+  
+  --chrome-bg: linear-gradient(135deg, #48484a, #2c2c2e);
+  --chrome-border: rgba(255,255,255,0.1);
+  --chrome-shadow: 0 6px 16px rgba(0,0,0,0.5), inset 0 2px 6px rgba(255,255,255,0.1);
+  --chrome-icon: #f5f5f7;
+  --chrome-indicator: #fff;
+
+  --meter-bg: #f0f0f5;
+  --meter-border: #3a3a3c;
+  --meter-text: #1c1c1e;
+  --meter-ticks: #3a3a3c;
+  --meter-arc: #1c1c1e;
+  --meter-pivot: #1c1c1e;
+  
+  --red-zone: #ff453a;
+  --green: #32d74b;
+  --amber: #ffd60a;
+}
+
+body.theme-glass {
+  /* Skin 2: KSM Glass (Mac OS Abstract) */
+  --bg: #240046;
+  --bg-image: radial-gradient(ellipse at top left, #df8931, transparent 50%),
+              radial-gradient(ellipse at bottom left, #00b4d8, transparent 50%),
+              radial-gradient(ellipse at top right, #9d4edd, transparent 50%),
+              radial-gradient(ellipse at bottom right, #5a189a, transparent 50%);
+  
+  --cabinet-bg: rgba(30, 25, 45, 0.4);
+  --cabinet-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+  --cabinet-blur: blur(24px);
+  --cabinet-border: 1px solid rgba(255,255,255,0.1);
+  
+  --panel-bg: rgba(0, 0, 0, 0.15);
+  --panel-border: rgba(255,255,255,0.05);
+  --panel-shadow: inset 0 2px 10px rgba(0,0,0,0.1);
+  
+  --text-main: #ffffff;
+  --text-dim: rgba(255,255,255,0.6);
+  --accent: #007aff; /* Apple Blue */
+  --accent-dim: rgba(0, 122, 255, 0.4);
+  
+  --input-bg: rgba(0, 0, 0, 0.2);
+  --input-border: rgba(0, 122, 255, 0.4);
+  
+  --btn-primary-bg: #007aff;
+  --btn-primary-border: transparent;
+  --btn-primary-color: #ffffff;
+  --btn-primary-shadow: 0 4px 12px rgba(0,122,255,0.3);
+  
+  --chrome-bg: rgba(255, 255, 255, 0.1);
+  --chrome-border: rgba(255, 255, 255, 0.2);
+  --chrome-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  --chrome-icon: #fff;
+  --chrome-indicator: #fff;
+
+  --meter-bg: rgba(0, 0, 0, 0.2);
+  --meter-border: rgba(255, 255, 255, 0.15);
+  --meter-text: #ffffff;
+  --meter-ticks: rgba(255, 255, 255, 0.4);
+  --meter-arc: rgba(255, 255, 255, 0.2);
+  --meter-pivot: #ffffff;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  min-height: 100vh;
+  background-color: var(--bg);
+  background-image: var(--bg-image);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 16px;
+  transition: background 0.5s ease;
+}
+
+/* ========== CABINET ========== */
+.cabinet {
+  width: 100%;
+  max-width: 520px;
+  background: var(--cabinet-bg);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: var(--cabinet-shadow);
+  backdrop-filter: var(--cabinet-blur);
+  -webkit-backdrop-filter: var(--cabinet-blur);
+  border: var(--cabinet-border);
+  position: relative;
+  transition: all 0.5s ease;
+}
+
+/* Top brand strip */
+.brand-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.brand-logo {
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: var(--text-main);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+.brand-logo span { color: var(--text-dim); font-weight: 400; }
+
+.status-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.btn-theme {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+.btn-theme:hover { opacity: 1; }
+
+.led-indicator {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #333;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.8);
+  transition: all 0.3s ease;
+}
+.led-indicator.live {
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+.on-air-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  transition: color .3s;
+}
+.on-air-label.live { color: var(--accent); }
+
+/* ========== URL INPUT ========== */
+.url-zone {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.url-zone input {
+  flex: 1;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  color: var(--text-main);
+  font-family: 'Inter', monospace;
+  font-size: 12px;
+  outline: none;
+  transition: all .3s;
+  min-width: 0;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+}
+.url-zone input:focus { 
+  border-color: var(--accent); 
+  background: rgba(0, 0, 0, 0.4);
+}
+.url-zone input::placeholder { color: var(--text-dim); }
+
+.btn-load {
+  background: var(--btn-primary-bg);
+  border: 1px solid var(--btn-primary-border);
+  color: var(--btn-primary-color);
+  border-radius: 10px;
+  padding: 0 16px;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all .2s;
+  white-space: nowrap;
+  box-shadow: var(--btn-primary-shadow);
+}
+.btn-load:hover { filter: brightness(1.1); }
+.btn-load:active { transform: scale(0.96); }
+
+/* ========== DISPLAY PANEL ========== */
+.display-panel {
+  background: var(--panel-bg);
+  border-radius: 16px;
+  padding: 18px 20px;
+  margin-bottom: 20px;
+  border: 1px solid var(--panel-border);
+  box-shadow: var(--panel-shadow);
+  position: relative;
+  transition: all 0.5s ease;
+}
+
+.display-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.badge-status {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+  padding: 4px 10px;
+  border-radius: 12px;
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: all .3s;
+}
+.badge-status.on-air {
+  color: #fff;
+  background: var(--accent);
+  border-color: transparent;
+  box-shadow: 0 0 12px var(--accent-dim);
+}
+
+.freq-display {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.station-sub {
+  font-size: 11px;
+  color: var(--text-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 16px;
+}
+
+/* ========== VU METER SECTION ========== */
+.vu-mode-toggle {
+  display: flex;
+  gap: 4px;
+  background: rgba(0,0,0,0.3);
+  border-radius: 8px;
+  padding: 4px;
+  width: fit-content;
+  margin-bottom: 16px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.vu-mode-toggle button {
+  border: none;
+  background: transparent;
+  color: var(--text-dim);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all .2s;
+}
+.vu-mode-toggle button.active {
+  background: rgba(255,255,255,0.1);
+  color: var(--text-main);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.5);
+}
+
+.vu-stage {
+  min-height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== ANALOG VU ===== */
+.analog-wrap {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  justify-content: center;
+}
+
+.meter-box {
+  flex: 1;
+  max-width: 210px;
+  background: var(--meter-bg);
+  border-radius: 12px;
+  padding: 10px;
+  border: 1px solid var(--meter-border);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.2), 0 2px 5px rgba(0,0,0,0.3);
+  position: relative;
+  transition: all 0.5s ease;
+}
+
+.analog-meter {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.needle {
+  transform-origin: 100px 92px;
+  transition: transform 0.1s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.meter-label {
+  text-align: center;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+  margin-top: 8px;
+}
+
+/* ===== DIGITAL VU ===== */
+.digital-wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 8px 0;
+}
+.dig-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.dig-tag {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-dim);
+  width: 14px;
+}
+.dig-track {
+  flex: 1;
+  display: flex;
+  gap: 3px;
+}
+.seg {
+  flex: 1;
+  height: 14px;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.05);
+  transition: background .05s, box-shadow .05s;
+}
+.seg.on-g { background: var(--green); box-shadow: 0 0 6px rgba(50,215,75,0.4); }
+.seg.on-a { background: var(--amber); box-shadow: 0 0 6px rgba(255,214,10,0.4); }
+.seg.on-r { background: var(--red-zone); box-shadow: 0 0 6px rgba(255,69,58,0.4); }
+.dig-scale {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 26px;
+  font-size: 9px;
+  color: var(--text-dim);
+}
+
+.timer-display {
+  position: absolute;
+  bottom: 18px;
+  right: 20px;
+  font-family: 'Inter', monospace;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+/* ========== CONTROLS ROW ========== */
+.controls-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.btn-play {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--chrome-bg);
+  border: 1px solid var(--chrome-border);
+  box-shadow: var(--chrome-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all .2s;
+  backdrop-filter: blur(4px);
+}
+.btn-play:hover {
+  filter: brightness(1.15);
+  transform: scale(1.05);
+}
+.btn-play:active {
+  transform: scale(0.95);
+}
+.btn-play svg { width: 22px; height: 22px; fill: var(--chrome-icon); transition: fill .3s; }
+
+.btn-share {
+  flex: 1;
+  height: 48px;
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  color: var(--text-main);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all .2s;
+  box-shadow: inset 0 1px 2px rgba(255,255,255,0.1), 0 2px 5px rgba(0,0,0,0.2);
+}
+.btn-share:hover { filter: brightness(1.2); }
+.btn-share:active { transform: scale(0.98); }
+
+/* ========== VOLUME KNOB ========== */
+.volume-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 12px 16px;
+  background: var(--panel-bg);
+  border-radius: 16px;
+  border: 1px solid var(--panel-border);
+  box-shadow: var(--panel-shadow);
+}
+
+.knob-mount {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.8), inset 0 2px 4px rgba(255,255,255,0.15);
+}
+/* Ring */
+.knob-ring {
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  /* Update in JS to use var(--accent) */
+}
+/* Body */
+.knob-body {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: var(--chrome-bg);
+  box-shadow: 
+    0 10px 20px rgba(0,0,0,0.85),
+    0 15px 35px rgba(0,0,0,0.7),
+    inset 0 4px 8px rgba(255,255,255,0.25),
+    inset 0 -6px 12px rgba(0,0,0,0.5);
+  cursor: grab;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--chrome-border);
+  backdrop-filter: blur(4px);
+}
+.knob-body:active { 
+  cursor: grabbing; 
+  box-shadow: 
+    0 4px 10px rgba(0,0,0,0.9),
+    inset 0 2px 6px rgba(255,255,255,0.15),
+    inset 0 -3px 8px rgba(0,0,0,0.6);
+}
+
+.knob-indicator {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--chrome-indicator);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.8), inset 0 1px 2px rgba(255,255,255,0.6);
+  top: 7px;
+}
+
+.knob-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.knob-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-dim);
+  margin-bottom: 2px;
+}
+.knob-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+/* ========== FOOTER ========== */
+.cabinet-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+}
+.footer-brand {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-dim);
+}
+.footer-model {
+  font-size: 10px;
+  color: var(--text-dim);
+}
+
+/* ========== BACKGROUND IMAGE SYSTEM ========== */
+.bg-layer {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  filter: blur(18px) brightness(0.35) saturate(1.4);
+  transform: scale(1.08);
+  transition: opacity 1s ease;
+  pointer-events: none;
+}
+.bg-layer--visible { opacity: 1; }
+
+.bg-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0,0,0,0.2) 0%,
+    rgba(0,0,0,0.65) 100%
+  );
+  opacity: 0;
+  transition: opacity 1s ease;
+  pointer-events: none;
+}
+.bg-overlay--visible { opacity: 1; }
+
+.bg-station-name {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-bottom: 32px;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(28px, 6vw, 64px);
+  font-weight: 900;
+  letter-spacing: clamp(6px, 1.5vw, 20px);
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.08);
+  text-shadow:
+    0 0 60px rgba(255,255,255,0.06),
+    0 2px 4px rgba(0,0,0,0.5);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 1s ease;
+  user-select: none;
+}
+.bg-station-name--visible { opacity: 1; }
+
+/* Botón imagen en URL zone */
+.btn-bg-img {
+  background: var(--chrome-bg);
+  border: 1px solid var(--chrome-border);
+  border-radius: 10px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  flex-shrink: 0;
+  transition: filter 0.2s, transform 0.1s;
+  box-shadow: var(--chrome-shadow);
+}
+.btn-bg-img:hover  { filter: brightness(1.3); }
+.btn-bg-img:active { transform: scale(0.93); }
+.btn-bg-img--active { box-shadow: 0 0 0 2px var(--accent); }
+</style>
+</head>
+<body>
+
+<!-- Capas de fondo globales -->
+<div class="bg-layer"   id="bgLayer"></div>
+<div class="bg-overlay" id="bgOverlay"></div>
+<div class="bg-station-name" id="bgStationName"></div>
+<input type="file" id="bgImageInput" accept="image/*" style="display:none">
+
+<div class="cabinet">
+  
+  <div class="brand-strip">
+    <div class="brand-logo">KSM<span>RADIO</span></div>
+    <div class="status-group">
+      <button id="themeToggle" class="btn-theme" title="Cambiar Skin">🎨</button>
+      <div class="led-indicator" id="liveDot"></div>
+      <span class="on-air-label" id="liveText">OFFLINE</span>
+    </div>
+  </div>
+
+  <div class="url-zone">
+    <input type="text" id="streamUrl" placeholder="URL del stream..." value="https://ice1.somafm.com/groovesalad-128-mp3">
+    <button class="btn-load" id="loadBtn">Cargar</button>
+    <button class="btn-bg-img" id="bgBtn" title="Imagen de fondo">🖼</button>
+  </div>
+
+  <div class="display-panel">
+    <div class="display-top">
+      <span class="badge-status" id="statusBadge">Standby</span>
+      <span style="font-size:10px;color:var(--text-dim); font-weight:600;" id="enVivo">En Vivo</span>
+    </div>
+
+    <div class="freq-display" id="stationName">Sin Señal</div>
+    <div class="station-sub" id="stationUrlDisplay">Ingresa una URL</div>
+
+    <div class="vu-mode-toggle">
+      <button class="active" data-mode="analog">Analógico</button>
+      <button data-mode="digital">Digital</button>
+    </div>
+
+    <div class="vu-stage">
+      <div class="analog-wrap" id="analogView">
+        
+        <!-- METER L -->
+        <div class="meter-box">
+          <svg class="analog-meter" viewBox="0 0 200 110" id="meterL">
+            <path d="M 133 34.8 A 66 66 0 0 1 150.6 49.6" fill="none" stroke="var(--red-zone)" stroke-width="4" stroke-linecap="round"/>
+            <path d="M 49.4 49.6 A 66 66 0 0 1 150.6 49.6" fill="none" stroke="var(--meter-arc)" stroke-width="1.5"/>
+
+            <g stroke="var(--meter-ticks)" stroke-width="1.5">
+              <line x1="49.4" y1="49.6" x2="46.4" y2="47.0"/>
+              <line x1="72.1" y1="32.2" x2="70.4" y2="28.6"/>
+              <line x1="100" y1="26" x2="100" y2="22"/>
+              <line x1="127.9" y1="32.2" x2="129.6" y2="28.6"/>
+              <line x1="150.6" y1="49.6" x2="153.6" y2="47.0"/>
+            </g>
+
+            <text x="39" y="44" text-anchor="middle" fill="var(--meter-text)" opacity="0.8" font-size="8" font-family="sans-serif">-20</text>
+            <text x="66" y="24" text-anchor="middle" fill="var(--meter-text)" opacity="0.8" font-size="8" font-family="sans-serif">-10</text>
+            <text x="100" y="15" text-anchor="middle" fill="var(--meter-text)" font-size="9" font-weight="bold" font-family="sans-serif">0</text>
+            <text x="134" y="24" text-anchor="middle" fill="var(--red-zone)" font-size="8" font-family="sans-serif">+2</text>
+            <text x="161" y="44" text-anchor="middle" fill="var(--red-zone)" font-size="8" font-family="sans-serif">+3</text>
+
+            <text x="100" y="65" text-anchor="middle" fill="var(--meter-text)" opacity="0.6" font-size="10" font-weight="bold" letter-spacing="1" font-family="sans-serif">VU</text>
+
+            <line id="needleL" class="needle" x1="100" y1="92" x2="100" y2="26" stroke="var(--red-zone)" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="100" cy="92" r="6" fill="var(--meter-pivot)"/>
+            <circle cx="100" cy="92" r="2.5" fill="var(--meter-bg)"/>
+          </svg>
+          <div class="meter-label">CANAL L</div>
+        </div>
+
+        <!-- METER R -->
+        <div class="meter-box">
+          <svg class="analog-meter" viewBox="0 0 200 110" id="meterR">
+            <path d="M 133 34.8 A 66 66 0 0 1 150.6 49.6" fill="none" stroke="var(--red-zone)" stroke-width="4" stroke-linecap="round"/>
+            <path d="M 49.4 49.6 A 66 66 0 0 1 150.6 49.6" fill="none" stroke="var(--meter-arc)" stroke-width="1.5"/>
+
+            <g stroke="var(--meter-ticks)" stroke-width="1.5">
+              <line x1="49.4" y1="49.6" x2="46.4" y2="47.0"/>
+              <line x1="72.1" y1="32.2" x2="70.4" y2="28.6"/>
+              <line x1="100" y1="26" x2="100" y2="22"/>
+              <line x1="127.9" y1="32.2" x2="129.6" y2="28.6"/>
+              <line x1="150.6" y1="49.6" x2="153.6" y2="47.0"/>
+            </g>
+
+            <text x="39" y="44" text-anchor="middle" fill="var(--meter-text)" opacity="0.8" font-size="8" font-family="sans-serif">-20</text>
+            <text x="66" y="24" text-anchor="middle" fill="var(--meter-text)" opacity="0.8" font-size="8" font-family="sans-serif">-10</text>
+            <text x="100" y="15" text-anchor="middle" fill="var(--meter-text)" font-size="9" font-weight="bold" font-family="sans-serif">0</text>
+            <text x="134" y="24" text-anchor="middle" fill="var(--red-zone)" font-size="8" font-family="sans-serif">+2</text>
+            <text x="161" y="44" text-anchor="middle" fill="var(--red-zone)" font-size="8" font-family="sans-serif">+3</text>
+
+            <text x="100" y="65" text-anchor="middle" fill="var(--meter-text)" opacity="0.6" font-size="10" font-weight="bold" letter-spacing="1" font-family="sans-serif">VU</text>
+
+            <line id="needleR" class="needle" x1="100" y1="92" x2="100" y2="26" stroke="var(--red-zone)" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="100" cy="92" r="6" fill="var(--meter-pivot)"/>
+            <circle cx="100" cy="92" r="2.5" fill="var(--meter-bg)"/>
+          </svg>
+          <div class="meter-label">CANAL R</div>
+        </div>
+      </div>
+
+      <!-- DIGITAL VU -->
+      <div class="digital-wrap" id="digitalView" style="display:none;">
+        <div class="dig-row">
+          <span class="dig-tag">L</span>
+          <div class="dig-track" id="digL"></div>
+        </div>
+        <div class="dig-row">
+          <span class="dig-tag">R</span>
+          <div class="dig-track" id="digR"></div>
+        </div>
+        <div class="dig-scale">
+          <span>-30</span><span>-20</span><span>-10</span><span>-3</span><span>0</span><span>+3</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timer-display" id="timer">00:00</div>
+  </div>
+
+  <div class="controls-row">
+    <button class="btn-play" id="playBtn" title="Play / Pausa">
+      <svg id="playIcon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+    </button>
+    <button class="btn-share" id="shareBtn">Compartir</button>
+  </div>
+
+  <div class="volume-section">
+    <div class="knob-mount">
+      <div class="knob-ring" id="knobRing"></div>
+      <div class="knob-body" id="volKnob">
+        <div class="knob-indicator" id="knobIndicator"></div>
+      </div>
+    </div>
+    <div class="knob-info">
+      <span class="knob-label">Volumen</span>
+      <span class="knob-value"><span id="knobValueDisplay">80</span>%</span>
+    </div>
+  </div>
+
+  <div class="cabinet-footer">
+    <div class="footer-brand">KSM SERVICIOS</div>
+    <div class="footer-model">RX-2026 Pro</div>
+  </div>
+
+</div>
+
+<audio id="audio" crossorigin="anonymous"></audio>
+
+<script>
+const audio = document.getElementById('audio');
+const playBtn = document.getElementById('playBtn');
+const playIcon = document.getElementById('playIcon');
+const loadBtn = document.getElementById('loadBtn');
+const streamUrlInput = document.getElementById('streamUrl');
+const stationName = document.getElementById('stationName');
+const stationUrlDisp = document.getElementById('stationUrlDisplay');
+const statusBadge = document.getElementById('statusBadge');
+const liveDot = document.getElementById('liveDot');
+const liveText = document.getElementById('liveText');
+const timerEl = document.getElementById('timer');
+const shareBtn = document.getElementById('shareBtn');
+const enVivoSpan = document.getElementById('enVivo');
+const volKnob = document.getElementById('volKnob');
+const knobRing = document.getElementById('knobRing');
+const knobValueDisp = document.getElementById('knobValueDisplay');
+const themeToggle = document.getElementById('themeToggle');
+
+let audioCtx, analyser, source, dataArray;
+let playing = false;
+let startTime = null;
+let timerIval = null;
+
+const ICON_PLAY = '<path d="M8 5v14l11-7z"/>';
+const ICON_PAUSE = '<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';
+
+let knobVolume = 80;
+let knobDragging = false;
+let knobDragStartY = 0;
+let knobDragStartVal = 0;
+
+function updateKnobRing() {
+  const sweep = (knobVolume / 100) * 270;
+  knobRing.style.background = `conic-gradient(
+    from 225deg,
+    var(--accent) 0deg ${sweep}deg,
+    rgba(0,0,0,0.5) ${sweep}deg 270deg,
+    transparent 270deg 360deg
+  )`;
+}
+
+function applyKnobVolume(val) {
+  knobVolume = Math.max(0, Math.min(100, val));
+  audio.volume = knobVolume / 100;
+  const angle = -135 + (knobVolume / 100) * 270;
+  volKnob.style.transform = `rotate(${angle}deg)`;
+  knobValueDisp.textContent = Math.round(knobVolume);
+  updateKnobRing();
+}
+
+volKnob.addEventListener('mousedown', e => {
+  knobDragging = true;
+  knobDragStartY = e.clientY;
+  knobDragStartVal = knobVolume;
+  e.preventDefault();
+});
+document.addEventListener('mousemove', e => {
+  if(!knobDragging) return;
+  const dy = knobDragStartY - e.clientY;
+  applyKnobVolume(knobDragStartVal + dy * 0.8);
+});
+document.addEventListener('mouseup', () => { knobDragging = false; });
+
+volKnob.addEventListener('touchstart', e => {
+  knobDragging = true;
+  knobDragStartY = e.touches[0].clientY;
+  knobDragStartVal = knobVolume;
+}, { passive: true });
+document.addEventListener('touchmove', e => {
+  if(!knobDragging) return;
+  const dy = knobDragStartY - e.touches[0].clientY;
+  applyKnobVolume(knobDragStartVal + dy * 0.8);
+}, { passive: true });
+document.addEventListener('touchend', () => { knobDragging = false; });
+
+volKnob.addEventListener('wheel', e => {
+  e.preventDefault();
+  applyKnobVolume(knobVolume - e.deltaY * 0.1);
+}, { passive: false });
+
+applyKnobVolume(80);
+
+// Theme Toggle
+themeToggle.addEventListener('click', () => {
+  document.body.classList.toggle('theme-glass');
+  updateKnobRing();
+});
+
+function setStatus(text, live) {
+  statusBadge.textContent = text;
+  statusBadge.classList.toggle('on-air', !!live);
+  liveDot.classList.toggle('live', !!live);
+  liveText.textContent = live ? 'EN VIVO' : 'OFFLINE';
+  enVivoSpan.style.color = live ? 'var(--accent)' : 'var(--text-dim)';
+}
+
+function loadStream() {
+  const url = streamUrlInput.value.trim();
+  if(!url) return;
+  audio.src = url;
+  let name;
+  try {
+    const u = new URL(url);
+    name = u.hostname.replace('www.','').split('.')[0].toUpperCase();
+  } catch(e) { name = 'STREAM'; }
+  stationName.textContent = name;
+  stationUrlDisp.textContent = url;
+  setStatus('Cargando...', false);
+  playAudio();
+}
+
+function setupAudioCtx() {
+  if(audioCtx) return;
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  source = audioCtx.createMediaElementSource(audio);
+  analyser = audioCtx.createAnalyser();
+  analyser.fftSize = 512;
+  analyser.smoothingTimeConstant = 0.65;
+  source.connect(analyser);
+  analyser.connect(audioCtx.destination);
+  dataArray = new Uint8Array(analyser.frequencyBinCount);
+}
+
+function playAudio() {
+  try { setupAudioCtx(); if(audioCtx.state === 'suspended') audioCtx.resume(); } catch(e){}
+  audio.play().then(() => {
+    playing = true;
+    playIcon.innerHTML = ICON_PAUSE;
+    setStatus('Al Aire', true);
+    startTimer();
+    requestAnimationFrame(updateVU);
+  }).catch(() => setStatus('Error', false));
+}
+
+function pauseAudio() {
+  audio.pause();
+  playing = false;
+  playIcon.innerHTML = ICON_PLAY;
+  setStatus('Pausa', false);
+  stopTimer();
+}
+
+playBtn.addEventListener('click', () => {
+  if(!audio.src) { loadStream(); return; }
+  playing ? pauseAudio() : playAudio();
+});
+
+loadBtn.addEventListener('click', loadStream);
+streamUrlInput.addEventListener('keydown', e => { if(e.key === 'Enter') loadStream(); });
+
+audio.addEventListener('waiting', () => setStatus('Buffering...', false));
+audio.addEventListener('playing', () => setStatus('Al Aire', true));
+audio.addEventListener('error', () => setStatus('Error', false));
+
+function startTimer() {
+  startTime = Date.now();
+  stopTimer();
+  timerIval = setInterval(() => {
+    const s = Math.floor((Date.now() - startTime) / 1000);
+    const mm = String(Math.floor(s / 60)).padStart(2, '0');
+    const ss = String(s % 60).padStart(2, '0');
+    timerEl.textContent = mm + ':' + ss;
+  }, 500);
+}
+function stopTimer() { if(timerIval) clearInterval(timerIval); }
+
+const needleL = document.getElementById('needleL');
+const needleR = document.getElementById('needleR');
+const digL = document.getElementById('digL');
+const digR = document.getElementById('digR');
+const NUM_SEGS = 26;
+
+function buildSegs(container) {
+  container.innerHTML = '';
+  for(let i = 0; i < NUM_SEGS; i++) {
+    const s = document.createElement('div');
+    s.className = 'seg';
+    container.appendChild(s);
+  }
+}
+buildSegs(digL);
+buildSegs(digR);
+
+function segColor(i) {
+  if(i >= NUM_SEGS - 3) return 'on-r';
+  if(i >= NUM_SEGS - 8) return 'on-a';
+  return 'on-g';
+}
+
+function setNeedle(el, level) {
+  const clamped = Math.max(0, Math.min(1, level));
+  const angle = -50 + clamped * 100;
+  el.style.transform = `rotate(${angle.toFixed(2)}deg)`;
+}
+
+function setDigital(container, level) {
+  const lit = Math.round(Math.max(0, Math.min(1, level)) * NUM_SEGS);
+  const segs = container.children;
+  for(let i = 0; i < NUM_SEGS; i++) {
+    segs[i].className = 'seg' + (i < lit ? ' ' + segColor(i) : '');
+  }
+}
+
+let smoothL = 0, smoothR = 0;
+const ATTACK = 0.35;
+const RELEASE = 0.12;
+
+function updateVU() {
+  if(!playing) return;
+
+  if(analyser) {
+    analyser.getByteFrequencyData(dataArray);
+    let sum = 0;
+    for(let i = 0; i < dataArray.length; i++) sum += dataArray[i] * dataArray[i];
+    const rms = Math.sqrt(sum / dataArray.length) / 255;
+    const target = Math.min(1, rms * 1.8);
+
+    const aL = target > smoothL ? ATTACK : RELEASE;
+    const aR = target > smoothR ? ATTACK : RELEASE;
+
+    const targetR = Math.min(1, Math.max(0, target * (0.82 + Math.random() * 0.36)));
+    smoothL += (target - smoothL) * aL;
+    smoothR += (targetR - smoothR) * aR;
+    smoothL = Math.max(0, Math.min(1, smoothL));
+    smoothR = Math.max(0, Math.min(1, smoothR));
+  }
+
+  setNeedle(needleL, smoothL);
+  setNeedle(needleR, smoothR);
+  setDigital(digL, smoothL);
+  setDigital(digR, smoothR);
+  requestAnimationFrame(updateVU);
+}
+
+(function idleLoop() {
+  if(!playing) {
+    setNeedle(needleL, 0);
+    setNeedle(needleR, 0);
+    setDigital(digL, 0);
+    setDigital(digR, 0);
+  }
+  requestAnimationFrame(idleLoop);
+})();
+
+const toggleBtns = document.querySelectorAll('.vu-mode-toggle button');
+const analogView = document.getElementById('analogView');
+const digitalView = document.getElementById('digitalView');
+
+toggleBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    toggleBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const mode = btn.dataset.mode;
+    analogView.style.display = mode === 'analog' ? 'flex' : 'none';
+    digitalView.style.display = mode === 'digital' ? 'flex' : 'none';
+  });
+});
+
+shareBtn.addEventListener('click', () => {
+  const url = streamUrlInput.value.trim();
+  if(navigator.clipboard && url) {
+    navigator.clipboard.writeText(url).then(() => {
+      shareBtn.textContent = 'Copiado ✓';
+      setTimeout(() => shareBtn.textContent = 'Compartir', 1600);
+    });
+  }
+});
+
+/* ========== BACKGROUND IMAGE ========== */
+const bgLayer       = document.getElementById('bgLayer');
+const bgOverlay     = document.getElementById('bgOverlay');
+const bgStationName = document.getElementById('bgStationName');
+const bgImageInput  = document.getElementById('bgImageInput');
+const bgBtn         = document.getElementById('bgBtn');
+
+let bgActive = false;
+
+bgBtn.addEventListener('click', () => {
+  if (bgActive) {
+    // Limpiar fondo
+    bgLayer.classList.remove('bg-layer--visible');
+    bgOverlay.classList.remove('bg-overlay--visible');
+    bgStationName.classList.remove('bg-station-name--visible');
+    bgBtn.classList.remove('btn-bg-img--active');
+    setTimeout(() => { bgLayer.style.backgroundImage = ''; }, 1000);
+    bgActive = false;
+  } else {
+    bgImageInput.click();
+  }
+});
+
+bgImageInput.addEventListener('change', e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    bgLayer.style.backgroundImage = `url(${ev.target.result})`;
+    // Pequeño delay para que el navegador procese la imagen antes del fade-in
+    requestAnimationFrame(() => {
+      bgLayer.classList.add('bg-layer--visible');
+      bgOverlay.classList.add('bg-overlay--visible');
+      bgStationName.classList.add('bg-station-name--visible');
+      bgBtn.classList.add('btn-bg-img--active');
+      bgActive = true;
+    });
+    // Actualizar nombre de estacion
+    const name = stationName.textContent || streamUrlInput.value.trim();
+    bgStationName.textContent = name;
+  };
+  reader.readAsDataURL(file);
+  // Reset para poder seleccionar el mismo archivo de nuevo
+  bgImageInput.value = '';
+});
+
+// Actualizar nombre en bg cuando cambia la estación
+function updateBgStationName(name) {
+  if (bgActive && name) bgStationName.textContent = name;
+}
+</script>
+</body>
+</html>

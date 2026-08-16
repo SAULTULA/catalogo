@@ -1,0 +1,2960 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>OS Web Skins — Demo</title>
+<style>
+/* ====================================================================
+   OS WEB SKIN: Mac OS Vibrant (Big Sur)
+   Familia: mac  |  id: mac-bigsur-vibrant
+   Big Sur con acentos vívidos multicolor y superficies translúcidas.
+   ==================================================================== */
+
+:root, .osw-mac-bigsur-vibrant {
+  /* --- Paleta --- */
+  --osw-bg:            linear-gradient(160deg,#dfe9f3,#c9d6ff);
+  --osw-bg-elevated:   #ffffffd9;
+  --osw-surface:       #ffffffe6;
+  --osw-border:        #c7d2e0;
+  --osw-text:          #1c1c1e;
+  --osw-text-muted:    #5b5b60;
+  --osw-accent:        #ff375f;
+  --osw-accent-text:   #ffffff;
+  --osw-titlebar-bg:   #ffffffcc;
+  --osw-titlebar-text: #1c1c1e;
+
+  /* --- Formas / tipografía --- */
+  --osw-radius:        14px;
+  --osw-radius-sm:     10px;
+  --osw-font:          -apple-system, 'SF Pro Display', Helvetica, Arial, sans-serif;
+  --osw-shadow:        0 20px 45px rgba(0,0,0,.22);
+  --osw-titlebar-height: 40px;
+}
+
+.osw-mac-bigsur-vibrant {
+  background: var(--osw-bg);
+  color: var(--osw-text);
+  font-family: var(--osw-font);
+  min-height: 100%;
+}
+
+/* Ventana estilo Mac OS Vibrant (Big Sur) */
+.osw-mac-bigsur-vibrant .osw-window {
+  background: var(--osw-surface);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius);
+  box-shadow: var(--osw-shadow);
+  overflow: hidden;
+}
+
+.osw-mac-bigsur-vibrant .osw-titlebar {
+  height: var(--osw-titlebar-height);
+  background: var(--osw-titlebar-bg);
+  color: var(--osw-titlebar-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  backdrop-filter: blur(24px);
+}
+
+.osw-mac-bigsur-vibrant .osw-titlebar-title {
+  flex: 1;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: .85;
+}
+
+.osw-mac-bigsur-vibrant .osw-controls {
+  display: flex;
+  gap: 8px;
+  order: -1;
+}
+.osw-mac-bigsur-vibrant .osw-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.osw-mac-bigsur-vibrant .osw-dot.close  { background: #ff5f57; }
+.osw-mac-bigsur-vibrant .osw-dot.min    { background: #febc2e; }
+.osw-mac-bigsur-vibrant .osw-dot.max    { background: #28c840; }
+
+.osw-mac-bigsur-vibrant .osw-content {
+  padding: 16px;
+}
+
+.osw-mac-bigsur-vibrant .osw-button {
+  background: var(--osw-accent);
+  color: var(--osw-accent-text);
+  border: none;
+  border-radius: var(--osw-radius-sm);
+  padding: 8px 16px;
+  font-family: var(--osw-font);
+  font-size: 14px;
+  cursor: pointer;
+  
+}
+
+.osw-mac-bigsur-vibrant .osw-card {
+  background: var(--osw-bg-elevated);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius-sm);
+  padding: 12px;
+}
+/* ====================================================================
+   OS WEB SKIN: Mac OS Catalina Light
+   Familia: mac  |  id: mac-catalina-light
+   Catalina, gris perla y azul cielo, líneas rectas.
+   ==================================================================== */
+
+:root, .osw-mac-catalina-light {
+  /* --- Paleta --- */
+  --osw-bg:            #eceef1;
+  --osw-bg-elevated:   #ffffff;
+  --osw-surface:       #f7f7f9;
+  --osw-border:        #d7d9dd;
+  --osw-text:          #25272b;
+  --osw-text-muted:    #767a80;
+  --osw-accent:        #2f88ff;
+  --osw-accent-text:   #ffffff;
+  --osw-titlebar-bg:   #e3e5e9;
+  --osw-titlebar-text: #25272b;
+
+  /* --- Formas / tipografía --- */
+  --osw-radius:        10px;
+  --osw-radius-sm:     6px;
+  --osw-font:          -apple-system, Helvetica, Arial, sans-serif;
+  --osw-shadow:        0 12px 28px rgba(0,0,0,.16);
+  --osw-titlebar-height: 36px;
+}
+
+.osw-mac-catalina-light {
+  background: var(--osw-bg);
+  color: var(--osw-text);
+  font-family: var(--osw-font);
+  min-height: 100%;
+}
+
+/* Ventana estilo Mac OS Catalina Light */
+.osw-mac-catalina-light .osw-window {
+  background: var(--osw-surface);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius);
+  box-shadow: var(--osw-shadow);
+  overflow: hidden;
+}
+
+.osw-mac-catalina-light .osw-titlebar {
+  height: var(--osw-titlebar-height);
+  background: var(--osw-titlebar-bg);
+  color: var(--osw-titlebar-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  
+}
+
+.osw-mac-catalina-light .osw-titlebar-title {
+  flex: 1;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: .85;
+}
+
+.osw-mac-catalina-light .osw-controls {
+  display: flex;
+  gap: 8px;
+  order: -1;
+}
+.osw-mac-catalina-light .osw-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.osw-mac-catalina-light .osw-dot.close  { background: #ff5f57; }
+.osw-mac-catalina-light .osw-dot.min    { background: #febc2e; }
+.osw-mac-catalina-light .osw-dot.max    { background: #28c840; }
+
+.osw-mac-catalina-light .osw-content {
+  padding: 16px;
+}
+
+.osw-mac-catalina-light .osw-button {
+  background: var(--osw-accent);
+  color: var(--osw-accent-text);
+  border: none;
+  border-radius: var(--osw-radius-sm);
+  padding: 8px 16px;
+  font-family: var(--osw-font);
+  font-size: 14px;
+  cursor: pointer;
+  
+}
+
+.osw-mac-catalina-light .osw-card {
+  background: var(--osw-bg-elevated);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius-sm);
+  padding: 12px;
+}
+/* ====================================================================
+   OS WEB SKIN: Mac OS Classic (System 7)
+   Familia: mac  |  id: mac-classic-system7
+   Retro System 7 / OS 9: rayas de título, blanco y negro, sin sombras suaves.
+   ==================================================================== */
+
+:root, .osw-mac-classic-system7 {
+  /* --- Paleta --- */
+  --osw-bg:            #c0c0c0;
+  --osw-bg-elevated:   #ffffff;
+  --osw-surface:       #dcdcdc;
+  --osw-border:        #000000;
+  --osw-text:          #000000;
+  --osw-text-muted:    #3a3a3a;
+  --osw-accent:        #000000;
+  --osw-accent-text:   #ffffff;
+  --osw-titlebar-bg:   repeating-linear-gradient(0deg,#ffffff,#ffffff 2px,#000000 2px,#000000 4px);
+  --osw-titlebar-text: #000000;
+
+  /* --- Formas / tipografía --- */
+  --osw-radius:        0px;
+  --osw-radius-sm:     0px;
+  --osw-font:          'Chicago', 'Geneva', monospace, sans-serif;
+  --osw-shadow:        4px 4px 0 #000000;
+  --osw-titlebar-height: 20px;
+}
+
+.osw-mac-classic-system7 {
+  background: var(--osw-bg);
+  color: var(--osw-text);
+  font-family: var(--osw-font);
+  min-height: 100%;
+}
+
+/* Ventana estilo Mac OS Classic (System 7) */
+.osw-mac-classic-system7 .osw-window {
+  background: var(--osw-surface);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius);
+  box-shadow: var(--osw-shadow);
+  overflow: hidden;
+}
+
+.osw-mac-classic-system7 .osw-titlebar {
+  height: var(--osw-titlebar-height);
+  background: var(--osw-titlebar-bg);
+  color: var(--osw-titlebar-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  border-bottom:1px solid #000;
+}
+
+.osw-mac-classic-system7 .osw-titlebar-title {
+  flex: 1;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: .85;
+}
+
+.osw-mac-classic-system7 .osw-controls {
+  display: flex;
+  gap: 8px;
+  order: -1;
+}
+.osw-mac-classic-system7 .osw-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.osw-mac-classic-system7 .osw-dot.close  { background: #ff5f57; }
+.osw-mac-classic-system7 .osw-dot.min    { background: #febc2e; }
+.osw-mac-classic-system7 .osw-dot.max    { background: #28c840; }
+
+.osw-mac-classic-system7 .osw-content {
+  padding: 16px;
+}
+
+.osw-mac-classic-system7 .osw-button {
+  background: var(--osw-accent);
+  color: var(--osw-accent-text);
+  border: none;
+  border-radius: var(--osw-radius-sm);
+  padding: 8px 16px;
+  font-family: var(--osw-font);
+  font-size: 14px;
+  cursor: pointer;
+  border-radius:0;
+}
+
+.osw-mac-classic-system7 .osw-card {
+  background: var(--osw-bg-elevated);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius-sm);
+  padding: 12px;
+}
+/* ====================================================================
+   OS WEB SKIN: Mac OS Graphite
+   Familia: mac  |  id: mac-graphite
+   Variante monocroma 'Graphite': grises neutros sin acentos de color.
+   ==================================================================== */
+
+:root, .osw-mac-graphite {
+  /* --- Paleta --- */
+  --osw-bg:            #e4e4e4;
+  --osw-bg-elevated:   #f5f5f5;
+  --osw-surface:       #ececec;
+  --osw-border:        #b8b8b8;
+  --osw-text:          #1a1a1a;
+  --osw-text-muted:    #5f5f5f;
+  --osw-accent:        #6b6b6f;
+  --osw-accent-text:   #ffffff;
+  --osw-titlebar-bg:   #d3d3d3;
+  --osw-titlebar-text: #1a1a1a;
+
+  /* --- Formas / tipografía --- */
+  --osw-radius:        8px;
+  --osw-radius-sm:     6px;
+  --osw-font:          -apple-system, Helvetica, Arial, sans-serif;
+  --osw-shadow:        0 10px 22px rgba(0,0,0,.2);
+  --osw-titlebar-height: 34px;
+}
+
+.osw-mac-graphite {
+  background: var(--osw-bg);
+  color: var(--osw-text);
+  font-family: var(--osw-font);
+  min-height: 100%;
+}
+
+/* Ventana estilo Mac OS Graphite */
+.osw-mac-graphite .osw-window {
+  background: var(--osw-surface);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius);
+  box-shadow: var(--osw-shadow);
+  overflow: hidden;
+}
+
+.osw-mac-graphite .osw-titlebar {
+  height: var(--osw-titlebar-height);
+  background: var(--osw-titlebar-bg);
+  color: var(--osw-titlebar-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  
+}
+
+.osw-mac-graphite .osw-titlebar-title {
+  flex: 1;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: .85;
+}
+
+.osw-mac-graphite .osw-controls {
+  display: flex;
+  gap: 8px;
+  order: -1;
+}
+.osw-mac-graphite .osw-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.osw-mac-graphite .osw-dot.close  { background: #ff5f57; }
+.osw-mac-graphite .osw-dot.min    { background: #febc2e; }
+.osw-mac-graphite .osw-dot.max    { background: #28c840; }
+
+.osw-mac-graphite .osw-content {
+  padding: 16px;
+}
+
+.osw-mac-graphite .osw-button {
+  background: var(--osw-accent);
+  color: var(--osw-accent-text);
+  border: none;
+  border-radius: var(--osw-radius-sm);
+  padding: 8px 16px;
+  font-family: var(--osw-font);
+  font-size: 14px;
+  cursor: pointer;
+  
+}
+
+.osw-mac-graphite .osw-card {
+  background: var(--osw-bg-elevated);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius-sm);
+  padding: 12px;
+}
+/* ====================================================================
+   OS WEB SKIN: Mac OS Mojave Dark
+   Familia: mac  |  id: mac-mojave-dark
+   Modo oscuro original de Mojave, grafitos profundos.
+   ==================================================================== */
+
+:root, .osw-mac-mojave-dark {
+  /* --- Paleta --- */
+  --osw-bg:            #212121;
+  --osw-bg-elevated:   #2d2d2d;
+  --osw-surface:       #292929;
+  --osw-border:        #3d3d3d;
+  --osw-text:          #eaeaea;
+  --osw-text-muted:    #9a9a9a;
+  --osw-accent:        #c07dff;
+  --osw-accent-text:   #111111;
+  --osw-titlebar-bg:   #262626;
+  --osw-titlebar-text: #eaeaea;
+
+  /* --- Formas / tipografía --- */
+  --osw-radius:        10px;
+  --osw-radius-sm:     6px;
+  --osw-font:          -apple-system, Helvetica, Arial, sans-serif;
+  --osw-shadow:        0 14px 30px rgba(0,0,0,.5);
+  --osw-titlebar-height: 36px;
+}
+
+.osw-mac-mojave-dark {
+  background: var(--osw-bg);
+  color: var(--osw-text);
+  font-family: var(--osw-font);
+  min-height: 100%;
+}
+
+/* Ventana estilo Mac OS Mojave Dark */
+.osw-mac-mojave-dark .osw-window {
+  background: var(--osw-surface);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius);
+  box-shadow: var(--osw-shadow);
+  overflow: hidden;
+}
+
+.osw-mac-mojave-dark .osw-titlebar {
+  height: var(--osw-titlebar-height);
+  background: var(--osw-titlebar-bg);
+  color: var(--osw-titlebar-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  
+}
+
+.osw-mac-mojave-dark .osw-titlebar-title {
+  flex: 1;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: .85;
+}
+
+.osw-mac-mojave-dark .osw-controls {
+  display: flex;
+  gap: 8px;
+  order: -1;
+}
+.osw-mac-mojave-dark .osw-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.osw-mac-mojave-dark .osw-dot.close  { background: #ff5f57; }
+.osw-mac-mojave-dark .osw-dot.min    { background: #febc2e; }
+.osw-mac-mojave-dark .osw-dot.max    { background: #28c840; }
+
+.osw-mac-mojave-dark .osw-content {
+  padding: 16px;
+}
+
+.osw-mac-mojave-dark .osw-button {
+  background: var(--osw-accent);
+  color: var(--osw-accent-text);
+  border: none;
+  border-radius: var(--osw-radius-sm);
+  padding: 8px 16px;
+  font-family: var(--osw-font);
+  font-size: 14px;
+  cursor: pointer;
+  
+}
+
+.osw-mac-mojave-dark .osw-card {
+  background: var(--osw-bg-elevated);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius-sm);
+  padding: 12px;
+}
+/* ====================================================================
+   OS WEB SKIN: Mac OS Light (Monterey)
+   Familia: mac  |  id: mac-monterey-light
+   Claro clásico de macOS Monterey, blancos y acento azul.
+   ==================================================================== */
+
+:root, .osw-mac-monterey-light {
+  /* --- Paleta --- */
+  --osw-bg:            #f5f5f7;
+  --osw-bg-elevated:   #ffffff;
+  --osw-surface:       #ffffffcc;
+  --osw-border:        #d2d2d7;
+  --osw-text:          #1d1d1f;
+  --osw-text-muted:    #6e6e73;
+  --osw-accent:        #007aff;
+  --osw-accent-text:   #ffffff;
+  --osw-titlebar-bg:   #ececececee;
+  --osw-titlebar-text: #1d1d1f;
+
+  /* --- Formas / tipografía --- */
+  --osw-radius:        12px;
+  --osw-radius-sm:     8px;
+  --osw-font:          -apple-system, 'SF Pro Display', Helvetica, Arial, sans-serif;
+  --osw-shadow:        0 16px 32px rgba(0,0,0,.18);
+  --osw-titlebar-height: 38px;
+}
+
+.osw-mac-monterey-light {
+  background: var(--osw-bg);
+  color: var(--osw-text);
+  font-family: var(--osw-font);
+  min-height: 100%;
+}
+
+/* Ventana estilo Mac OS Light (Monterey) */
+.osw-mac-monterey-light .osw-window {
+  background: var(--osw-surface);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius);
+  box-shadow: var(--osw-shadow);
+  overflow: hidden;
+}
+
+.osw-mac-monterey-light .osw-titlebar {
+  height: var(--osw-titlebar-height);
+  background: var(--osw-titlebar-bg);
+  color: var(--osw-titlebar-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  backdrop-filter: blur(20px);
+}
+
+.osw-mac-monterey-light .osw-titlebar-title {
+  flex: 1;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: .85;
+}
+
+.osw-mac-monterey-light .osw-controls {
+  display: flex;
+  gap: 8px;
+  order: -1;
+}
+.osw-mac-monterey-light .osw-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.osw-mac-monterey-light .osw-dot.close  { background: #ff5f57; }
+.osw-mac-monterey-light .osw-dot.min    { background: #febc2e; }
+.osw-mac-monterey-light .osw-dot.max    { background: #28c840; }
+
+.osw-mac-monterey-light .osw-content {
+  padding: 16px;
+}
+
+.osw-mac-monterey-light .osw-button {
+  background: var(--osw-accent);
+  color: var(--osw-accent-text);
+  border: none;
+  border-radius: var(--osw-radius-sm);
+  padding: 8px 16px;
+  font-family: var(--osw-font);
+  font-size: 14px;
+  cursor: pointer;
+  
+}
+
+.osw-mac-monterey-light .osw-card {
+  background: var(--osw-bg-elevated);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius-sm);
+  padding: 12px;
+}
+/* ====================================================================
+   OS WEB SKIN: Mac OS Night Shift
+   Familia: mac  |  id: mac-nightshift
+   Extra-oscuro con tinte cálido ámbar, ideal para lectura nocturna.
+   ==================================================================== */
+
+:root, .osw-mac-nightshift {
+  /* --- Paleta --- */
+  --osw-bg:            #171310;
+  --osw-bg-elevated:   #241d17;
+  --osw-surface:       #201a15;
+  --osw-border:        #3a2f24;
+  --osw-text:          #f4e7d6;
+  --osw-text-muted:    #b09a80;
+  --osw-accent:        #ff9f0a;
+  --osw-accent-text:   #1a0f00;
+  --osw-titlebar-bg:   #221b14;
+  --osw-titlebar-text: #f4e7d6;
+
+  /* --- Formas / tipografía --- */
+  --osw-radius:        12px;
+  --osw-radius-sm:     8px;
+  --osw-font:          -apple-system, Helvetica, Arial, sans-serif;
+  --osw-shadow:        0 18px 36px rgba(0,0,0,.6);
+  --osw-titlebar-height: 36px;
+}
+
+.osw-mac-nightshift {
+  background: var(--osw-bg);
+  color: var(--osw-text);
+  font-family: var(--osw-font);
+  min-height: 100%;
+}
+
+/* Ventana estilo Mac OS Night Shift */
+.osw-mac-nightshift .osw-window {
+  background: var(--osw-surface);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius);
+  box-shadow: var(--osw-shadow);
+  overflow: hidden;
+}
+
+.osw-mac-nightshift .osw-titlebar {
+  height: var(--osw-titlebar-height);
+  background: var(--osw-titlebar-bg);
+  color: var(--osw-titlebar-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  
+}
+
+.osw-mac-nightshift .osw-titlebar-title {
+  flex: 1;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: .85;
+}
+
+.osw-mac-nightshift .osw-controls {
+  display: flex;
+  gap: 8px;
+  order: -1;
+}
+.osw-mac-nightshift .osw-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.osw-mac-nightshift .osw-dot.close  { background: #ff5f57; }
+.osw-mac-nightshift .osw-dot.min    { background: #febc2e; }
+.osw-mac-nightshift .osw-dot.max    { background: #28c840; }
+
+.osw-mac-nightshift .osw-content {
+  padding: 16px;
+}
+
+.osw-mac-nightshift .osw-button {
+  background: var(--osw-accent);
+  color: var(--osw-accent-text);
+  border: none;
+  border-radius: var(--osw-radius-sm);
+  padding: 8px 16px;
+  font-family: var(--osw-font);
+  font-size: 14px;
+  cursor: pointer;
+  
+}
+
+.osw-mac-nightshift .osw-card {
+  background: var(--osw-bg-elevated);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius-sm);
+  padding: 12px;
+}
+/* ====================================================================
+   OS WEB SKIN: Mac OS Aqua (OS X Tiger)
+   Familia: mac  |  id: mac-osx-aqua-tiger
+   Aqua original: brillos, azules translúcidos, botones tipo gomita.
+   ==================================================================== */
+
+:root, .osw-mac-osx-aqua-tiger {
+  /* --- Paleta --- */
+  --osw-bg:            linear-gradient(180deg,#dfe7f0,#b9c9dd);
+  --osw-bg-elevated:   #ffffff;
+  --osw-surface:       #eef3fa;
+  --osw-border:        #8fa4bd;
+  --osw-text:          #0c1622;
+  --osw-text-muted:    #4c6178;
+  --osw-accent:        linear-gradient(180deg,#8fd0ff,#1f7fe0);
+  --osw-accent-text:   #ffffff;
+  --osw-titlebar-bg:   linear-gradient(180deg,#c9dcf5,#a9c2ea);
+  --osw-titlebar-text: #0c1622;
+
+  /* --- Formas / tipografía --- */
+  --osw-radius:        10px;
+  --osw-radius-sm:     14px;
+  --osw-font:          Lucida Grande, Helvetica, Arial, sans-serif;
+  --osw-shadow:        0 10px 24px rgba(20,50,90,.35);
+  --osw-titlebar-height: 26px;
+}
+
+.osw-mac-osx-aqua-tiger {
+  background: var(--osw-bg);
+  color: var(--osw-text);
+  font-family: var(--osw-font);
+  min-height: 100%;
+}
+
+/* Ventana estilo Mac OS Aqua (OS X Tiger) */
+.osw-mac-osx-aqua-tiger .osw-window {
+  background: var(--osw-surface);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius);
+  box-shadow: var(--osw-shadow);
+  overflow: hidden;
+}
+
+.osw-mac-osx-aqua-tiger .osw-titlebar {
+  height: var(--osw-titlebar-height);
+  background: var(--osw-titlebar-bg);
+  color: var(--osw-titlebar-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  
+}
+
+.osw-mac-osx-aqua-tiger .osw-titlebar-title {
+  flex: 1;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: .85;
+}
+
+.osw-mac-osx-aqua-tiger .osw-controls {
+  display: flex;
+  gap: 8px;
+  order: -1;
+}
+.osw-mac-osx-aqua-tiger .osw-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.osw-mac-osx-aqua-tiger .osw-dot.close  { background: #ff5f57; }
+.osw-mac-osx-aqua-tiger .osw-dot.min    { background: #febc2e; }
+.osw-mac-osx-aqua-tiger .osw-dot.max    { background: #28c840; }
+
+.osw-mac-osx-aqua-tiger .osw-content {
+  padding: 16px;
+}
+
+.osw-mac-osx-aqua-tiger .osw-button {
+  background: var(--osw-accent);
+  color: var(--osw-accent-text);
+  border: none;
+  border-radius: var(--osw-radius-sm);
+  padding: 8px 16px;
+  font-family: var(--osw-font);
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.6);
+}
+
+.osw-mac-osx-aqua-tiger .osw-card {
+  background: var(--osw-bg-elevated);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius-sm);
+  padding: 12px;
+}
+/* ====================================================================
+   OS WEB SKIN: Mac OS Sonoma
+   Familia: mac  |  id: mac-sonoma
+   Sonoma moderno, esquinas muy redondeadas y widgets translúcidos.
+   ==================================================================== */
+
+:root, .osw-mac-sonoma {
+  /* --- Paleta --- */
+  --osw-bg:            #0e0e10;
+  --osw-bg-elevated:   #1c1c1eE6;
+  --osw-surface:       #1c1c1ecc;
+  --osw-border:        #333336;
+  --osw-text:          #f2f2f7;
+  --osw-text-muted:    #a1a1a6;
+  --osw-accent:        #30d158;
+  --osw-accent-text:   #04210d;
+  --osw-titlebar-bg:   #1c1c1ec7;
+  --osw-titlebar-text: #f2f2f7;
+
+  /* --- Formas / tipografía --- */
+  --osw-radius:        18px;
+  --osw-radius-sm:     12px;
+  --osw-font:          -apple-system, 'SF Pro Display', Helvetica, Arial, sans-serif;
+  --osw-shadow:        0 24px 50px rgba(0,0,0,.55);
+  --osw-titlebar-height: 40px;
+}
+
+.osw-mac-sonoma {
+  background: var(--osw-bg);
+  color: var(--osw-text);
+  font-family: var(--osw-font);
+  min-height: 100%;
+}
+
+/* Ventana estilo Mac OS Sonoma */
+.osw-mac-sonoma .osw-window {
+  background: var(--osw-surface);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius);
+  box-shadow: var(--osw-shadow);
+  overflow: hidden;
+}
+
+.osw-mac-sonoma .osw-titlebar {
+  height: var(--osw-titlebar-height);
+  background: var(--osw-titlebar-bg);
+  color: var(--osw-titlebar-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  backdrop-filter: blur(30px);
+}
+
+.osw-mac-sonoma .osw-titlebar-title {
+  flex: 1;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: .85;
+}
+
+.osw-mac-sonoma .osw-controls {
+  display: flex;
+  gap: 8px;
+  order: -1;
+}
+.osw-mac-sonoma .osw-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.osw-mac-sonoma .osw-dot.close  { background: #ff5f57; }
+.osw-mac-sonoma .osw-dot.min    { background: #febc2e; }
+.osw-mac-sonoma .osw-dot.max    { background: #28c840; }
+
+.osw-mac-sonoma .osw-content {
+  padding: 16px;
+}
+
+.osw-mac-sonoma .osw-button {
+  background: var(--osw-accent);
+  color: var(--osw-accent-text);
+  border: none;
+  border-radius: var(--osw-radius-sm);
+  padding: 8px 16px;
+  font-family: var(--osw-font);
+  font-size: 14px;
+  cursor: pointer;
+  
+}
+
+.osw-mac-sonoma .osw-card {
+  background: var(--osw-bg-elevated);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius-sm);
+  padding: 12px;
+}
+/* ====================================================================
+   OS WEB SKIN: Mac OS Dark (Ventura)
+   Familia: mac  |  id: mac-ventura-dark
+   Oscuro nativo de macOS Ventura, grises azulados y acento azul sistema.
+   ==================================================================== */
+
+:root, .osw-mac-ventura-dark {
+  /* --- Paleta --- */
+  --osw-bg:            #1e1e1e;
+  --osw-bg-elevated:   #2a2a2c;
+  --osw-surface:       #28282acc;
+  --osw-border:        #3a3a3c;
+  --osw-text:          #f5f5f7;
+  --osw-text-muted:    #98989d;
+  --osw-accent:        #0a84ff;
+  --osw-accent-text:   #ffffff;
+  --osw-titlebar-bg:   #2c2c2eee;
+  --osw-titlebar-text: #f5f5f7;
+
+  /* --- Formas / tipografía --- */
+  --osw-radius:        12px;
+  --osw-radius-sm:     8px;
+  --osw-font:          -apple-system, 'SF Pro Display', Helvetica, Arial, sans-serif;
+  --osw-shadow:        0 20px 40px rgba(0,0,0,.5);
+  --osw-titlebar-height: 38px;
+}
+
+.osw-mac-ventura-dark {
+  background: var(--osw-bg);
+  color: var(--osw-text);
+  font-family: var(--osw-font);
+  min-height: 100%;
+}
+
+/* Ventana estilo Mac OS Dark (Ventura) */
+.osw-mac-ventura-dark .osw-window {
+  background: var(--osw-surface);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius);
+  box-shadow: var(--osw-shadow);
+  overflow: hidden;
+}
+
+.osw-mac-ventura-dark .osw-titlebar {
+  height: var(--osw-titlebar-height);
+  background: var(--osw-titlebar-bg);
+  color: var(--osw-titlebar-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  backdrop-filter: blur(20px);
+}
+
+.osw-mac-ventura-dark .osw-titlebar-title {
+  flex: 1;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: .85;
+}
+
+.osw-mac-ventura-dark .osw-controls {
+  display: flex;
+  gap: 8px;
+  order: -1;
+}
+.osw-mac-ventura-dark .osw-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.osw-mac-ventura-dark .osw-dot.close  { background: #ff5f57; }
+.osw-mac-ventura-dark .osw-dot.min    { background: #febc2e; }
+.osw-mac-ventura-dark .osw-dot.max    { background: #28c840; }
+
+.osw-mac-ventura-dark .osw-content {
+  padding: 16px;
+}
+
+.osw-mac-ventura-dark .osw-button {
+  background: var(--osw-accent);
+  color: var(--osw-accent-text);
+  border: none;
+  border-radius: var(--osw-radius-sm);
+  padding: 8px 16px;
+  font-family: var(--osw-font);
+  font-size: 14px;
+  cursor: pointer;
+  
+}
+
+.osw-mac-ventura-dark .osw-card {
+  background: var(--osw-bg-elevated);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius-sm);
+  padding: 12px;
+}
+/* ====================================================================
+   OS WEB SKIN: Arch Linux (Dracula)
+   Familia: linux  |  id: linux-arch-dracula
+   Paleta Dracula popular entre usuarios de Arch: púrpuras y rosas neón sobre negro.
+   ==================================================================== */
+
+:root, .osw-linux-arch-dracula {
+  /* --- Paleta --- */
+  --osw-bg:            #282a36;
+  --osw-bg-elevated:   #343746;
+  --osw-surface:       #2f313f;
+  --osw-border:        #44475a;
+  --osw-text:          #f8f8f2;
+  --osw-text-muted:    #bd93f9;
+  --osw-accent:        #ff79c6;
+  --osw-accent-text:   #1e1f29;
+  --osw-titlebar-bg:   #21222c;
+  --osw-titlebar-text: #f8f8f2;
+
+  /* --- Formas / tipografía --- */
+  --osw-radius:        8px;
+  --osw-radius-sm:     6px;
+  --osw-font:          'JetBrains Mono', 'Fira Code', monospace;
+  --osw-shadow:        0 16px 34px rgba(0,0,0,.5);
+  --osw-titlebar-height: 30px;
+}
+
+.osw-linux-arch-dracula {
+  background: var(--osw-bg);
+  color: var(--osw-text);
+  font-family: var(--osw-font);
+  min-height: 100%;
+}
+
+/* Ventana estilo Arch Linux (Dracula) */
+.osw-linux-arch-dracula .osw-window {
+  background: var(--osw-surface);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius);
+  box-shadow: var(--osw-shadow);
+  overflow: hidden;
+}
+
+.osw-linux-arch-dracula .osw-titlebar {
+  height: var(--osw-titlebar-height);
+  background: var(--osw-titlebar-bg);
+  color: var(--osw-titlebar-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  
+}
+
+.osw-linux-arch-dracula .osw-titlebar-title {
+  flex: 1;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: .85;
+}
+
+.osw-linux-arch-dracula .osw-controls {
+  display: flex;
+  gap: 6px;
+  margin-left: auto;
+}
+.osw-linux-arch-dracula .osw-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: inline-block;
+  background: var(--osw-border);
+}
+
+.osw-linux-arch-dracula .osw-content {
+  padding: 16px;
+}
+
+.osw-linux-arch-dracula .osw-button {
+  background: var(--osw-accent);
+  color: var(--osw-accent-text);
+  border: none;
+  border-radius: var(--osw-radius-sm);
+  padding: 8px 16px;
+  font-family: var(--osw-font);
+  font-size: 14px;
+  cursor: pointer;
+  
+}
+
+.osw-linux-arch-dracula .osw-card {
+  background: var(--osw-bg-elevated);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius-sm);
+  padding: 12px;
+}
+/* ====================================================================
+   OS WEB SKIN: elementary OS (Pantheon)
+   Familia: linux  |  id: linux-elementary-pantheon
+   Pantheon minimalista tipo macOS-friendly, azul suave.
+   ==================================================================== */
+
+:root, .osw-linux-elementary-pantheon {
+  /* --- Paleta --- */
+  --osw-bg:            #fafafa;
+  --osw-bg-elevated:   #ffffff;
+  --osw-surface:       #f5f5f5;
+  --osw-border:        #dbdbdb;
+  --osw-text:          #232426;
+  --osw-text-muted:    #7a7a7a;
+  --osw-accent:        #3689e6;
+  --osw-accent-text:   #ffffff;
+  --osw-titlebar-bg:   #f5f5f5ee;
+  --osw-titlebar-text: #232426;
+
+  /* --- Formas / tipografía --- */
+  --osw-radius:        10px;
+  --osw-radius-sm:     8px;
+  --osw-font:          'Inter', 'Open Sans', sans-serif;
+  --osw-shadow:        0 14px 28px rgba(0,0,0,.16);
+  --osw-titlebar-height: 36px;
+}
+
+.osw-linux-elementary-pantheon {
+  background: var(--osw-bg);
+  color: var(--osw-text);
+  font-family: var(--osw-font);
+  min-height: 100%;
+}
+
+/* Ventana estilo elementary OS (Pantheon) */
+.osw-linux-elementary-pantheon .osw-window {
+  background: var(--osw-surface);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius);
+  box-shadow: var(--osw-shadow);
+  overflow: hidden;
+}
+
+.osw-linux-elementary-pantheon .osw-titlebar {
+  height: var(--osw-titlebar-height);
+  background: var(--osw-titlebar-bg);
+  color: var(--osw-titlebar-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  
+}
+
+.osw-linux-elementary-pantheon .osw-titlebar-title {
+  flex: 1;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: .85;
+}
+
+.osw-linux-elementary-pantheon .osw-controls {
+  display: flex;
+  gap: 6px;
+  margin-left: auto;
+}
+.osw-linux-elementary-pantheon .osw-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: inline-block;
+  background: var(--osw-border);
+}
+
+.osw-linux-elementary-pantheon .osw-content {
+  padding: 16px;
+}
+
+.osw-linux-elementary-pantheon .osw-button {
+  background: var(--osw-accent);
+  color: var(--osw-accent-text);
+  border: none;
+  border-radius: var(--osw-radius-sm);
+  padding: 8px 16px;
+  font-family: var(--osw-font);
+  font-size: 14px;
+  cursor: pointer;
+  
+}
+
+.osw-linux-elementary-pantheon .osw-card {
+  background: var(--osw-bg-elevated);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius-sm);
+  padding: 12px;
+}
+/* ====================================================================
+   OS WEB SKIN: Fedora (GNOME Blue)
+   Familia: linux  |  id: linux-fedora-gnome
+   Fedora Workstation, azul institucional sobre GNOME.
+   ==================================================================== */
+
+:root, .osw-linux-fedora-gnome {
+  /* --- Paleta --- */
+  --osw-bg:            #f3f4f6;
+  --osw-bg-elevated:   #ffffff;
+  --osw-surface:       #fbfbfc;
+  --osw-border:        #d3d6db;
+  --osw-text:          #1b1b1e;
+  --osw-text-muted:    #6b7076;
+  --osw-accent:        #294172;
+  --osw-accent-text:   #ffffff;
+  --osw-titlebar-bg:   #e5e7ea;
+  --osw-titlebar-text: #1b1b1e;
+
+  /* --- Formas / tipografía --- */
+  --osw-radius:        8px;
+  --osw-radius-sm:     6px;
+  --osw-font:          Cantarell, 'Noto Sans', sans-serif;
+  --osw-shadow:        0 12px 26px rgba(0,0,0,.18);
+  --osw-titlebar-height: 34px;
+}
+
+.osw-linux-fedora-gnome {
+  background: var(--osw-bg);
+  color: var(--osw-text);
+  font-family: var(--osw-font);
+  min-height: 100%;
+}
+
+/* Ventana estilo Fedora (GNOME Blue) */
+.osw-linux-fedora-gnome .osw-window {
+  background: var(--osw-surface);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius);
+  box-shadow: var(--osw-shadow);
+  overflow: hidden;
+}
+
+.osw-linux-fedora-gnome .osw-titlebar {
+  height: var(--osw-titlebar-height);
+  background: var(--osw-titlebar-bg);
+  color: var(--osw-titlebar-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  
+}
+
+.osw-linux-fedora-gnome .osw-titlebar-title {
+  flex: 1;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: .85;
+}
+
+.osw-linux-fedora-gnome .osw-controls {
+  display: flex;
+  gap: 6px;
+  margin-left: auto;
+}
+.osw-linux-fedora-gnome .osw-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: inline-block;
+  background: var(--osw-border);
+}
+
+.osw-linux-fedora-gnome .osw-content {
+  padding: 16px;
+}
+
+.osw-linux-fedora-gnome .osw-button {
+  background: var(--osw-accent);
+  color: var(--osw-accent-text);
+  border: none;
+  border-radius: var(--osw-radius-sm);
+  padding: 8px 16px;
+  font-family: var(--osw-font);
+  font-size: 14px;
+  cursor: pointer;
+  
+}
+
+.osw-linux-fedora-gnome .osw-card {
+  background: var(--osw-bg-elevated);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius-sm);
+  padding: 12px;
+}
+/* ====================================================================
+   OS WEB SKIN: GNOME Adwaita
+   Familia: linux  |  id: linux-gnome-adwaita
+   Adwaita estándar de GNOME: gris neutro y barras planas.
+   ==================================================================== */
+
+:root, .osw-linux-gnome-adwaita {
+  /* --- Paleta --- */
+  --osw-bg:            #f6f5f4;
+  --osw-bg-elevated:   #ffffff;
+  --osw-surface:       #fafafa;
+  --osw-border:        #d8d6d3;
+  --osw-text:          #241f31;
+  --osw-text-muted:    #77767b;
+  --osw-accent:        #3584e4;
+  --osw-accent-text:   #ffffff;
+  --osw-titlebar-bg:   #e9e8e7;
+  --osw-titlebar-text: #241f31;
+
+  /* --- Formas / tipografía --- */
+  --osw-radius:        10px;
+  --osw-radius-sm:     8px;
+  --osw-font:          Cantarell, 'Noto Sans', sans-serif;
+  --osw-shadow:        0 12px 26px rgba(0,0,0,.18);
+  --osw-titlebar-height: 38px;
+}
+
+.osw-linux-gnome-adwaita {
+  background: var(--osw-bg);
+  color: var(--osw-text);
+  font-family: var(--osw-font);
+  min-height: 100%;
+}
+
+/* Ventana estilo GNOME Adwaita */
+.osw-linux-gnome-adwaita .osw-window {
+  background: var(--osw-surface);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius);
+  box-shadow: var(--osw-shadow);
+  overflow: hidden;
+}
+
+.osw-linux-gnome-adwaita .osw-titlebar {
+  height: var(--osw-titlebar-height);
+  background: var(--osw-titlebar-bg);
+  color: var(--osw-titlebar-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  
+}
+
+.osw-linux-gnome-adwaita .osw-titlebar-title {
+  flex: 1;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: .85;
+}
+
+.osw-linux-gnome-adwaita .osw-controls {
+  display: flex;
+  gap: 6px;
+  margin-left: auto;
+}
+.osw-linux-gnome-adwaita .osw-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: inline-block;
+  background: var(--osw-border);
+}
+
+.osw-linux-gnome-adwaita .osw-content {
+  padding: 16px;
+}
+
+.osw-linux-gnome-adwaita .osw-button {
+  background: var(--osw-accent);
+  color: var(--osw-accent-text);
+  border: none;
+  border-radius: var(--osw-radius-sm);
+  padding: 8px 16px;
+  font-family: var(--osw-font);
+  font-size: 14px;
+  cursor: pointer;
+  
+}
+
+.osw-linux-gnome-adwaita .osw-card {
+  background: var(--osw-bg-elevated);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius-sm);
+  padding: 12px;
+}
+/* ====================================================================
+   OS WEB SKIN: Kali Linux (Terminal Script)
+   Familia: linux  |  id: linux-kali
+   Estética Kali: negro absoluto, verde/azul dracula y tipografía mono.
+   ==================================================================== */
+
+:root, .osw-linux-kali {
+  /* --- Paleta --- */
+  --osw-bg:            #0d1117;
+  --osw-bg-elevated:   #141a21;
+  --osw-surface:       #111820;
+  --osw-border:        #1f2933;
+  --osw-text:          #8be9fd;
+  --osw-text-muted:    #4c6b7a;
+  --osw-accent:        #00e07a;
+  --osw-accent-text:   #04140d;
+  --osw-titlebar-bg:   #0a0f14;
+  --osw-titlebar-text: #00e07a;
+
+  /* --- Formas / tipografía --- */
+  --osw-radius:        4px;
+  --osw-radius-sm:     2px;
+  --osw-font:          'Fira Code', 'JetBrains Mono', monospace;
+  --osw-shadow:        0 0 24px rgba(0,224,122,.15);
+  --osw-titlebar-height: 28px;
+}
+
+.osw-linux-kali {
+  background: var(--osw-bg);
+  color: var(--osw-text);
+  font-family: var(--osw-font);
+  min-height: 100%;
+}
+
+/* Ventana estilo Kali Linux (Terminal Script) */
+.osw-linux-kali .osw-window {
+  background: var(--osw-surface);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius);
+  box-shadow: var(--osw-shadow);
+  overflow: hidden;
+}
+
+.osw-linux-kali .osw-titlebar {
+  height: var(--osw-titlebar-height);
+  background: var(--osw-titlebar-bg);
+  color: var(--osw-titlebar-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  
+}
+
+.osw-linux-kali .osw-titlebar-title {
+  flex: 1;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: .85;
+}
+
+.osw-linux-kali .osw-controls {
+  display: flex;
+  gap: 6px;
+  margin-left: auto;
+}
+.osw-linux-kali .osw-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  display: inline-block;
+  background: var(--osw-border);
+}
+
+.osw-linux-kali .osw-content {
+  padding: 16px;
+}
+
+.osw-linux-kali .osw-button {
+  background: var(--osw-accent);
+  color: var(--osw-accent-text);
+  border: none;
+  border-radius: var(--osw-radius-sm);
+  padding: 8px 16px;
+  font-family: var(--osw-font);
+  font-size: 14px;
+  cursor: pointer;
+  
+}
+
+.osw-linux-kali .osw-card {
+  background: var(--osw-bg-elevated);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius-sm);
+  padding: 12px;
+}
+/* ====================================================================
+   OS WEB SKIN: KDE Plasma (Breeze)
+   Familia: linux  |  id: linux-kde-breeze
+   Breeze de KDE Plasma: azules fríos, esquinas cuadradas suaves.
+   ==================================================================== */
+
+:root, .osw-linux-kde-breeze {
+  /* --- Paleta --- */
+  --osw-bg:            #eff0f1;
+  --osw-bg-elevated:   #ffffff;
+  --osw-surface:       #fcfcfc;
+  --osw-border:        #bdc3c7;
+  --osw-text:          #232629;
+  --osw-text-muted:    #7f8c8d;
+  --osw-accent:        #3daee9;
+  --osw-accent-text:   #ffffff;
+  --osw-titlebar-bg:   #eff0f1;
+  --osw-titlebar-text: #232629;
+
+  /* --- Formas / tipografía --- */
+  --osw-radius:        6px;
+  --osw-radius-sm:     4px;
+  --osw-font:          'Noto Sans', 'Segoe UI', sans-serif;
+  --osw-shadow:        0 10px 24px rgba(0,0,0,.2);
+  --osw-titlebar-height: 32px;
+}
+
+.osw-linux-kde-breeze {
+  background: var(--osw-bg);
+  color: var(--osw-text);
+  font-family: var(--osw-font);
+  min-height: 100%;
+}
+
+/* Ventana estilo KDE Plasma (Breeze) */
+.osw-linux-kde-breeze .osw-window {
+  background: var(--osw-surface);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius);
+  box-shadow: var(--osw-shadow);
+  overflow: hidden;
+}
+
+.osw-linux-kde-breeze .osw-titlebar {
+  height: var(--osw-titlebar-height);
+  background: var(--osw-titlebar-bg);
+  color: var(--osw-titlebar-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  
+}
+
+.osw-linux-kde-breeze .osw-titlebar-title {
+  flex: 1;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: .85;
+}
+
+.osw-linux-kde-breeze .osw-controls {
+  display: flex;
+  gap: 6px;
+  margin-left: auto;
+}
+.osw-linux-kde-breeze .osw-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  display: inline-block;
+  background: var(--osw-border);
+}
+
+.osw-linux-kde-breeze .osw-content {
+  padding: 16px;
+}
+
+.osw-linux-kde-breeze .osw-button {
+  background: var(--osw-accent);
+  color: var(--osw-accent-text);
+  border: none;
+  border-radius: var(--osw-radius-sm);
+  padding: 8px 16px;
+  font-family: var(--osw-font);
+  font-size: 14px;
+  cursor: pointer;
+  
+}
+
+.osw-linux-kde-breeze .osw-card {
+  background: var(--osw-bg-elevated);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius-sm);
+  padding: 12px;
+}
+/* ====================================================================
+   OS WEB SKIN: Manjaro (Breeze Dark)
+   Familia: linux  |  id: linux-manjaro-breeze-dark
+   Manjaro con Breeze oscuro: verde característico y grises azulados.
+   ==================================================================== */
+
+:root, .osw-linux-manjaro-breeze-dark {
+  /* --- Paleta --- */
+  --osw-bg:            #232629;
+  --osw-bg-elevated:   #2f3336;
+  --osw-surface:       #292c2f;
+  --osw-border:        #40454a;
+  --osw-text:          #eff0f1;
+  --osw-text-muted:    #95a0a6;
+  --osw-accent:        #35bb70;
+  --osw-accent-text:   #04180c;
+  --osw-titlebar-bg:   #1b1e20;
+  --osw-titlebar-text: #eff0f1;
+
+  /* --- Formas / tipografía --- */
+  --osw-radius:        6px;
+  --osw-radius-sm:     4px;
+  --osw-font:          'Noto Sans', sans-serif;
+  --osw-shadow:        0 14px 30px rgba(0,0,0,.5);
+  --osw-titlebar-height: 32px;
+}
+
+.osw-linux-manjaro-breeze-dark {
+  background: var(--osw-bg);
+  color: var(--osw-text);
+  font-family: var(--osw-font);
+  min-height: 100%;
+}
+
+/* Ventana estilo Manjaro (Breeze Dark) */
+.osw-linux-manjaro-breeze-dark .osw-window {
+  background: var(--osw-surface);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius);
+  box-shadow: var(--osw-shadow);
+  overflow: hidden;
+}
+
+.osw-linux-manjaro-breeze-dark .osw-titlebar {
+  height: var(--osw-titlebar-height);
+  background: var(--osw-titlebar-bg);
+  color: var(--osw-titlebar-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  
+}
+
+.osw-linux-manjaro-breeze-dark .osw-titlebar-title {
+  flex: 1;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: .85;
+}
+
+.osw-linux-manjaro-breeze-dark .osw-controls {
+  display: flex;
+  gap: 6px;
+  margin-left: auto;
+}
+.osw-linux-manjaro-breeze-dark .osw-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  display: inline-block;
+  background: var(--osw-border);
+}
+
+.osw-linux-manjaro-breeze-dark .osw-content {
+  padding: 16px;
+}
+
+.osw-linux-manjaro-breeze-dark .osw-button {
+  background: var(--osw-accent);
+  color: var(--osw-accent-text);
+  border: none;
+  border-radius: var(--osw-radius-sm);
+  padding: 8px 16px;
+  font-family: var(--osw-font);
+  font-size: 14px;
+  cursor: pointer;
+  
+}
+
+.osw-linux-manjaro-breeze-dark .osw-card {
+  background: var(--osw-bg-elevated);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius-sm);
+  padding: 12px;
+}
+/* ====================================================================
+   OS WEB SKIN: Linux Mint (Cinnamon)
+   Familia: linux  |  id: linux-mint-cinnamon
+   Mint verde característico con panel oscuro Cinnamon.
+   ==================================================================== */
+
+:root, .osw-linux-mint-cinnamon {
+  /* --- Paleta --- */
+  --osw-bg:            #eef1ef;
+  --osw-bg-elevated:   #ffffff;
+  --osw-surface:       #f6f8f6;
+  --osw-border:        #c6d1c8;
+  --osw-text:          #1f2a22;
+  --osw-text-muted:    #5e6f62;
+  --osw-accent:        #8bc34a;
+  --osw-accent-text:   #0c1a05;
+  --osw-titlebar-bg:   #2e3436;
+  --osw-titlebar-text: #e6efe8;
+
+  /* --- Formas / tipografía --- */
+  --osw-radius:        6px;
+  --osw-radius-sm:     4px;
+  --osw-font:          'Noto Sans', sans-serif;
+  --osw-shadow:        0 12px 26px rgba(0,0,0,.2);
+  --osw-titlebar-height: 32px;
+}
+
+.osw-linux-mint-cinnamon {
+  background: var(--osw-bg);
+  color: var(--osw-text);
+  font-family: var(--osw-font);
+  min-height: 100%;
+}
+
+/* Ventana estilo Linux Mint (Cinnamon) */
+.osw-linux-mint-cinnamon .osw-window {
+  background: var(--osw-surface);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius);
+  box-shadow: var(--osw-shadow);
+  overflow: hidden;
+}
+
+.osw-linux-mint-cinnamon .osw-titlebar {
+  height: var(--osw-titlebar-height);
+  background: var(--osw-titlebar-bg);
+  color: var(--osw-titlebar-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  
+}
+
+.osw-linux-mint-cinnamon .osw-titlebar-title {
+  flex: 1;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: .85;
+}
+
+.osw-linux-mint-cinnamon .osw-controls {
+  display: flex;
+  gap: 6px;
+  margin-left: auto;
+}
+.osw-linux-mint-cinnamon .osw-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  display: inline-block;
+  background: var(--osw-border);
+}
+
+.osw-linux-mint-cinnamon .osw-content {
+  padding: 16px;
+}
+
+.osw-linux-mint-cinnamon .osw-button {
+  background: var(--osw-accent);
+  color: var(--osw-accent-text);
+  border: none;
+  border-radius: var(--osw-radius-sm);
+  padding: 8px 16px;
+  font-family: var(--osw-font);
+  font-size: 14px;
+  cursor: pointer;
+  
+}
+
+.osw-linux-mint-cinnamon .osw-card {
+  background: var(--osw-bg-elevated);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius-sm);
+  padding: 12px;
+}
+/* ====================================================================
+   OS WEB SKIN: Pop!_OS
+   Familia: linux  |  id: linux-popos
+   Pop!_OS de System76: negro y acento cian brillante.
+   ==================================================================== */
+
+:root, .osw-linux-popos {
+  /* --- Paleta --- */
+  --osw-bg:            #1a1a1a;
+  --osw-bg-elevated:   #242424;
+  --osw-surface:       #202020;
+  --osw-border:        #333333;
+  --osw-text:          #f2f2f2;
+  --osw-text-muted:    #9b9b9b;
+  --osw-accent:        #48b9c7;
+  --osw-accent-text:   #052226;
+  --osw-titlebar-bg:   #171717;
+  --osw-titlebar-text: #48b9c7;
+
+  /* --- Formas / tipografía --- */
+  --osw-radius:        6px;
+  --osw-radius-sm:     4px;
+  --osw-font:          'Fira Sans', 'Noto Sans', sans-serif;
+  --osw-shadow:        0 14px 30px rgba(0,0,0,.5);
+  --osw-titlebar-height: 32px;
+}
+
+.osw-linux-popos {
+  background: var(--osw-bg);
+  color: var(--osw-text);
+  font-family: var(--osw-font);
+  min-height: 100%;
+}
+
+/* Ventana estilo Pop!_OS */
+.osw-linux-popos .osw-window {
+  background: var(--osw-surface);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius);
+  box-shadow: var(--osw-shadow);
+  overflow: hidden;
+}
+
+.osw-linux-popos .osw-titlebar {
+  height: var(--osw-titlebar-height);
+  background: var(--osw-titlebar-bg);
+  color: var(--osw-titlebar-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  
+}
+
+.osw-linux-popos .osw-titlebar-title {
+  flex: 1;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: .85;
+}
+
+.osw-linux-popos .osw-controls {
+  display: flex;
+  gap: 6px;
+  margin-left: auto;
+}
+.osw-linux-popos .osw-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: inline-block;
+  background: var(--osw-border);
+}
+
+.osw-linux-popos .osw-content {
+  padding: 16px;
+}
+
+.osw-linux-popos .osw-button {
+  background: var(--osw-accent);
+  color: var(--osw-accent-text);
+  border: none;
+  border-radius: var(--osw-radius-sm);
+  padding: 8px 16px;
+  font-family: var(--osw-font);
+  font-size: 14px;
+  cursor: pointer;
+  
+}
+
+.osw-linux-popos .osw-card {
+  background: var(--osw-bg-elevated);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius-sm);
+  padding: 12px;
+}
+/* ====================================================================
+   OS WEB SKIN: Ubuntu (Yaru Theme)
+   Familia: linux  |  id: linux-ubuntu-yaru
+   Tema Yaru oficial de Ubuntu: morado icónico y esquinas suaves.
+   ==================================================================== */
+
+:root, .osw-linux-ubuntu-yaru {
+  /* --- Paleta --- */
+  --osw-bg:            #2c2c2c;
+  --osw-bg-elevated:   #383838;
+  --osw-surface:       #333333;
+  --osw-border:        #4d4d4d;
+  --osw-text:          #f2f2f2;
+  --osw-text-muted:    #aeaeae;
+  --osw-accent:        #e95420;
+  --osw-accent-text:   #ffffff;
+  --osw-titlebar-bg:   #3b0d5c;
+  --osw-titlebar-text: #ffffff;
+
+  /* --- Formas / tipografía --- */
+  --osw-radius:        8px;
+  --osw-radius-sm:     6px;
+  --osw-font:          Ubuntu, 'Noto Sans', sans-serif;
+  --osw-shadow:        0 16px 32px rgba(0,0,0,.45);
+  --osw-titlebar-height: 34px;
+}
+
+.osw-linux-ubuntu-yaru {
+  background: var(--osw-bg);
+  color: var(--osw-text);
+  font-family: var(--osw-font);
+  min-height: 100%;
+}
+
+/* Ventana estilo Ubuntu (Yaru Theme) */
+.osw-linux-ubuntu-yaru .osw-window {
+  background: var(--osw-surface);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius);
+  box-shadow: var(--osw-shadow);
+  overflow: hidden;
+}
+
+.osw-linux-ubuntu-yaru .osw-titlebar {
+  height: var(--osw-titlebar-height);
+  background: var(--osw-titlebar-bg);
+  color: var(--osw-titlebar-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  
+}
+
+.osw-linux-ubuntu-yaru .osw-titlebar-title {
+  flex: 1;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: .85;
+}
+
+.osw-linux-ubuntu-yaru .osw-controls {
+  display: flex;
+  gap: 6px;
+  margin-left: auto;
+}
+.osw-linux-ubuntu-yaru .osw-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: inline-block;
+  background: var(--osw-border);
+}
+
+.osw-linux-ubuntu-yaru .osw-content {
+  padding: 16px;
+}
+
+.osw-linux-ubuntu-yaru .osw-button {
+  background: var(--osw-accent);
+  color: var(--osw-accent-text);
+  border: none;
+  border-radius: var(--osw-radius-sm);
+  padding: 8px 16px;
+  font-family: var(--osw-font);
+  font-size: 14px;
+  cursor: pointer;
+  
+}
+
+.osw-linux-ubuntu-yaru .osw-card {
+  background: var(--osw-bg-elevated);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius-sm);
+  padding: 12px;
+}
+/* ====================================================================
+   OS WEB SKIN: ColorOS (Oppo)
+   Familia: android  |  id: android-coloros
+   ColorOS de Oppo: verdes suaves, curvas amplias tipo 'Aquamorphic'.
+   ==================================================================== */
+
+:root, .osw-android-coloros {
+  /* --- Paleta --- */
+  --osw-bg:            #f5f7f6;
+  --osw-bg-elevated:   #ffffff;
+  --osw-surface:       #edf2ef;
+  --osw-border:        #dbe4de;
+  --osw-text:          #12201a;
+  --osw-text-muted:    #5f6f67;
+  --osw-accent:        #0e8a5f;
+  --osw-accent-text:   #ffffff;
+  --osw-titlebar-bg:   #ffffff;
+  --osw-titlebar-text: #12201a;
+
+  /* --- Formas / tipografía --- */
+  --osw-radius:        26px;
+  --osw-radius-sm:     16px;
+  --osw-font:          'Sans', Roboto, sans-serif;
+  --osw-shadow:        0 10px 22px rgba(0,0,0,.14);
+  --osw-titlebar-height: 56px;
+}
+
+.osw-android-coloros {
+  background: var(--osw-bg);
+  color: var(--osw-text);
+  font-family: var(--osw-font);
+  min-height: 100%;
+}
+
+/* Ventana estilo ColorOS (Oppo) */
+.osw-android-coloros .osw-window {
+  background: var(--osw-surface);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius);
+  box-shadow: var(--osw-shadow);
+  overflow: hidden;
+}
+
+.osw-android-coloros .osw-titlebar {
+  height: var(--osw-titlebar-height);
+  background: var(--osw-titlebar-bg);
+  color: var(--osw-titlebar-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  
+}
+
+.osw-android-coloros .osw-titlebar-title {
+  flex: 1;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: .85;
+}
+
+.osw-android-coloros .osw-controls {
+  display: none;
+}
+.osw-android-coloros .osw-titlebar {
+  justify-content: flex-start;
+}
+
+.osw-android-coloros .osw-content {
+  padding: 16px;
+}
+
+.osw-android-coloros .osw-button {
+  background: var(--osw-accent);
+  color: var(--osw-accent-text);
+  border: none;
+  border-radius: var(--osw-radius-sm);
+  padding: 8px 16px;
+  font-family: var(--osw-font);
+  font-size: 14px;
+  cursor: pointer;
+  
+}
+
+.osw-android-coloros .osw-card {
+  background: var(--osw-bg-elevated);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius-sm);
+  padding: 12px;
+}
+/* ====================================================================
+   OS WEB SKIN: Android Dark
+   Familia: android  |  id: android-dark
+   Modo oscuro estándar de Android, negro OLED con acento verde.
+   ==================================================================== */
+
+:root, .osw-android-dark {
+  /* --- Paleta --- */
+  --osw-bg:            #0f0f0f;
+  --osw-bg-elevated:   #1c1c1c;
+  --osw-surface:       #161616;
+  --osw-border:        #2c2c2c;
+  --osw-text:          #e3e3e3;
+  --osw-text-muted:    #9aa0a6;
+  --osw-accent:        #8ab4f8;
+  --osw-accent-text:   #062e6f;
+  --osw-titlebar-bg:   #111111;
+  --osw-titlebar-text: #e3e3e3;
+
+  /* --- Formas / tipografía --- */
+  --osw-radius:        20px;
+  --osw-radius-sm:     12px;
+  --osw-font:          Roboto, sans-serif;
+  --osw-shadow:        0 12px 26px rgba(0,0,0,.6);
+  --osw-titlebar-height: 52px;
+}
+
+.osw-android-dark {
+  background: var(--osw-bg);
+  color: var(--osw-text);
+  font-family: var(--osw-font);
+  min-height: 100%;
+}
+
+/* Ventana estilo Android Dark */
+.osw-android-dark .osw-window {
+  background: var(--osw-surface);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius);
+  box-shadow: var(--osw-shadow);
+  overflow: hidden;
+}
+
+.osw-android-dark .osw-titlebar {
+  height: var(--osw-titlebar-height);
+  background: var(--osw-titlebar-bg);
+  color: var(--osw-titlebar-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  
+}
+
+.osw-android-dark .osw-titlebar-title {
+  flex: 1;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: .85;
+}
+
+.osw-android-dark .osw-controls {
+  display: none;
+}
+.osw-android-dark .osw-titlebar {
+  justify-content: flex-start;
+}
+
+.osw-android-dark .osw-content {
+  padding: 16px;
+}
+
+.osw-android-dark .osw-button {
+  background: var(--osw-accent);
+  color: var(--osw-accent-text);
+  border: none;
+  border-radius: var(--osw-radius-sm);
+  padding: 8px 16px;
+  font-family: var(--osw-font);
+  font-size: 14px;
+  cursor: pointer;
+  
+}
+
+.osw-android-dark .osw-card {
+  background: var(--osw-bg-elevated);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius-sm);
+  padding: 12px;
+}
+/* ====================================================================
+   OS WEB SKIN: Android Holo (Legacy)
+   Familia: android  |  id: android-holo
+   Holo clásico de Android 4.x: negro y acento azul cian, esquinas rectas.
+   ==================================================================== */
+
+:root, .osw-android-holo {
+  /* --- Paleta --- */
+  --osw-bg:            #000000;
+  --osw-bg-elevated:   #1a1a1a;
+  --osw-surface:       #111111;
+  --osw-border:        #33b5e5;
+  --osw-text:          #ffffff;
+  --osw-text-muted:    #aaaaaa;
+  --osw-accent:        #33b5e5;
+  --osw-accent-text:   #000000;
+  --osw-titlebar-bg:   #000000;
+  --osw-titlebar-text: #33b5e5;
+
+  /* --- Formas / tipografía --- */
+  --osw-radius:        2px;
+  --osw-radius-sm:     0px;
+  --osw-font:          Roboto, sans-serif;
+  --osw-shadow:        0 6px 14px rgba(51,181,229,.3);
+  --osw-titlebar-height: 48px;
+}
+
+.osw-android-holo {
+  background: var(--osw-bg);
+  color: var(--osw-text);
+  font-family: var(--osw-font);
+  min-height: 100%;
+}
+
+/* Ventana estilo Android Holo (Legacy) */
+.osw-android-holo .osw-window {
+  background: var(--osw-surface);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius);
+  box-shadow: var(--osw-shadow);
+  overflow: hidden;
+}
+
+.osw-android-holo .osw-titlebar {
+  height: var(--osw-titlebar-height);
+  background: var(--osw-titlebar-bg);
+  color: var(--osw-titlebar-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  
+}
+
+.osw-android-holo .osw-titlebar-title {
+  flex: 1;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: .85;
+}
+
+.osw-android-holo .osw-controls {
+  display: none;
+}
+.osw-android-holo .osw-titlebar {
+  justify-content: flex-start;
+}
+
+.osw-android-holo .osw-content {
+  padding: 16px;
+}
+
+.osw-android-holo .osw-button {
+  background: var(--osw-accent);
+  color: var(--osw-accent-text);
+  border: none;
+  border-radius: var(--osw-radius-sm);
+  padding: 8px 16px;
+  font-family: var(--osw-font);
+  font-size: 14px;
+  cursor: pointer;
+  
+}
+
+.osw-android-holo .osw-card {
+  background: var(--osw-bg-elevated);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius-sm);
+  padding: 12px;
+}
+/* ====================================================================
+   OS WEB SKIN: Android Light
+   Familia: android  |  id: android-light
+   Modo claro estándar de Android, blancos y acento azul Google.
+   ==================================================================== */
+
+:root, .osw-android-light {
+  /* --- Paleta --- */
+  --osw-bg:            #ffffff;
+  --osw-bg-elevated:   #f8f9fa;
+  --osw-surface:       #f1f3f4;
+  --osw-border:        #dadce0;
+  --osw-text:          #202124;
+  --osw-text-muted:    #5f6368;
+  --osw-accent:        #1a73e8;
+  --osw-accent-text:   #ffffff;
+  --osw-titlebar-bg:   #ffffff;
+  --osw-titlebar-text: #202124;
+
+  /* --- Formas / tipografía --- */
+  --osw-radius:        20px;
+  --osw-radius-sm:     12px;
+  --osw-font:          Roboto, sans-serif;
+  --osw-shadow:        0 8px 20px rgba(60,64,67,.18);
+  --osw-titlebar-height: 52px;
+}
+
+.osw-android-light {
+  background: var(--osw-bg);
+  color: var(--osw-text);
+  font-family: var(--osw-font);
+  min-height: 100%;
+}
+
+/* Ventana estilo Android Light */
+.osw-android-light .osw-window {
+  background: var(--osw-surface);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius);
+  box-shadow: var(--osw-shadow);
+  overflow: hidden;
+}
+
+.osw-android-light .osw-titlebar {
+  height: var(--osw-titlebar-height);
+  background: var(--osw-titlebar-bg);
+  color: var(--osw-titlebar-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  
+}
+
+.osw-android-light .osw-titlebar-title {
+  flex: 1;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: .85;
+}
+
+.osw-android-light .osw-controls {
+  display: none;
+}
+.osw-android-light .osw-titlebar {
+  justify-content: flex-start;
+}
+
+.osw-android-light .osw-content {
+  padding: 16px;
+}
+
+.osw-android-light .osw-button {
+  background: var(--osw-accent);
+  color: var(--osw-accent-text);
+  border: none;
+  border-radius: var(--osw-radius-sm);
+  padding: 8px 16px;
+  font-family: var(--osw-font);
+  font-size: 14px;
+  cursor: pointer;
+  
+}
+
+.osw-android-light .osw-card {
+  background: var(--osw-bg-elevated);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius-sm);
+  padding: 12px;
+}
+/* ====================================================================
+   OS WEB SKIN: Material You (Android 14)
+   Familia: android  |  id: android-material-you
+   Material You dinámico: superficies tonales moradas y formas orgánicas.
+   ==================================================================== */
+
+:root, .osw-android-material-you {
+  /* --- Paleta --- */
+  --osw-bg:            #fef7ff;
+  --osw-bg-elevated:   #ffffff;
+  --osw-surface:       #f3edf7;
+  --osw-border:        #e5dfe8;
+  --osw-text:          #1d1b20;
+  --osw-text-muted:    #79747e;
+  --osw-accent:        #6750a4;
+  --osw-accent-text:   #ffffff;
+  --osw-titlebar-bg:   #eaddff;
+  --osw-titlebar-text: #21005d;
+
+  /* --- Formas / tipografía --- */
+  --osw-radius:        28px;
+  --osw-radius-sm:     16px;
+  --osw-font:          Roboto, 'Google Sans', sans-serif;
+  --osw-shadow:        0 10px 24px rgba(103,80,164,.25);
+  --osw-titlebar-height: 56px;
+}
+
+.osw-android-material-you {
+  background: var(--osw-bg);
+  color: var(--osw-text);
+  font-family: var(--osw-font);
+  min-height: 100%;
+}
+
+/* Ventana estilo Material You (Android 14) */
+.osw-android-material-you .osw-window {
+  background: var(--osw-surface);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius);
+  box-shadow: var(--osw-shadow);
+  overflow: hidden;
+}
+
+.osw-android-material-you .osw-titlebar {
+  height: var(--osw-titlebar-height);
+  background: var(--osw-titlebar-bg);
+  color: var(--osw-titlebar-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  
+}
+
+.osw-android-material-you .osw-titlebar-title {
+  flex: 1;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: .85;
+}
+
+.osw-android-material-you .osw-controls {
+  display: none;
+}
+.osw-android-material-you .osw-titlebar {
+  justify-content: flex-start;
+}
+
+.osw-android-material-you .osw-content {
+  padding: 16px;
+}
+
+.osw-android-material-you .osw-button {
+  background: var(--osw-accent);
+  color: var(--osw-accent-text);
+  border: none;
+  border-radius: var(--osw-radius-sm);
+  padding: 8px 16px;
+  font-family: var(--osw-font);
+  font-size: 14px;
+  cursor: pointer;
+  
+}
+
+.osw-android-material-you .osw-card {
+  background: var(--osw-bg-elevated);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius-sm);
+  padding: 12px;
+}
+/* ====================================================================
+   OS WEB SKIN: Android Material Design 2
+   Familia: android  |  id: android-material2
+   Material Design 2 (2018): tarjetas planas, acento morado/rosa, sombras suaves.
+   ==================================================================== */
+
+:root, .osw-android-material2 {
+  /* --- Paleta --- */
+  --osw-bg:            #fafafa;
+  --osw-bg-elevated:   #ffffff;
+  --osw-surface:       #f2f2f2;
+  --osw-border:        #e0e0e0;
+  --osw-text:          #212121;
+  --osw-text-muted:    #757575;
+  --osw-accent:        #6200ee;
+  --osw-accent-text:   #ffffff;
+  --osw-titlebar-bg:   #6200ee;
+  --osw-titlebar-text: #ffffff;
+
+  /* --- Formas / tipografía --- */
+  --osw-radius:        4px;
+  --osw-radius-sm:     4px;
+  --osw-font:          Roboto, sans-serif;
+  --osw-shadow:        0 4px 12px rgba(0,0,0,.2);
+  --osw-titlebar-height: 56px;
+}
+
+.osw-android-material2 {
+  background: var(--osw-bg);
+  color: var(--osw-text);
+  font-family: var(--osw-font);
+  min-height: 100%;
+}
+
+/* Ventana estilo Android Material Design 2 */
+.osw-android-material2 .osw-window {
+  background: var(--osw-surface);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius);
+  box-shadow: var(--osw-shadow);
+  overflow: hidden;
+}
+
+.osw-android-material2 .osw-titlebar {
+  height: var(--osw-titlebar-height);
+  background: var(--osw-titlebar-bg);
+  color: var(--osw-titlebar-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  
+}
+
+.osw-android-material2 .osw-titlebar-title {
+  flex: 1;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: .85;
+}
+
+.osw-android-material2 .osw-controls {
+  display: none;
+}
+.osw-android-material2 .osw-titlebar {
+  justify-content: flex-start;
+}
+
+.osw-android-material2 .osw-content {
+  padding: 16px;
+}
+
+.osw-android-material2 .osw-button {
+  background: var(--osw-accent);
+  color: var(--osw-accent-text);
+  border: none;
+  border-radius: var(--osw-radius-sm);
+  padding: 8px 16px;
+  font-family: var(--osw-font);
+  font-size: 14px;
+  cursor: pointer;
+  
+}
+
+.osw-android-material2 .osw-card {
+  background: var(--osw-bg-elevated);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius-sm);
+  padding: 12px;
+}
+/* ====================================================================
+   OS WEB SKIN: MIUI (Xiaomi)
+   Familia: android  |  id: android-miui
+   MIUI de Xiaomi: naranja vivo, sombras marcadas, esquinas grandes.
+   ==================================================================== */
+
+:root, .osw-android-miui {
+  /* --- Paleta --- */
+  --osw-bg:            #ffffff;
+  --osw-bg-elevated:   #f7f7f7;
+  --osw-surface:       #f0f0f0;
+  --osw-border:        #e2e2e2;
+  --osw-text:          #1a1a1a;
+  --osw-text-muted:    #8a8a8a;
+  --osw-accent:        #ff6900;
+  --osw-accent-text:   #ffffff;
+  --osw-titlebar-bg:   #ffffff;
+  --osw-titlebar-text: #1a1a1a;
+
+  /* --- Formas / tipografía --- */
+  --osw-radius:        22px;
+  --osw-radius-sm:     14px;
+  --osw-font:          'MIUI Font', Roboto, sans-serif;
+  --osw-shadow:        0 12px 24px rgba(0,0,0,.15);
+  --osw-titlebar-height: 52px;
+}
+
+.osw-android-miui {
+  background: var(--osw-bg);
+  color: var(--osw-text);
+  font-family: var(--osw-font);
+  min-height: 100%;
+}
+
+/* Ventana estilo MIUI (Xiaomi) */
+.osw-android-miui .osw-window {
+  background: var(--osw-surface);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius);
+  box-shadow: var(--osw-shadow);
+  overflow: hidden;
+}
+
+.osw-android-miui .osw-titlebar {
+  height: var(--osw-titlebar-height);
+  background: var(--osw-titlebar-bg);
+  color: var(--osw-titlebar-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  
+}
+
+.osw-android-miui .osw-titlebar-title {
+  flex: 1;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: .85;
+}
+
+.osw-android-miui .osw-controls {
+  display: none;
+}
+.osw-android-miui .osw-titlebar {
+  justify-content: flex-start;
+}
+
+.osw-android-miui .osw-content {
+  padding: 16px;
+}
+
+.osw-android-miui .osw-button {
+  background: var(--osw-accent);
+  color: var(--osw-accent-text);
+  border: none;
+  border-radius: var(--osw-radius-sm);
+  padding: 8px 16px;
+  font-family: var(--osw-font);
+  font-size: 14px;
+  cursor: pointer;
+  
+}
+
+.osw-android-miui .osw-card {
+  background: var(--osw-bg-elevated);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius-sm);
+  padding: 12px;
+}
+/* ====================================================================
+   OS WEB SKIN: Samsung One UI
+   Familia: android  |  id: android-oneui
+   One UI de Samsung: curvas amplias, tarjetas grandes, acento azul Samsung.
+   ==================================================================== */
+
+:root, .osw-android-oneui {
+  /* --- Paleta --- */
+  --osw-bg:            #f6f6f8;
+  --osw-bg-elevated:   #ffffff;
+  --osw-surface:       #eef0f4;
+  --osw-border:        #e0e0e6;
+  --osw-text:          #111214;
+  --osw-text-muted:    #6b6f76;
+  --osw-accent:        #1259c3;
+  --osw-accent-text:   #ffffff;
+  --osw-titlebar-bg:   #ffffff;
+  --osw-titlebar-text: #111214;
+
+  /* --- Formas / tipografía --- */
+  --osw-radius:        26px;
+  --osw-radius-sm:     18px;
+  --osw-font:          'SamsungOne', Roboto, sans-serif;
+  --osw-shadow:        0 10px 22px rgba(0,0,0,.12);
+  --osw-titlebar-height: 60px;
+}
+
+.osw-android-oneui {
+  background: var(--osw-bg);
+  color: var(--osw-text);
+  font-family: var(--osw-font);
+  min-height: 100%;
+}
+
+/* Ventana estilo Samsung One UI */
+.osw-android-oneui .osw-window {
+  background: var(--osw-surface);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius);
+  box-shadow: var(--osw-shadow);
+  overflow: hidden;
+}
+
+.osw-android-oneui .osw-titlebar {
+  height: var(--osw-titlebar-height);
+  background: var(--osw-titlebar-bg);
+  color: var(--osw-titlebar-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  
+}
+
+.osw-android-oneui .osw-titlebar-title {
+  flex: 1;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: .85;
+}
+
+.osw-android-oneui .osw-controls {
+  display: none;
+}
+.osw-android-oneui .osw-titlebar {
+  justify-content: flex-start;
+}
+
+.osw-android-oneui .osw-content {
+  padding: 16px;
+}
+
+.osw-android-oneui .osw-button {
+  background: var(--osw-accent);
+  color: var(--osw-accent-text);
+  border: none;
+  border-radius: var(--osw-radius-sm);
+  padding: 8px 16px;
+  font-family: var(--osw-font);
+  font-size: 14px;
+  cursor: pointer;
+  
+}
+
+.osw-android-oneui .osw-card {
+  background: var(--osw-bg-elevated);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius-sm);
+  padding: 12px;
+}
+/* ====================================================================
+   OS WEB SKIN: OxygenOS (OnePlus)
+   Familia: android  |  id: android-oxygenos
+   OxygenOS de OnePlus: minimalista, rojo característico, tipografía fina.
+   ==================================================================== */
+
+:root, .osw-android-oxygenos {
+  /* --- Paleta --- */
+  --osw-bg:            #f7f7f7;
+  --osw-bg-elevated:   #ffffff;
+  --osw-surface:       #efefef;
+  --osw-border:        #e2e2e2;
+  --osw-text:          #141414;
+  --osw-text-muted:    #7a7a7a;
+  --osw-accent:        #eb0029;
+  --osw-accent-text:   #ffffff;
+  --osw-titlebar-bg:   #ffffff;
+  --osw-titlebar-text: #141414;
+
+  /* --- Formas / tipografía --- */
+  --osw-radius:        18px;
+  --osw-radius-sm:     12px;
+  --osw-font:          'OnePlus Sans', Roboto, sans-serif;
+  --osw-shadow:        0 8px 18px rgba(0,0,0,.12);
+  --osw-titlebar-height: 52px;
+}
+
+.osw-android-oxygenos {
+  background: var(--osw-bg);
+  color: var(--osw-text);
+  font-family: var(--osw-font);
+  min-height: 100%;
+}
+
+/* Ventana estilo OxygenOS (OnePlus) */
+.osw-android-oxygenos .osw-window {
+  background: var(--osw-surface);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius);
+  box-shadow: var(--osw-shadow);
+  overflow: hidden;
+}
+
+.osw-android-oxygenos .osw-titlebar {
+  height: var(--osw-titlebar-height);
+  background: var(--osw-titlebar-bg);
+  color: var(--osw-titlebar-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  
+}
+
+.osw-android-oxygenos .osw-titlebar-title {
+  flex: 1;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: .85;
+}
+
+.osw-android-oxygenos .osw-controls {
+  display: none;
+}
+.osw-android-oxygenos .osw-titlebar {
+  justify-content: flex-start;
+}
+
+.osw-android-oxygenos .osw-content {
+  padding: 16px;
+}
+
+.osw-android-oxygenos .osw-button {
+  background: var(--osw-accent);
+  color: var(--osw-accent-text);
+  border: none;
+  border-radius: var(--osw-radius-sm);
+  padding: 8px 16px;
+  font-family: var(--osw-font);
+  font-size: 14px;
+  cursor: pointer;
+  
+}
+
+.osw-android-oxygenos .osw-card {
+  background: var(--osw-bg-elevated);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius-sm);
+  padding: 12px;
+}
+/* ====================================================================
+   OS WEB SKIN: Pixel Stock
+   Familia: android  |  id: android-pixel-stock
+   Android puro de Google Pixel: dinamismo sobrio, grises cálidos.
+   ==================================================================== */
+
+:root, .osw-android-pixel-stock {
+  /* --- Paleta --- */
+  --osw-bg:            #f2eee9;
+  --osw-bg-elevated:   #ffffff;
+  --osw-surface:       #e9e4de;
+  --osw-border:        #d8d2ca;
+  --osw-text:          #1b1b1b;
+  --osw-text-muted:    #6f6a63;
+  --osw-accent:        #4285f4;
+  --osw-accent-text:   #ffffff;
+  --osw-titlebar-bg:   #f2eee9;
+  --osw-titlebar-text: #1b1b1b;
+
+  /* --- Formas / tipografía --- */
+  --osw-radius:        24px;
+  --osw-radius-sm:     14px;
+  --osw-font:          'Google Sans', Roboto, sans-serif;
+  --osw-shadow:        0 10px 22px rgba(0,0,0,.15);
+  --osw-titlebar-height: 54px;
+}
+
+.osw-android-pixel-stock {
+  background: var(--osw-bg);
+  color: var(--osw-text);
+  font-family: var(--osw-font);
+  min-height: 100%;
+}
+
+/* Ventana estilo Pixel Stock */
+.osw-android-pixel-stock .osw-window {
+  background: var(--osw-surface);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius);
+  box-shadow: var(--osw-shadow);
+  overflow: hidden;
+}
+
+.osw-android-pixel-stock .osw-titlebar {
+  height: var(--osw-titlebar-height);
+  background: var(--osw-titlebar-bg);
+  color: var(--osw-titlebar-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  
+}
+
+.osw-android-pixel-stock .osw-titlebar-title {
+  flex: 1;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: .85;
+}
+
+.osw-android-pixel-stock .osw-controls {
+  display: none;
+}
+.osw-android-pixel-stock .osw-titlebar {
+  justify-content: flex-start;
+}
+
+.osw-android-pixel-stock .osw-content {
+  padding: 16px;
+}
+
+.osw-android-pixel-stock .osw-button {
+  background: var(--osw-accent);
+  color: var(--osw-accent-text);
+  border: none;
+  border-radius: var(--osw-radius-sm);
+  padding: 8px 16px;
+  font-family: var(--osw-font);
+  font-size: 14px;
+  cursor: pointer;
+  
+}
+
+.osw-android-pixel-stock .osw-card {
+  background: var(--osw-bg-elevated);
+  border: 1px solid var(--osw-border);
+  border-radius: var(--osw-radius-sm);
+  padding: 12px;
+}
+
+
+  body { margin: 0; font-family: sans-serif; transition: background .25s ease; }
+  .osw-shell { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 16px; box-sizing: border-box; }
+  .osw-picker { margin-bottom: 24px; display: flex; flex-direction: column; gap: 6px; align-items: center; }
+  .osw-picker select { padding: 8px 12px; border-radius: 8px; border: 1px solid #ccc; font-size: 14px; min-width: 260px; }
+  .osw-demo-window { width: min(560px, 92vw); }
+  .osw-demo-list { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+</style>
+</head>
+<body>
+  <div class="osw-shell osw-mac-ventura-dark" id="osw-root">
+    <div class="osw-picker">
+      <label for="osw-select">Temas de Sistema Operativo</label>
+      <select id="osw-select">
+    <optgroup label="macOS">
+      <option value="mac-ventura-dark">Mac OS Dark (Ventura)</option>
+      <option value="mac-monterey-light">Mac OS Light (Monterey)</option>
+      <option value="mac-bigsur-vibrant">Mac OS Vibrant (Big Sur)</option>
+      <option value="mac-catalina-light">Mac OS Catalina Light</option>
+      <option value="mac-mojave-dark">Mac OS Mojave Dark</option>
+      <option value="mac-sonoma">Mac OS Sonoma</option>
+      <option value="mac-classic-system7">Mac OS Classic (System 7)</option>
+      <option value="mac-osx-aqua-tiger">Mac OS Aqua (OS X Tiger)</option>
+      <option value="mac-graphite">Mac OS Graphite</option>
+      <option value="mac-nightshift">Mac OS Night Shift</option>
+    </optgroup>
+    <optgroup label="Linux">
+      <option value="linux-ubuntu-yaru">Ubuntu (Yaru Theme)</option>
+      <option value="linux-kde-breeze">KDE Plasma (Breeze)</option>
+      <option value="linux-kali">Kali Linux (Terminal Script)</option>
+      <option value="linux-gnome-adwaita">GNOME Adwaita</option>
+      <option value="linux-popos">Pop!_OS</option>
+      <option value="linux-arch-dracula">Arch Linux (Dracula)</option>
+      <option value="linux-mint-cinnamon">Linux Mint (Cinnamon)</option>
+      <option value="linux-elementary-pantheon">elementary OS (Pantheon)</option>
+      <option value="linux-fedora-gnome">Fedora (GNOME Blue)</option>
+      <option value="linux-manjaro-breeze-dark">Manjaro (Breeze Dark)</option>
+    </optgroup>
+    <optgroup label="Android">
+      <option value="android-material-you">Material You (Android 14)</option>
+      <option value="android-dark">Android Dark</option>
+      <option value="android-light">Android Light</option>
+      <option value="android-oneui">Samsung One UI</option>
+      <option value="android-pixel-stock">Pixel Stock</option>
+      <option value="android-miui">MIUI (Xiaomi)</option>
+      <option value="android-holo">Android Holo (Legacy)</option>
+      <option value="android-material2">Android Material Design 2</option>
+      <option value="android-oxygenos">OxygenOS (OnePlus)</option>
+      <option value="android-coloros">ColorOS (Oppo)</option>
+    </optgroup>
+      </select>
+    </div>
+
+    <div class="osw-demo-window">
+      <div class="osw-window">
+        <div class="osw-titlebar">
+          <span class="osw-controls">
+            <span class="osw-dot close"></span>
+            <span class="osw-dot min"></span>
+            <span class="osw-dot max"></span>
+          </span>
+          <span class="osw-titlebar-title">Panel KSM — Vista previa</span>
+        </div>
+        <div class="osw-content">
+          <div class="osw-demo-list">
+            <div class="osw-card">Tarjeta de ejemplo con contenido del panel.</div>
+            <div class="osw-card">Otra tarjeta, así se ve la superficie elevada.</div>
+            <button class="osw-button">Botón de acción</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const select = document.getElementById('osw-select');
+    const root = document.getElementById('osw-root');
+    select.addEventListener('change', () => {
+      root.className = 'osw-shell osw-' + select.value;
+    });
+  </script>
+</body>
+</html>

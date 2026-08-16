@@ -1,0 +1,1827 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radio KSM — Portable Player</title>
+<style>
+/* ============================================================
+   SKIN 1: "Tactical Gray" — Plástico gris oscuro portátil
+============================================================ */
+:root {
+  --body-bg:           #1a1a1a;
+
+  --radio-bg:          #4a4a4a;
+  --radio-top:         #606060;
+  --radio-bottom:      #2e2e2e;
+  --radio-border:      #1a1a1a;
+  --radio-highlight:   rgba(255,255,255,0.10);
+  --radio-shadow:
+    0 35px 70px rgba(0,0,0,0.95),
+    0 12px 25px rgba(0,0,0,0.7),
+    inset 0 3px 6px rgba(255,255,255,0.13),
+    inset 0 -6px 14px rgba(0,0,0,0.6);
+
+  --panel-bg:          #222;
+  --panel-border:      #111;
+  --panel-inset:       inset 0 4px 12px rgba(0,0,0,0.85), inset 0 0 6px rgba(0,0,0,0.5);
+
+  --dial-bg-off:       #0e1a0f;
+  --dial-bg-on:        #c8dfa0;
+  --dial-glow:         rgba(100,200,40,0.55);
+  --dial-text-off:     #2a3a2a;
+  --dial-text-on:      #142006;
+  --dial-bar-color:    rgba(100,160,60,0.5);
+  --dial-needle:       #ffe000;
+  --dial-needle-sh:    rgba(255,220,0,0.9);
+
+  --meter-bg:          #e8deb0;
+  --meter-border:      #a09060;
+  --meter-text:        #2a1a08;
+  --meter-ticks:       #2a1a08;
+  --meter-arc:         #2a1a08;
+  --meter-pivot:       #111;
+  --red-zone:          #cc2200;
+
+  --spectrum-bg:       #000d00;
+  --spectrum-bar:      #00e844;
+  --spectrum-bar2:     #ffe000;
+  --spectrum-glow:     #00ff44;
+  --spectrum-scan:     rgba(0,255,80,0.03);
+  --spectrum-label:    #00a830;
+
+  --knob-body:         radial-gradient(circle at 32% 28%, #6a6a6a, #1e1e1e 75%);
+  --knob-rim:          #0d0d0d;
+  --knob-indicator:    #dddddd;
+  --knob-shadow:
+    0 14px 28px rgba(0,0,0,0.98),
+    0  6px 14px rgba(0,0,0,0.75),
+    inset 0 5px 10px rgba(255,255,255,0.2),
+    inset 0 -5px 10px rgba(0,0,0,0.85);
+  --knob-ring-accent:  #ff8c00;
+
+  --grille-bg:         #0d0d0d;
+  --grille-dot:        #060606;
+  --grille-border:     #080808;
+
+  --text-main:         #d8d8d8;
+  --text-dim:          #666;
+  --accent:            #5adf6a;
+
+  --btn-load-bg:       linear-gradient(to bottom, #505050, #2a2a2a);
+  --btn-load-color:    #bbb;
+  --btn-load-border:   #0d0d0d;
+  --btn-load-shadow:
+    0 8px 16px rgba(0,0,0,0.8),
+    inset 0 2px 4px rgba(255,255,255,0.13),
+    inset 0 -2px 5px rgba(0,0,0,0.7);
+
+  --pow-off-bg:        radial-gradient(circle at 35% 30%, #5a5a5a, #181818 75%);
+  --pow-on-bg:         radial-gradient(circle at 35% 30%, #e03030, #660000 78%);
+  --pow-off-shadow:
+    0 16px 32px rgba(0,0,0,0.98),
+    0  6px 14px rgba(0,0,0,0.8),
+    inset 0 5px 10px rgba(255,255,255,0.22),
+    inset 0 -6px 12px rgba(0,0,0,0.95);
+  --pow-on-shadow:
+    0 16px 32px rgba(180,0,0,0.7),
+    0  6px 14px rgba(0,0,0,0.7),
+    0 0 24px rgba(220,0,0,0.5),
+    inset 0 5px 10px rgba(255,160,160,0.22),
+    inset 0 -6px 12px rgba(0,0,0,0.9);
+
+  --antenna-color:     #555;
+  --handle-color:      #303030;
+  --label-color:       #666;
+  --brand-color-a:     #aaa;
+  --brand-color-b:     #555;
+  --skin-tag:          "TACTICAL GRAY";
+  --vu-tag:            "ANALOG";
+  --led-off:           #3a0000;
+  --led-on:            #ff4040;
+  --led-glow:          rgba(255,50,50,0.9);
+}
+
+/* ============================================================
+   SKIN 2: "Synthwave" — Cyberpunk neon purple
+============================================================ */
+body.skin-synth {
+  --body-bg:           #06000f;
+
+  --radio-bg:          #130020;
+  --radio-top:         #1e0035;
+  --radio-bottom:      #080010;
+  --radio-border:      #5500cc;
+  --radio-highlight:   rgba(160,0,255,0.15);
+  --radio-shadow:
+    0 35px 70px rgba(80,0,200,0.7),
+    0 12px 25px rgba(0,0,0,0.9),
+    inset 0 3px 6px rgba(200,100,255,0.18),
+    inset 0 -6px 14px rgba(0,0,0,0.7),
+    0 0 50px rgba(100,0,200,0.4);
+
+  --panel-bg:          #0e0018;
+  --panel-border:      #3300aa;
+  --panel-inset:       inset 0 4px 12px rgba(0,0,0,0.9), inset 0 0 8px rgba(100,0,200,0.2);
+
+  --dial-bg-off:       #080014;
+  --dial-bg-on:        #0d0030;
+  --dial-glow:         rgba(0,200,255,0.7);
+  --dial-text-off:     #330066;
+  --dial-text-on:      #00ccff;
+  --dial-bar-color:    rgba(0,200,255,0.3);
+  --dial-needle:       #ff00ff;
+  --dial-needle-sh:    rgba(255,0,255,1);
+
+  --meter-bg:          #0a0018;
+  --meter-border:      #4400cc;
+  --meter-text:        #aa00ff;
+  --meter-ticks:       #5500cc;
+  --meter-arc:         #3300aa;
+  --meter-pivot:       #ff00ff;
+  --red-zone:          #ff00aa;
+
+  --spectrum-bg:       #03000a;
+  --spectrum-bar:      #00ffff;
+  --spectrum-bar2:     #ff00ff;
+  --spectrum-glow:     #00ffff;
+  --spectrum-scan:     rgba(0,200,255,0.04);
+  --spectrum-label:    #0088bb;
+
+  --knob-body:         radial-gradient(circle at 32% 28%, #3a006a, #0a000f 78%);
+  --knob-rim:          #5500cc;
+  --knob-indicator:    #ff00ff;
+  --knob-shadow:
+    0 14px 28px rgba(80,0,200,0.9),
+    0  6px 14px rgba(0,0,0,0.8),
+    inset 0 5px 10px rgba(200,100,255,0.25),
+    inset 0 -5px 10px rgba(0,0,0,0.9),
+    0 0 16px rgba(100,0,255,0.3);
+  --knob-ring-accent:  #ff00ff;
+
+  --grille-bg:         #060010;
+  --grille-dot:        #0a0020;
+  --grille-border:     #3300aa;
+
+  --text-main:         #e0c0ff;
+  --text-dim:          #5533aa;
+  --accent:            #00ffff;
+
+  --btn-load-bg:       linear-gradient(to bottom, #220044, #0a0020);
+  --btn-load-color:    #cc88ff;
+  --btn-load-border:   #5500cc;
+  --btn-load-shadow:
+    0 8px 16px rgba(80,0,200,0.7),
+    inset 0 2px 4px rgba(200,100,255,0.2),
+    inset 0 -2px 5px rgba(0,0,0,0.8);
+
+  --pow-off-bg:        radial-gradient(circle at 35% 30%, #3a006a, #0a000f 78%);
+  --pow-on-bg:         radial-gradient(circle at 35% 30%, #ff00aa, #660033 78%);
+  --pow-off-shadow:
+    0 16px 32px rgba(80,0,180,0.8),
+    0  6px 14px rgba(0,0,0,0.8),
+    inset 0 5px 10px rgba(200,100,255,0.25),
+    inset 0 -6px 12px rgba(0,0,0,0.95);
+  --pow-on-shadow:
+    0 16px 32px rgba(255,0,150,0.8),
+    0  6px 14px rgba(0,0,0,0.7),
+    0 0 30px rgba(255,0,200,0.6),
+    inset 0 5px 10px rgba(255,150,200,0.25),
+    inset 0 -6px 12px rgba(0,0,0,0.9);
+
+  --antenna-color:     #5500cc;
+  --handle-color:      #1a0030;
+  --label-color:       #5533aa;
+  --brand-color-a:     #cc88ff;
+  --brand-color-b:     #5533aa;
+  --skin-tag:          "SYNTHWAVE";
+  --vu-tag:            "ANALOG";
+  --led-off:           #1a003a;
+  --led-on:            #ff00ff;
+  --led-glow:          rgba(255,0,255,0.9);
+}
+
+/* ============================================================
+   RESET & BASE
+============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  min-height: 100vh;
+  background: var(--body-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Arial', Helvetica, sans-serif;
+  padding: 24px;
+  transition: background 0.5s ease;
+}
+
+/* ============================================================
+   RADIO WRAPPER
+============================================================ */
+.radio {
+  width: 100%;
+  max-width: 570px;
+  position: relative;
+  margin-top: 80px;
+}
+
+/* ---- Antena ---- */
+.radio__antenna {
+  position: absolute;
+  top: -130px;
+  left: 68px;
+  width: 7px;
+  height: 134px;
+  background: linear-gradient(to top, var(--antenna-color), #a0a0a0);
+  border-radius: 4px 4px 0 0;
+  transform-origin: bottom center;
+  transform: rotate(-12deg);
+  z-index: 10;
+  box-shadow: 2px 0 6px rgba(0,0,0,0.6);
+  transition: background 0.5s;
+}
+.radio__antenna::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 5px; height: 70%;
+  background: linear-gradient(to top, var(--antenna-color), #c0c0c0);
+  border-radius: 3px 3px 0 0;
+}
+.radio__antenna::after {
+  content: '';
+  position: absolute;
+  top: -6px; left: 50%;
+  transform: translateX(-50%);
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: #ccc;
+}
+
+/* ---- Asa (handle) ---- */
+.radio__handle {
+  position: absolute;
+  top: -58px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280px;
+  height: 65px;
+  border: 8px solid var(--handle-color);
+  border-bottom: none;
+  border-radius: 50px 50px 0 0;
+  background: transparent;
+  transition: border-color 0.5s;
+  box-shadow: inset 0 -4px 8px rgba(0,0,0,0.4), 0 -4px 8px rgba(0,0,0,0.3);
+}
+.radio__handle::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 3px solid rgba(255,255,255,0.06);
+  border-bottom: none;
+  border-radius: 44px 44px 0 0;
+}
+
+/* ---- Cuerpo principal ---- */
+.radio__body {
+  background: linear-gradient(160deg, var(--radio-top) 0%, var(--radio-bg) 40%, var(--radio-bottom) 100%);
+  border-radius: 20px;
+  border: 5px solid var(--radio-border);
+  box-shadow: var(--radio-shadow);
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 175px 1fr;
+  grid-template-rows: auto auto auto auto auto;
+  gap: 14px;
+  transition: background 0.5s, border-color 0.5s, box-shadow 0.5s;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Highlight top edge del cuerpo */
+.radio__body::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 5%; right: 5%;
+  height: 2px;
+  background: var(--radio-highlight);
+  border-radius: 0 0 4px 4px;
+  pointer-events: none;
+  transition: background 0.5s;
+}
+
+/* ============================================================
+   COLUMNA IZQUIERDA: Parlante + Marca
+============================================================ */
+.radio__left {
+  grid-row: 1 / 4;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.radio__brand {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: var(--brand-color-a);
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 0 1px 3px #000;
+  transition: color 0.5s;
+}
+.radio__brand span {
+  display: block;
+  font-size: 8px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: var(--brand-color-b);
+  margin-top: 2px;
+  transition: color 0.5s;
+}
+
+.radio__grille {
+  flex: 1;
+  min-height: 155px;
+  background-color: var(--grille-bg);
+  background-image:
+    radial-gradient(circle, var(--grille-dot) 30%, transparent 33%);
+  background-size: 8px 8px;
+  border-radius: 10px;
+  border: 4px solid var(--grille-border);
+  box-shadow:
+    inset 0 10px 24px rgba(0,0,0,0.98),
+    inset 0 -5px 12px rgba(0,0,0,0.75),
+    0 2px 5px rgba(255,255,255,0.03);
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.5s, background-color 0.5s;
+}
+/* Cono del parlante */
+.radio__grille::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,0,0,0.85) 0%, transparent 70%);
+  box-shadow: 0 0 0 10px rgba(0,0,0,0.3), 0 0 0 22px rgba(0,0,0,0.15);
+}
+/* Skin 2: grille con brillo neon sutil */
+body.skin-synth .radio__grille {
+  box-shadow:
+    inset 0 10px 24px rgba(0,0,0,0.98),
+    inset 0 -5px 12px rgba(0,0,0,0.75),
+    0 0 12px rgba(100,0,200,0.2);
+}
+
+/* ============================================================
+   COLUMNA DERECHA
+============================================================ */
+.radio__right {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Modelo + LED */
+.radio__model-strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.radio__model-name {
+  font-size: 17px;
+  font-weight: 900;
+  color: var(--text-main);
+  letter-spacing: 1px;
+  text-shadow: 0 1px 4px #000;
+  transition: color 0.5s;
+}
+.radio__model-sub {
+  font-size: 8px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: color 0.5s;
+}
+.radio__power-led {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--led-off);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.8);
+  transition: background 0.3s, box-shadow 0.3s;
+  flex-shrink: 0;
+}
+.radio__power-led--on {
+  background: var(--led-on);
+  box-shadow: 0 0 10px var(--led-glow), 0 0 20px rgba(255,50,50,0.4);
+}
+
+/* ---- Dial Panel ---- */
+.radio__dial-panel {
+  background: var(--panel-bg);
+  border-radius: 8px;
+  border: 2px solid var(--panel-border);
+  box-shadow: var(--panel-inset);
+  padding: 8px;
+  transition: background 0.5s, border-color 0.5s, box-shadow 0.5s;
+}
+
+.radio__dial-window {
+  background: var(--dial-bg-off);
+  border-radius: 5px;
+  padding: 10px 10px 7px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.4s, box-shadow 0.4s;
+}
+.radio__dial-window--on {
+  background: var(--dial-bg-on);
+  box-shadow: 0 0 24px var(--dial-glow), inset 0 0 18px rgba(0,0,0,0.3);
+}
+/* Reflejo de vidrio */
+.radio__dial-window::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 45%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.07), transparent);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.radio__freq-label {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 3px;
+  margin-bottom: 5px;
+}
+.radio__freq-label span {
+  font-size: 8px;
+  font-weight: 700;
+  color: var(--dial-text-off);
+  letter-spacing: 0.5px;
+  transition: color 0.4s;
+}
+.radio__dial-window--on .radio__freq-label span { color: var(--dial-text-on); }
+
+.radio__tuning-bar {
+  position: relative;
+  height: 18px;
+  margin: 3px 0;
+}
+.radio__tuning-track {
+  position: absolute;
+  top: 50%; left: 0; right: 0;
+  height: 7px;
+  transform: translateY(-50%);
+  background: var(--dial-bar-color);
+  border-radius: 4px;
+  transition: background 0.4s;
+}
+.radio__tuning-needle {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 40%;
+  width: 3px;
+  background: var(--dial-needle);
+  border-radius: 2px;
+  box-shadow: 0 0 7px var(--dial-needle-sh);
+  transition: left 0.5s cubic-bezier(0.4,0,0.2,1), background 0.5s, box-shadow 0.5s;
+}
+
+.radio__freq-scale {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 3px 0;
+  border-top: 1px solid var(--dial-text-off);
+}
+.radio__freq-scale span {
+  font-size: 8px;
+  color: var(--dial-text-off);
+  font-weight: 700;
+  transition: color 0.4s;
+}
+.radio__dial-window--on .radio__freq-scale span { color: var(--dial-text-on); }
+
+/* ---- VU Section ---- */
+.radio__vu-section {
+  background: var(--panel-bg);
+  border-radius: 8px;
+  border: 2px solid var(--panel-border);
+  box-shadow: var(--panel-inset);
+  padding: 8px;
+  transition: background 0.5s, border-color 0.5s, box-shadow 0.5s;
+}
+
+/* --- VU Analógico --- */
+.radio__vu-analog {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.radio__meter-box {
+  flex: 1;
+  background: var(--meter-bg);
+  border-radius: 8px;
+  padding: 6px 6px 3px;
+  border: 1px solid var(--meter-border);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.25), 0 2px 6px rgba(0,0,0,0.45);
+  transition: all 0.5s;
+}
+body.skin-synth .radio__meter-box {
+  box-shadow:
+    inset 0 2px 6px rgba(0,0,0,0.5),
+    0 2px 6px rgba(80,0,200,0.4),
+    0 0 10px rgba(100,0,255,0.2);
+}
+
+.radio__analog-meter { width: 100%; height: auto; display: block; }
+
+.radio__meter-needle {
+  transform-origin: 100px 92px;
+  transition: transform 0.1s cubic-bezier(0.2,0.8,0.3,1);
+}
+
+.radio__meter-label {
+  text-align: center;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--meter-text);
+  opacity: 0.6;
+  margin-top: 2px;
+  transition: color 0.5s;
+}
+
+/* --- VU Spectrum (Canvas) --- */
+.radio__vu-spectrum {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+}
+.radio__vu-spectrum--visible { display: flex; }
+
+.radio__spectrum-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.radio__spectrum-title {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--spectrum-label);
+  text-transform: uppercase;
+  transition: color 0.5s;
+}
+.radio__spectrum-mode {
+  font-size: 8px;
+  color: var(--spectrum-label);
+  opacity: 0.6;
+  transition: color 0.5s;
+}
+
+.radio__spectrum-screen {
+  position: relative;
+  background: var(--spectrum-bg);
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(0,200,80,0.15);
+  transition: background 0.5s, border-color 0.5s;
+}
+body.skin-synth .radio__spectrum-screen {
+  border-color: rgba(0,150,200,0.2);
+}
+/* Scanlines overlay */
+.radio__spectrum-screen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 2px,
+    var(--spectrum-scan) 2px,
+    var(--spectrum-scan) 4px
+  );
+  pointer-events: none;
+  z-index: 3;
+}
+/* Curvatura tipo CRT */
+.radio__spectrum-screen::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.6) 100%);
+  z-index: 4;
+  pointer-events: none;
+}
+
+.radio__spectrum-canvas {
+  display: block;
+  width: 100%;
+  height: 90px;
+}
+
+.radio__spectrum-scale {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 4px;
+  font-size: 7px;
+  color: var(--spectrum-label);
+  opacity: 0.7;
+  transition: color 0.5s;
+}
+
+/* ============================================================
+   URL Zone — Fila completa
+============================================================ */
+.radio__url-zone {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.radio__url-input {
+  flex: 1;
+  background: #111;
+  border: 2px solid #0a0a0a;
+  border-radius: 6px;
+  padding: 9px 12px;
+  color: #bbb;
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  outline: none;
+  box-shadow: inset 0 3px 7px rgba(0,0,0,0.8), inset 0 0 4px rgba(0,0,0,0.5);
+  transition: border-color 0.2s, color 0.5s, background 0.5s;
+  min-width: 0;
+}
+body.skin-synth .radio__url-input {
+  background: #06000f;
+  border-color: #2200aa;
+  color: #cc88ff;
+}
+.radio__url-input:focus { border-color: #444; }
+body.skin-synth .radio__url-input:focus { border-color: #6600ff; }
+.radio__url-input::placeholder { color: #333; }
+body.skin-synth .radio__url-input::placeholder { color: #330066; }
+
+.radio__btn-load {
+  background: var(--btn-load-bg);
+  border: 2px solid var(--btn-load-border);
+  border-radius: 6px;
+  padding: 9px 16px;
+  color: var(--btn-load-color);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  box-shadow: var(--btn-load-shadow);
+  white-space: nowrap;
+  text-transform: uppercase;
+  transition: filter 0.15s, transform 0.1s, background 0.5s, color 0.5s, box-shadow 0.5s, border-color 0.5s;
+  flex-shrink: 0;
+}
+.radio__btn-load:hover { filter: brightness(1.35); }
+.radio__btn-load:active { transform: scale(0.95); }
+
+/* ============================================================
+   Status Strip
+============================================================ */
+.radio__status-strip {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 2px 0;
+}
+.radio__status-text {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+.radio__status-text--live { color: var(--accent); }
+.radio__timer {
+  font-size: 9px;
+  color: #333;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 1px;
+  transition: color 0.5s;
+}
+body.skin-synth .radio__timer { color: #330055; }
+
+/* ============================================================
+   PANEL DE CONTROLES — Fila completa inferior
+============================================================ */
+.radio__controls {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  padding: 6px 16px 4px;
+  gap: 10px;
+}
+
+.radio__control-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.radio__ctrl-label {
+  font-size: 9px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  color: var(--label-color);
+  text-transform: uppercase;
+  transition: color 0.5s;
+}
+.radio__ctrl-sublabel {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 7px;
+  color: var(--label-color);
+  letter-spacing: 0.5px;
+  transition: color 0.5s;
+}
+
+/* ---- Knob pequeño (TONE / BAND) ---- */
+.radio__knob--small {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: var(--knob-body);
+  border: 3px solid var(--knob-rim);
+  box-shadow: var(--knob-shadow);
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.5s, border-color 0.5s, box-shadow 0.5s, transform 0.12s;
+  user-select: none;
+}
+/* Reflejo interior */
+.radio__knob--small::before {
+  content: '';
+  position: absolute;
+  top: 4px; left: 4px; right: 4px; bottom: 4px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.12), transparent 65%);
+  pointer-events: none;
+}
+/* Indicador-marca */
+.radio__knob--small::after {
+  content: '';
+  position: absolute;
+  top: 7px; left: 50%;
+  transform: translateX(-50%);
+  width: 4px; height: 14px;
+  background: var(--knob-indicator);
+  border-radius: 2px;
+  box-shadow: 0 0 5px rgba(255,255,255,0.3);
+  transition: background 0.5s;
+}
+.radio__knob--small:active { transform: scale(0.95); }
+
+/* ---- Knob VOLUMEN grande (draggable) ---- */
+.radio__knob-mount {
+  position: relative;
+  width: 100px; height: 100px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #080808;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 6px 14px rgba(0,0,0,0.95),
+    inset 0 2px 5px rgba(255,255,255,0.06);
+  transition: box-shadow 0.5s;
+}
+body.skin-synth .radio__knob-mount {
+  box-shadow:
+    0 6px 14px rgba(80,0,200,0.6),
+    inset 0 2px 5px rgba(200,100,255,0.1);
+}
+
+.radio__knob-ring {
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  transition: background 0.1s;
+}
+
+.radio__knob-body {
+  position: relative;
+  width: 82px; height: 82px;
+  border-radius: 50%;
+  background: var(--knob-body);
+  border: 3px solid var(--knob-rim);
+  box-shadow: var(--knob-shadow);
+  cursor: grab;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  transition: background 0.5s, border-color 0.5s, box-shadow 0.5s;
+}
+.radio__knob-body:active { cursor: grabbing; }
+
+/* Reflejo superior en el knob de volumen */
+.radio__knob-body::before {
+  content: '';
+  position: absolute;
+  top: 6px; left: 6px; right: 6px; bottom: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.14), transparent 65%);
+  pointer-events: none;
+}
+
+.radio__knob-indicator {
+  position: absolute;
+  top: 10px;
+  width: 7px; height: 18px;
+  background: var(--knob-indicator);
+  border-radius: 3px;
+  box-shadow: 0 0 8px rgba(255,255,255,0.35), inset 0 1px 2px rgba(255,255,255,0.7);
+  z-index: 3;
+  transition: background 0.5s;
+}
+
+.radio__knob-value {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--text-dim);
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+  transition: color 0.5s;
+}
+
+/* ---- Power Button ---- */
+.radio__power-btn {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: var(--pow-off-bg);
+  border: 4px solid var(--knob-rim);
+  box-shadow: var(--pow-off-shadow);
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s, box-shadow 0.3s, transform 0.1s, border-color 0.5s;
+}
+.radio__power-btn::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 3px solid #1a1a1a;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.85);
+  transition: border-color 0.5s;
+}
+body.skin-synth .radio__power-btn::before { border-color: #3300aa; }
+.radio__power-btn svg {
+  width: 30px; height: 30px;
+  stroke: #777;
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  transition: stroke 0.3s;
+}
+.radio__power-btn--on { background: var(--pow-on-bg); box-shadow: var(--pow-on-shadow); }
+.radio__power-btn--on svg { stroke: #ffaaaa; }
+body.skin-synth .radio__power-btn--on svg { stroke: #ffaaff; }
+.radio__power-btn:active { transform: scale(0.92); }
+
+/* ============================================================
+   SKIN TAG (pequeño chip en la esquina)
+============================================================ */
+.radio__skin-tag {
+  position: absolute;
+  bottom: 12px;
+  right: 16px;
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--text-dim);
+  opacity: 0.5;
+  transition: color 0.5s;
+}
+
+/* ============================================================
+   URL ZONE: Flip entre input y metadatos
+============================================================ */
+.radio__url-zone {
+  position: relative;
+  height: 38px;
+  overflow: hidden;
+}
+
+/* Vista URL input */
+.radio__url-view {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  position: absolute;
+  inset: 0;
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.35s ease;
+  transform: translateY(0);
+  opacity: 1;
+}
+.radio__url-view--hidden {
+  transform: translateY(-110%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Vista Metadatos */
+.radio__meta-view {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  position: absolute;
+  inset: 0;
+  background: var(--panel-bg);
+  border: 2px solid var(--panel-border);
+  border-radius: 6px;
+  padding: 0 10px;
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.35s ease, background 0.5s, border-color 0.5s;
+  transform: translateY(110%);
+  opacity: 0;
+  pointer-events: none;
+}
+.radio__meta-view--visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.radio__meta-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+.radio__meta-station {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.5s;
+}
+.radio__meta-url {
+  font-size: 8px;
+  color: var(--text-dim);
+  font-family: 'Courier New', monospace;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.5s;
+}
+
+/* Badge de estado ON AIR */
+.radio__meta-badge {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 3px 8px;
+  border-radius: 10px;
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,255,0.06);
+  color: var(--text-dim);
+  white-space: nowrap;
+  transition: background 0.3s, color 0.3s, border-color 0.5s;
+  flex-shrink: 0;
+}
+.radio__meta-badge--live {
+  background: var(--accent);
+  color: #000;
+  border-color: transparent;
+}
+body.skin-synth .radio__meta-badge--live {
+  background: #ff00ff;
+  color: #fff;
+}
+
+/* Botón editar URL (pequeño lápiz) */
+.radio__btn-edit {
+  width: 28px;
+  height: 28px;
+  border-radius: 5px;
+  background: var(--btn-load-bg);
+  border: 2px solid var(--btn-load-border);
+  color: var(--btn-load-color);
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--btn-load-shadow);
+  flex-shrink: 0;
+  transition: filter 0.15s, transform 0.1s, background 0.5s, border-color 0.5s;
+  line-height: 1;
+}
+.radio__btn-edit:hover { filter: brightness(1.4); }
+.radio__btn-edit:active { transform: scale(0.92); }
+
+/* ============================================================
+   ANIMACIONES
+============================================================ */
+@keyframes led-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.radio__power-led--on { animation: led-pulse 1.8s ease-in-out infinite; }
+
+/* Transición suave del body entero al cambiar skin */
+body { transition: background 0.5s ease; }
+
+/* ============================================================
+   BACKGROUND IMAGE SYSTEM
+============================================================ */
+.bg-layer {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  filter: blur(18px) brightness(0.3) saturate(1.4);
+  transform: scale(1.08);
+  transition: opacity 1s ease;
+  pointer-events: none;
+}
+.bg-layer--visible { opacity: 1; }
+
+.bg-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0,0,0,0.2) 0%,
+    rgba(0,0,0,0.7) 100%
+  );
+  opacity: 0;
+  transition: opacity 1s ease;
+  pointer-events: none;
+}
+.bg-overlay--visible { opacity: 1; }
+
+.bg-station-name {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-bottom: 28px;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  font-size: clamp(24px, 5.5vw, 60px);
+  font-weight: 900;
+  letter-spacing: clamp(5px, 1.5vw, 20px);
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.09);
+  text-shadow:
+    0 0 50px rgba(255,255,255,0.07),
+    0 2px 4px rgba(0,0,0,0.5);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 1s ease;
+  user-select: none;
+}
+.bg-station-name--visible { opacity: 1; }
+
+/* Botón imagen de fondo */
+.radio__btn-bg {
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  background: var(--btn-load-bg);
+  border: 2px solid var(--btn-load-border);
+  color: var(--btn-load-color);
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--btn-load-shadow);
+  flex-shrink: 0;
+  transition: filter 0.15s, transform 0.1s, background 0.5s, border-color 0.5s;
+  line-height: 1;
+  padding: 0;
+}
+.radio__btn-bg:hover { filter: brightness(1.4); }
+.radio__btn-bg:active { transform: scale(0.92); }
+.radio__btn-bg--active {
+  box-shadow: 0 0 0 2px var(--knob-ring-accent), var(--btn-load-shadow);
+}
+</style>
+</head>
+<body>
+
+<!-- Capas de fondo globales -->
+<div class="bg-layer"   id="bgLayer"></div>
+<div class="bg-overlay" id="bgOverlay"></div>
+<div class="bg-station-name" id="bgStationName"></div>
+<input type="file" id="bgImageInput" accept="image/*" style="display:none">
+
+<main class="radio">
+  <div class="radio__antenna"></div>
+  <div class="radio__handle"></div>
+
+  <div class="radio__body">
+
+    <!-- ===== IZQUIERDA: Parlante ===== -->
+    <div class="radio__left">
+      <div class="radio__brand">
+        KSM<span>Servicios</span>
+      </div>
+      <div class="radio__grille"></div>
+    </div>
+
+    <!-- ===== DERECHA: Controles superiores ===== -->
+    <div class="radio__right">
+
+      <div class="radio__model-strip">
+        <div>
+          <div class="radio__model-name">KSM-R1</div>
+          <div class="radio__model-sub">AM/FM Internet Portable Radio</div>
+        </div>
+        <div class="radio__power-led" id="powerLed"></div>
+      </div>
+
+      <!-- Dial de frecuencias -->
+      <div class="radio__dial-panel">
+        <div class="radio__dial-window" id="dialWindow">
+          <div class="radio__freq-label">
+            <span>FM</span>
+            <span>87</span><span>92</span><span>96</span><span>100</span><span>104</span><span>108</span>
+            <span>MHz</span>
+          </div>
+          <div class="radio__tuning-bar">
+            <div class="radio__tuning-track"></div>
+            <div class="radio__tuning-needle" id="tuningNeedle"></div>
+          </div>
+          <div class="radio__freq-scale">
+            <span>AM</span>
+            <span>520</span><span>700</span><span>900</span><span>1150</span><span>1400</span><span>1710</span>
+            <span>kHz</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- VU Meters -->
+      <div class="radio__vu-section">
+
+        <!-- Modo 1: Analógico -->
+        <div class="radio__vu-analog" id="vuAnalog">
+          <!-- Meter L -->
+          <div class="radio__meter-box">
+            <svg class="radio__analog-meter" viewBox="0 0 200 110">
+              <path d="M 133 34.8 A 66 66 0 0 1 150.6 49.6" fill="none" stroke="var(--red-zone)" stroke-width="4" stroke-linecap="round"/>
+              <path d="M 49.4 49.6 A 66 66 0 0 1 150.6 49.6" fill="none" stroke="var(--meter-arc)" stroke-width="1.5"/>
+              <g stroke="var(--meter-ticks)" stroke-width="1.5">
+                <line x1="49.4" y1="49.6" x2="46.4" y2="47.0"/>
+                <line x1="72.1" y1="32.2" x2="70.4" y2="28.6"/>
+                <line x1="100"  y1="26"   x2="100"  y2="22"/>
+                <line x1="127.9" y1="32.2" x2="129.6" y2="28.6"/>
+                <line x1="150.6" y1="49.6" x2="153.6" y2="47.0"/>
+              </g>
+              <text x="39"  y="44" text-anchor="middle" fill="var(--meter-text)" opacity="0.8" font-size="8" font-family="sans-serif">-20</text>
+              <text x="66"  y="24" text-anchor="middle" fill="var(--meter-text)" opacity="0.8" font-size="8" font-family="sans-serif">-10</text>
+              <text x="100" y="15" text-anchor="middle" fill="var(--meter-text)" font-size="9" font-weight="bold" font-family="sans-serif">0</text>
+              <text x="134" y="24" text-anchor="middle" fill="var(--red-zone)" font-size="8" font-family="sans-serif">+2</text>
+              <text x="161" y="44" text-anchor="middle" fill="var(--red-zone)" font-size="8" font-family="sans-serif">+3</text>
+              <text x="100" y="65" text-anchor="middle" fill="var(--meter-text)" opacity="0.6" font-size="10" font-weight="bold" letter-spacing="1" font-family="sans-serif">VU</text>
+              <line id="needleL" class="radio__meter-needle" x1="100" y1="92" x2="100" y2="26" stroke="var(--red-zone)" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="100" cy="92" r="6"   fill="var(--meter-pivot)"/>
+              <circle cx="100" cy="92" r="2.5" fill="var(--meter-bg)"/>
+            </svg>
+            <div class="radio__meter-label">CANAL L</div>
+          </div>
+          <!-- Meter R -->
+          <div class="radio__meter-box">
+            <svg class="radio__analog-meter" viewBox="0 0 200 110">
+              <path d="M 133 34.8 A 66 66 0 0 1 150.6 49.6" fill="none" stroke="var(--red-zone)" stroke-width="4" stroke-linecap="round"/>
+              <path d="M 49.4 49.6 A 66 66 0 0 1 150.6 49.6" fill="none" stroke="var(--meter-arc)" stroke-width="1.5"/>
+              <g stroke="var(--meter-ticks)" stroke-width="1.5">
+                <line x1="49.4"  y1="49.6" x2="46.4"  y2="47.0"/>
+                <line x1="72.1"  y1="32.2" x2="70.4"  y2="28.6"/>
+                <line x1="100"   y1="26"   x2="100"   y2="22"/>
+                <line x1="127.9" y1="32.2" x2="129.6" y2="28.6"/>
+                <line x1="150.6" y1="49.6" x2="153.6" y2="47.0"/>
+              </g>
+              <text x="39"  y="44" text-anchor="middle" fill="var(--meter-text)" opacity="0.8" font-size="8" font-family="sans-serif">-20</text>
+              <text x="66"  y="24" text-anchor="middle" fill="var(--meter-text)" opacity="0.8" font-size="8" font-family="sans-serif">-10</text>
+              <text x="100" y="15" text-anchor="middle" fill="var(--meter-text)" font-size="9" font-weight="bold" font-family="sans-serif">0</text>
+              <text x="134" y="24" text-anchor="middle" fill="var(--red-zone)" font-size="8" font-family="sans-serif">+2</text>
+              <text x="161" y="44" text-anchor="middle" fill="var(--red-zone)" font-size="8" font-family="sans-serif">+3</text>
+              <text x="100" y="65" text-anchor="middle" fill="var(--meter-text)" opacity="0.6" font-size="10" font-weight="bold" letter-spacing="1" font-family="sans-serif">VU</text>
+              <line id="needleR" class="radio__meter-needle" x1="100" y1="92" x2="100" y2="26" stroke="var(--red-zone)" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="100" cy="92" r="6"   fill="var(--meter-pivot)"/>
+              <circle cx="100" cy="92" r="2.5" fill="var(--meter-bg)"/>
+            </svg>
+            <div class="radio__meter-label">CANAL R</div>
+          </div>
+        </div>
+
+        <!-- Modo 2: Spectrum Analyzer (Canvas CRT) -->
+        <div class="radio__vu-spectrum" id="vuSpectrum">
+          <div class="radio__spectrum-header">
+            <span class="radio__spectrum-title">Spectrum Analyzer</span>
+            <span class="radio__spectrum-mode">FFT 256</span>
+          </div>
+          <div class="radio__spectrum-screen">
+            <canvas class="radio__spectrum-canvas" id="spectrumCanvas" width="500" height="90"></canvas>
+          </div>
+          <div class="radio__spectrum-scale">
+            <span>20Hz</span><span>200</span><span>500</span><span>1k</span><span>2k</span><span>5k</span><span>10k</span><span>20kHz</span>
+          </div>
+        </div>
+
+      </div><!-- /vu-section -->
+    </div><!-- /right -->
+
+    <!-- ===== URL Zone ===== -->
+    <div class="radio__url-zone">
+      <!-- Vista: input de URL -->
+      <div class="radio__url-view" id="urlView">
+        <input class="radio__url-input" type="text" id="streamUrl"
+          placeholder="https://stream.ejemplo.com/live"
+          value="HTTPS://stream.zeno.fm/f3wvbb1f28quv">
+        <button class="radio__btn-load" id="loadBtn">CARGAR</button>
+        <button class="radio__btn-bg" id="bgBtn" title="Imagen de fondo">🖼</button>
+      </div>
+      <!-- Vista: metadatos del stream activo -->
+      <div class="radio__meta-view" id="metaView">
+        <div class="radio__meta-info">
+          <div class="radio__meta-station" id="metaStation">—</div>
+          <div class="radio__meta-url" id="metaUrl">—</div>
+        </div>
+        <div class="radio__meta-badge" id="metaBadge">STANDBY</div>
+        <button class="radio__btn-bg radio__btn-bg--meta" id="bgBtn2" title="Imagen de fondo">🖼</button>
+        <button class="radio__btn-edit" id="editBtn" title="Cambiar URL">✎</button>
+      </div>
+    </div>
+
+    <!-- ===== Status ===== -->
+    <div class="radio__status-strip">
+      <span class="radio__status-text" id="statusText">STANDBY</span>
+      <span class="radio__timer" id="timerDisplay">00:00</span>
+    </div>
+
+    <!-- ===== CONTROLES ===== -->
+    <div class="radio__controls">
+
+      <!-- TONE → cambia skin -->
+      <div class="radio__control-group">
+        <div class="radio__ctrl-sublabel">
+          <span>SKN1</span><span>SKN2</span>
+        </div>
+        <div class="radio__knob--small" id="toneKnob" title="Cambiar Skin"></div>
+        <span class="radio__ctrl-label">TONE</span>
+      </div>
+
+      <!-- VOLUMEN grande -->
+      <div class="radio__control-group">
+        <div class="radio__ctrl-sublabel">
+          <span>MIN</span><span>MAX</span>
+        </div>
+        <div class="radio__knob-mount">
+          <div class="radio__knob-ring" id="knobRing"></div>
+          <div class="radio__knob-body" id="volKnob">
+            <div class="radio__knob-indicator" id="knobIndicator"></div>
+          </div>
+        </div>
+        <span class="radio__ctrl-label">VOLUME</span>
+        <span class="radio__knob-value"><span id="knobValueDisplay">80</span>%</span>
+      </div>
+
+      <!-- POWER -->
+      <div class="radio__control-group">
+        <button class="radio__power-btn" id="playBtn" title="Power">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 3v9"/>
+            <path d="M6.3 6.3a9 9 0 1 0 11.4 0"/>
+          </svg>
+        </button>
+        <span class="radio__ctrl-label">POWER</span>
+      </div>
+
+      <!-- BAND → cambia modo VU -->
+      <div class="radio__control-group">
+        <div class="radio__ctrl-sublabel">
+          <span>VU</span><span>FFT</span>
+        </div>
+        <div class="radio__knob--small" id="bandKnob" title="Cambiar modo VU"></div>
+        <span class="radio__ctrl-label">DISPLAY</span>
+      </div>
+
+    </div><!-- /controls -->
+
+    <div class="radio__skin-tag" id="skinTag">TACTICAL GRAY</div>
+
+  </div><!-- /body -->
+</main>
+
+<audio id="audio" crossorigin="anonymous"></audio>
+
+<script>
+/* ===================================================
+   DOM
+=================================================== */
+const audio          = document.getElementById('audio');
+const playBtn        = document.getElementById('playBtn');
+const loadBtn        = document.getElementById('loadBtn');
+const streamUrlInput = document.getElementById('streamUrl');
+const statusText     = document.getElementById('statusText');
+const powerLed       = document.getElementById('powerLed');
+const dialWindow     = document.getElementById('dialWindow');
+const tuningNeedle   = document.getElementById('tuningNeedle');
+const timerDisplay   = document.getElementById('timerDisplay');
+const volKnob        = document.getElementById('volKnob');
+const knobRing       = document.getElementById('knobRing');
+const knobValueDisp  = document.getElementById('knobValueDisplay');
+const needleL        = document.getElementById('needleL');
+const needleR        = document.getElementById('needleR');
+const toneKnob       = document.getElementById('toneKnob');
+const bandKnob       = document.getElementById('bandKnob');
+const skinTag        = document.getElementById('skinTag');
+const vuAnalog       = document.getElementById('vuAnalog');
+const vuSpectrum     = document.getElementById('vuSpectrum');
+const spectrumCanvas = document.getElementById('spectrumCanvas');
+const specCtx        = spectrumCanvas.getContext('2d');
+
+/* ===================================================
+   ESTADO
+=================================================== */
+let playing       = false;
+let skinSynth     = false;
+let vuMode        = 'analog'; // 'analog' | 'spectrum'
+let startTime     = null;
+let timerIval     = null;
+let toneKnobRot   = 0;
+let bandKnobRot   = 0;
+
+let audioCtx, analyser, source, dataArray;
+let smoothL = 0, smoothR = 0;
+const ATTACK  = 0.35;
+const RELEASE = 0.12;
+
+/* peak hold para spectrum */
+const NUM_BARS = 28;
+const peakLevels = new Array(NUM_BARS).fill(0);
+const peakDecay  = 0.015;
+
+/* ===================================================
+   KNOB VOLUMEN — drag + wheel + touch
+=================================================== */
+let knobVolume      = 80;
+let knobDragging    = false;
+let knobDragStartY  = 0;
+let knobDragStartVal = 0;
+
+function getAccentColor() {
+  return skinSynth ? '#ff00ff' : '#ff8c00';
+}
+
+function updateKnobRing() {
+  const sweep = (knobVolume / 100) * 270;
+  const accent = getAccentColor();
+  knobRing.style.background = `conic-gradient(
+    from 225deg,
+    ${accent} 0deg ${sweep}deg,
+    rgba(0,0,0,0.6) ${sweep}deg 270deg,
+    transparent 270deg 360deg
+  )`;
+}
+
+function applyKnobVolume(val) {
+  knobVolume = Math.max(0, Math.min(100, val));
+  audio.volume = knobVolume / 100;
+  const angle = -135 + (knobVolume / 100) * 270;
+  volKnob.style.transform = `rotate(${angle}deg)`;
+  knobValueDisp.textContent = Math.round(knobVolume);
+  updateKnobRing();
+}
+
+volKnob.addEventListener('mousedown', e => {
+  knobDragging = true;
+  knobDragStartY = e.clientY;
+  knobDragStartVal = knobVolume;
+  e.preventDefault();
+});
+document.addEventListener('mousemove', e => {
+  if (!knobDragging) return;
+  applyKnobVolume(knobDragStartVal + (knobDragStartY - e.clientY) * 0.8);
+});
+document.addEventListener('mouseup', () => { knobDragging = false; });
+
+volKnob.addEventListener('touchstart', e => {
+  knobDragging = true;
+  knobDragStartY = e.touches[0].clientY;
+  knobDragStartVal = knobVolume;
+}, { passive: true });
+document.addEventListener('touchmove', e => {
+  if (!knobDragging) return;
+  applyKnobVolume(knobDragStartVal + (knobDragStartY - e.touches[0].clientY) * 0.8);
+}, { passive: true });
+document.addEventListener('touchend', () => { knobDragging = false; });
+
+volKnob.addEventListener('wheel', e => {
+  e.preventDefault();
+  applyKnobVolume(knobVolume - e.deltaY * 0.1);
+}, { passive: false });
+
+applyKnobVolume(80);
+
+/* ===================================================
+   SKIN TOGGLE (botón TONE)
+=================================================== */
+toneKnob.addEventListener('click', () => {
+  skinSynth = !skinSynth;
+  toneKnobRot += 180;
+  toneKnob.style.transform = `rotate(${toneKnobRot}deg)`;
+
+  document.body.classList.toggle('skin-synth', skinSynth);
+  skinTag.textContent = skinSynth ? 'SYNTHWAVE' : 'TACTICAL GRAY';
+
+  // Actualizar ring con nuevo color de acento
+  updateKnobRing();
+});
+
+/* ===================================================
+   VU MODE TOGGLE (botón BAND/DISPLAY)
+=================================================== */
+bandKnob.addEventListener('click', () => {
+  vuMode = vuMode === 'analog' ? 'spectrum' : 'analog';
+  bandKnobRot += 180;
+  bandKnob.style.transform = `rotate(${bandKnobRot}deg)`;
+
+  vuAnalog.style.display   = vuMode === 'analog'   ? 'flex'  : 'none';
+  vuSpectrum.classList.toggle('radio__vu-spectrum--visible', vuMode === 'spectrum');
+
+  if (vuMode === 'spectrum') drawSpectrum();
+});
+
+/* ===================================================
+   AUDIO CONTEXT
+=================================================== */
+function setupAudioCtx() {
+  if (audioCtx) return;
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  source   = audioCtx.createMediaElementSource(audio);
+  analyser = audioCtx.createAnalyser();
+  analyser.fftSize = 512;
+  analyser.smoothingTimeConstant = 0.7;
+  source.connect(analyser);
+  analyser.connect(audioCtx.destination);
+  dataArray = new Uint8Array(analyser.frequencyBinCount);
+}
+
+/* ===================================================
+   METADATOS — elementos DOM adicionales
+=================================================== */
+const urlView      = document.getElementById('urlView');
+const metaView     = document.getElementById('metaView');
+const metaStation  = document.getElementById('metaStation');
+const metaUrl      = document.getElementById('metaUrl');
+const metaBadge    = document.getElementById('metaBadge');
+const editBtn      = document.getElementById('editBtn');
+
+function showMetaView(stationName, url, live) {
+  metaStation.textContent = stationName;
+  metaUrl.textContent     = url;
+  metaBadge.textContent   = live ? 'AL AIRE' : 'CARGANDO';
+  metaBadge.classList.toggle('radio__meta-badge--live', !!live);
+  urlView.classList.add('radio__url-view--hidden');
+  metaView.classList.add('radio__meta-view--visible');
+}
+
+function showUrlView() {
+  urlView.classList.remove('radio__url-view--hidden');
+  metaView.classList.remove('radio__meta-view--visible');
+  metaBadge.classList.remove('radio__meta-badge--live');
+}
+
+function updateMetaBadge(txt, live) {
+  metaBadge.textContent = txt;
+  metaBadge.classList.toggle('radio__meta-badge--live', !!live);
+}
+
+editBtn.addEventListener('click', () => {
+  if (playing) pauseAudio();
+  showUrlView();
+});
+
+/* ===================================================
+   CARGAR STREAM
+=================================================== */
+function loadStream() {
+  const url = streamUrlInput.value.trim();
+  if (!url) return;
+
+  // Extraer nombre de estación desde la URL
+  let stationName = 'STREAM';
+  try {
+    const u = new URL(url);
+    stationName = u.hostname.replace('www.', '').split('.')[0].toUpperCase();
+  } catch(e) {}
+
+  audio.src = url;
+  setStatus('Cargando...', false);
+
+  // Mostrar metadatos en lugar de la URL
+  showMetaView(stationName, url, false);
+
+  playAudio();
+}
+
+/* ===================================================
+   PLAY / PAUSE
+=================================================== */
+function setStatus(txt, live) {
+  statusText.textContent = txt;
+  statusText.classList.toggle('radio__status-text--live', !!live);
+  powerLed.classList.toggle('radio__power-led--on', !!live);
+  dialWindow.classList.toggle('radio__dial-window--on', !!live);
+  tuningNeedle.style.left = live ? '62%' : '40%';
+}
+
+function playAudio() {
+  try {
+    setupAudioCtx();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+  } catch(e) {}
+  audio.play()
+    .then(() => {
+      playing = true;
+      playBtn.classList.add('radio__power-btn--on');
+      setStatus('AL AIRE', true);
+      updateMetaBadge('AL AIRE', true);
+      startTimer();
+      requestAnimationFrame(updateVU);
+      if (vuMode === 'spectrum') drawSpectrum();
+    })
+    .catch(() => {
+      setStatus('ERROR', false);
+      updateMetaBadge('ERROR', false);
+    });
+}
+
+function pauseAudio() {
+  audio.pause();
+  playing = false;
+  playBtn.classList.remove('radio__power-btn--on');
+  setStatus('STANDBY', false);
+  updateMetaBadge('PAUSADO', false);
+  stopTimer();
+}
+
+playBtn.addEventListener('click', () => {
+  if (!audio.src || audio.src === location.href) { loadStream(); return; }
+  playing ? pauseAudio() : playAudio();
+});
+loadBtn.addEventListener('click', loadStream);
+streamUrlInput.addEventListener('keydown', e => { if (e.key === 'Enter') loadStream(); });
+
+audio.addEventListener('waiting', () => {
+  setStatus('Buffering...', false);
+  updateMetaBadge('BUFFER...', false);
+});
+audio.addEventListener('playing', () => {
+  if (playing) {
+    setStatus('AL AIRE', true);
+    updateMetaBadge('AL AIRE', true);
+  }
+});
+audio.addEventListener('error', () => {
+  setStatus('ERROR', false);
+  updateMetaBadge('ERROR', false);
+});
+
+/* ===================================================
+   TIMER
+=================================================== */
+function startTimer() {
+  startTime = Date.now();
+  stopTimer();
+  timerIval = setInterval(() => {
+    const s  = Math.floor((Date.now() - startTime) / 1000);
+    timerDisplay.textContent =
+      String(Math.floor(s / 60)).padStart(2, '0') + ':' +
+      String(s % 60).padStart(2, '0');
+  }, 500);
+}
+function stopTimer() {
+  if (timerIval) clearInterval(timerIval);
+  timerDisplay.textContent = '00:00';
+}
+
+/* ===================================================
+   VU ANALÓGICO (agujas)
+=================================================== */
+function setNeedle(el, level) {
+  const angle = -50 + Math.max(0, Math.min(1, level)) * 100;
+  el.style.transform = `rotate(${angle.toFixed(2)}deg)`;
+}
+
+function updateVU() {
+  if (!playing) return;
+  if (analyser) {
+    analyser.getByteFrequencyData(dataArray);
+    let sum = 0;
+    for (let i = 0; i < dataArray.length; i++) sum += dataArray[i] * dataArray[i];
+    const rms    = Math.sqrt(sum / dataArray.length) / 255;
+    const target = Math.min(1, rms * 1.8);
+    const tR     = Math.min(1, Math.max(0, target * (0.82 + Math.random() * 0.36)));
+    smoothL += (target - smoothL) * (target > smoothL ? ATTACK : RELEASE);
+    smoothR += (tR     - smoothR) * (tR     > smoothR ? ATTACK : RELEASE);
+    smoothL  = Math.max(0, Math.min(1, smoothL));
+    smoothR  = Math.max(0, Math.min(1, smoothR));
+  }
+  setNeedle(needleL, smoothL);
+  setNeedle(needleR, smoothR);
+  requestAnimationFrame(updateVU);
+}
+
+// Idle loop agujas a 0
+(function idleLoop() {
+  if (!playing) { setNeedle(needleL, 0); setNeedle(needleR, 0); }
+  requestAnimationFrame(idleLoop);
+})();
+
+/* ===================================================
+   VU SPECTRUM ANALYZER (Canvas CRT)
+=================================================== */
+function getSpectrumColors() {
+  if (skinSynth) {
+    return { bar: '#00ffff', bar2: '#ff00ff', glow: '#00ffff', bg: '#03000a', peak: '#ff00ff' };
+  }
+  return { bar: '#00e844', bar2: '#ffe000', glow: '#00ff44', bg: '#000d00', peak: '#ffe000' };
+}
+
+function resizeCanvas() {
+  const rect = spectrumCanvas.parentElement.getBoundingClientRect();
+  spectrumCanvas.width  = Math.max(rect.width * window.devicePixelRatio, 200);
+  spectrumCanvas.height = 90 * window.devicePixelRatio;
+  spectrumCanvas.style.height = '90px';
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+function drawSpectrum() {
+  if (vuMode !== 'spectrum') return;
+  requestAnimationFrame(drawSpectrum);
+
+  const W = spectrumCanvas.width;
+  const H = spectrumCanvas.height;
+  const colors = getSpectrumColors();
+
+  // Fondo con fade (efecto persistencia de fósforo)
+  specCtx.fillStyle = colors.bg;
+  specCtx.globalAlpha = 0.4;
+  specCtx.fillRect(0, 0, W, H);
+  specCtx.globalAlpha = 1;
+
+  const barGap = 2;
+  const barW   = Math.floor((W - (NUM_BARS + 1) * barGap) / NUM_BARS);
+
+  for (let i = 0; i < NUM_BARS; i++) {
+    let level = 0;
+
+    if (analyser && playing) {
+      analyser.getByteFrequencyData(dataArray);
+      // Distribución logarítmica de frecuencias
+      const nyquist  = audioCtx.sampleRate / 2;
+      const freqLow  = 20   * Math.pow(nyquist / 20,   i / NUM_BARS);
+      const freqHigh = 20   * Math.pow(nyquist / 20,  (i + 1) / NUM_BARS);
+      const idxLow   = Math.floor(freqLow  / nyquist * dataArray.length);
+      const idxHigh  = Math.ceil(freqHigh / nyquist * dataArray.length);
+      let sum = 0;
+      for (let j = idxLow; j < idxHigh && j < dataArray.length; j++) sum += dataArray[j];
+      level = (sum / Math.max(1, idxHigh - idxLow)) / 255;
+    } else {
+      // Animación idle: ola muy pequeña
+      level = 0.015 + 0.01 * Math.sin(Date.now() / 600 + i * 0.6);
+    }
+
+    // Peak hold
+    if (level > peakLevels[i]) peakLevels[i] = level;
+    else peakLevels[i] = Math.max(0, peakLevels[i] - peakDecay);
+
+    const x    = i * (barW + barGap) + barGap;
+    const barH = Math.max(2, level * H);
+    const pkH  = Math.max(1, peakLevels[i] * H);
+
+    // Gradiente de barra (verde→amarillo→rojo según altura)
+    const grad = specCtx.createLinearGradient(0, H, 0, 0);
+    if (skinSynth) {
+      grad.addColorStop(0,    '#00ffff');
+      grad.addColorStop(0.65, '#8800ff');
+      grad.addColorStop(1,    '#ff00ff');
+    } else {
+      grad.addColorStop(0,    '#00e844');
+      grad.addColorStop(0.7,  '#ffe000');
+      grad.addColorStop(1,    '#ff3300');
+    }
+
+    // Barra principal con glow
+    specCtx.shadowColor = colors.glow;
+    specCtx.shadowBlur  = 8;
+    specCtx.fillStyle   = grad;
+    specCtx.fillRect(x, H - barH, barW, barH);
+
+    // Dot de peak
+    specCtx.shadowColor = colors.peak;
+    specCtx.shadowBlur  = 12;
+    specCtx.fillStyle   = colors.peak;
+    specCtx.fillRect(x, H - pkH - 2, barW, 2);
+  }
+
+  specCtx.shadowBlur = 0;
+  specCtx.shadowColor = 'transparent';
+}
+
+// Arrancar loop de spectrum aunque no esté playing (muestra idle)
+(function spectrumIdleLoop() {
+  if (vuMode === 'spectrum') drawSpectrum();
+})();
+
+/* ===================================================
+   BACKGROUND IMAGE SYSTEM
+=================================================== */
+const bgLayer        = document.getElementById('bgLayer');
+const bgOverlay      = document.getElementById('bgOverlay');
+const bgStationName  = document.getElementById('bgStationName');
+const bgImageInput   = document.getElementById('bgImageInput');
+const bgBtn          = document.getElementById('bgBtn');
+const bgBtn2         = document.getElementById('bgBtn2');
+
+let bgActive = false;
+
+function toggleBg() {
+  if (bgActive) {
+    bgLayer.classList.remove('bg-layer--visible');
+    bgOverlay.classList.remove('bg-overlay--visible');
+    bgStationName.classList.remove('bg-station-name--visible');
+    [bgBtn, bgBtn2].forEach(b => b.classList.remove('radio__btn-bg--active'));
+    setTimeout(() => { bgLayer.style.backgroundImage = ''; }, 1000);
+    bgActive = false;
+  } else {
+    bgImageInput.click();
+  }
+}
+
+bgBtn.addEventListener('click', toggleBg);
+bgBtn2.addEventListener('click', toggleBg);
+
+bgImageInput.addEventListener('change', e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    bgLayer.style.backgroundImage = `url(${ev.target.result})`;
+    requestAnimationFrame(() => {
+      bgLayer.classList.add('bg-layer--visible');
+      bgOverlay.classList.add('bg-overlay--visible');
+      bgStationName.classList.add('bg-station-name--visible');
+      [bgBtn, bgBtn2].forEach(b => b.classList.add('radio__btn-bg--active'));
+      bgActive = true;
+    });
+    // Nombre: usar el que ya está en metaStation o extraer de URL
+    const nameEl = document.getElementById('metaStation');
+    const name   = (nameEl && nameEl.textContent !== '—')
+      ? nameEl.textContent
+      : (streamUrlInput.value.trim() ? streamUrlInput.value.trim().split('/')[2] : 'KSM RADIO');
+    bgStationName.textContent = name.toUpperCase();
+  };
+  reader.readAsDataURL(file);
+  bgImageInput.value = '';
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,2227 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Estilos Web</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&family=Black+Han+Sans&family=Bebas+Neue&family=Caveat:wght@400;700&family=Nunito:wght@400;700;800&family=Roboto+Condensed:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --gallery-bg: #0a0a0f;
+            --gallery-text: #e0e0e8;
+            --card-w: 380px;
+            --card-h: 280px;
+        }
+
+        body {
+            background: var(--gallery-bg);
+            color: var(--gallery-text);
+            font-family: 'DM Sans', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            text-align: center;
+            padding: 80px 24px 60px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(100, 80, 200, 0.15), transparent);
+            pointer-events: none;
+        }
+
+        .hero-label {
+            font-size: 11px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: #7060b0;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(32px, 5vw, 62px);
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff 0%, #9980f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            color: #888;
+            font-size: 16px;
+            max-width: 500px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        /* ── FILTERS ── */
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            padding: 0 24px 48px;
+        }
+
+        .filter-btn {
+            padding: 6px 16px;
+            border-radius: 999px;
+            border: 1px solid #2a2a3a;
+            background: transparent;
+            color: #888;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            border-color: #7060b0;
+            color: #c0b0ff;
+            background: rgba(112, 96, 176, 0.1);
+        }
+
+        /* ── GRID ── */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(var(--card-w), 1fr));
+            gap: 24px;
+            padding: 0 32px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* ── CARD WRAPPER ── */
+        .card-wrap {
+            display: flex;
+            flex-direction: column;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #1e1e2e;
+            transition: transform 0.3s ease, border-color 0.3s;
+            cursor: pointer;
+        }
+
+        .card-wrap:hover {
+            transform: translateY(-4px);
+            border-color: #3a3a5a;
+        }
+
+        .card-preview {
+            width: 100%;
+            height: var(--card-h);
+            overflow: hidden;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .card-info {
+            background: #111118;
+            padding: 16px 20px;
+            border-top: 1px solid #1e1e2e;
+        }
+
+        .card-info h3 {
+            font-size: 14px;
+            font-weight: 500;
+            color: #e0e0f0;
+            margin-bottom: 4px;
+        }
+
+        .card-info p {
+            font-size: 12px;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        .card-tag {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        /* ────────────────────────────────
+     PREVIEW STYLES — each .p-* class
+     is a complete mini world
+  ──────────────────────────────── */
+
+        /* 1. BENTO GRID */
+        .p-bento {
+            background: #0f172a;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 8px;
+            padding: 12px;
+        }
+
+        .p-bento .b {
+            border-radius: 10px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            padding: 12px;
+        }
+
+        .p-bento .b1 {
+            grid-column: span 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .p-bento .b1 .title {
+            color: #f1f5f9;
+            font-weight: 600;
+            font-size: 15px;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .p-bento .b1 .sub {
+            color: #64748b;
+            font-size: 11px;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .p-bento .b1 .num {
+            color: #6366f1;
+            font-size: 28px;
+            font-weight: 700;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .p-bento .b2 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .p-bento .b2 .ring {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid #334155;
+            border-top-color: #6366f1;
+        }
+
+        .p-bento .b2 .label {
+            color: #94a3b8;
+            font-size: 10px;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .p-bento .b3 {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            gap: 4px;
+        }
+
+        .p-bento .bar {
+            height: 6px;
+            border-radius: 3px;
+            background: #6366f1;
+        }
+
+        .p-bento .b4 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .p-bento .b4 .btn {
+            background: #6366f1;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-family: 'DM Sans', sans-serif;
+            cursor: pointer;
+        }
+
+        .p-bento .b5 {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+        }
+
+        /* 2. NEOBRUTALISMO */
+        .p-neo {
+            background: #ffeb3b;
+            padding: 16px;
+            font-family: 'Space Mono', monospace;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .p-neo .neo-card {
+            background: #ff4d00;
+            border: 2.5px solid #000;
+            box-shadow: 5px 5px 0 #000;
+            padding: 12px;
+            border-radius: 0;
+        }
+
+        .p-neo .neo-card h2 {
+            color: #000;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .p-neo .neo-card p {
+            color: #000;
+            font-size: 10px;
+            margin-top: 4px;
+        }
+
+        .p-neo .neo-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .p-neo .neo-btn {
+            background: #00e5ff;
+            border: 2.5px solid #000;
+            box-shadow: 4px 4px 0 #000;
+            padding: 8px 14px;
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            font-size: 11px;
+            color: #000;
+            cursor: pointer;
+            border-radius: 0;
+            flex: 1;
+            text-align: center;
+        }
+
+        .p-neo .neo-btn2 {
+            background: #b020ff;
+            color: #fff;
+        }
+
+        .p-neo .neo-tag {
+            background: #000;
+            color: #ffeb3b;
+            padding: 3px 8px;
+            font-size: 10px;
+            border: 2px solid #000;
+            display: inline-block;
+        }
+
+        /* 3. SWISS */
+        .p-swiss {
+            background: #fff;
+            padding: 28px 24px;
+            font-family: 'Roboto Condensed', sans-serif;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .p-swiss .sw-eyebrow {
+            font-size: 10px;
+            letter-spacing: 0.3em;
+            color: #999;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .p-swiss .sw-h {
+            font-size: 38px;
+            font-weight: 700;
+            color: #111;
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+
+        .p-swiss .sw-div {
+            width: 40px;
+            height: 3px;
+            background: #ff3300;
+            margin-bottom: 16px;
+        }
+
+        .p-swiss .sw-body {
+            font-size: 12px;
+            color: #555;
+            line-height: 1.6;
+            max-width: 260px;
+            margin-bottom: 20px;
+        }
+
+        .p-swiss .sw-cta {
+            display: inline-block;
+            background: #ff3300;
+            color: #fff;
+            padding: 10px 22px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+        }
+
+        .p-swiss .sw-aside {
+            position: absolute;
+            right: 24px;
+            top: 20px;
+            font-size: 72px;
+            font-weight: 700;
+            color: #f0f0f0;
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        /* 4. NEUOMORPHISM */
+        .p-neumorphic {
+            background: #e0e5ec;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 24px;
+        }
+
+        .p-neumorphic .nm-card {
+            background: #e0e5ec;
+            border-radius: 20px;
+            box-shadow: 8px 8px 16px #b8bec7, -8px -8px 16px #ffffff;
+            padding: 24px 28px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .p-neumorphic .nm-label {
+            font-size: 12px;
+            color: #8a9bb0;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+        }
+
+        .p-neumorphic .nm-val {
+            font-size: 24px;
+            font-weight: 600;
+            color: #4a5568;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .p-neumorphic .nm-slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #e0e5ec;
+            box-shadow: inset 3px 3px 6px #b8bec7, inset -3px -3px 6px #fff;
+            position: relative;
+        }
+
+        .p-neumorphic .nm-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #e0e5ec;
+            box-shadow: 4px 4px 8px #b8bec7, -4px -4px 8px #fff;
+            position: absolute;
+            top: -6px;
+            left: 40%;
+        }
+
+        .p-neumorphic .nm-btn {
+            background: #e0e5ec;
+            box-shadow: 6px 6px 12px #b8bec7, -6px -6px 12px #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 28px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #5a6a7a;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        /* 5. SCI-FI HUD */
+        .p-hud {
+            background: #050b14;
+            padding: 14px;
+            font-family: 'Orbitron', monospace;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .p-hud .hud-panel {
+            border: 1px solid rgba(0, 255, 204, 0.25);
+            background: rgba(0, 255, 204, 0.03);
+            padding: 10px;
+            position: relative;
+        }
+
+        .p-hud .hud-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 8px;
+            height: 8px;
+            border-top: 2px solid #00ffcc;
+            border-left: 2px solid #00ffcc;
+        }
+
+        .p-hud .hud-panel::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 8px;
+            height: 8px;
+            border-bottom: 2px solid #00ffcc;
+            border-right: 2px solid #00ffcc;
+        }
+
+        .p-hud .hud-label {
+            font-size: 8px;
+            color: rgba(0, 255, 204, 0.5);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .p-hud .hud-val {
+            font-size: 20px;
+            color: #00ffcc;
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+        }
+
+        .p-hud .hud-sub {
+            font-size: 8px;
+            color: #1aff9e;
+            opacity: 0.6;
+            margin-top: 2px;
+        }
+
+        .p-hud .hud-wide {
+            grid-column: span 2;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .p-hud .hud-bar-wrap {
+            flex: 1;
+            height: 4px;
+            background: rgba(0, 255, 204, 0.1);
+            position: relative;
+        }
+
+        .p-hud .hud-bar-fill {
+            height: 100%;
+            background: #00ffcc;
+            box-shadow: 0 0 8px #00ffcc;
+        }
+
+        .p-hud .hud-pct {
+            font-size: 10px;
+            color: #00ffcc;
+        }
+
+        .p-hud .hud-status {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #00ffcc;
+            box-shadow: 0 0 6px #00ffcc;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: 0.3
+            }
+        }
+
+        /* 6. RETRO TERMINAL */
+        .p-terminal {
+            background: #0a1a0a;
+            padding: 16px;
+            font-family: 'Share Tech Mono', monospace;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .p-terminal::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0, 0, 0, 0.1) 3px, rgba(0, 0, 0, 0.1) 4px);
+            pointer-events: none;
+        }
+
+        .p-terminal .t-line {
+            font-size: 11px;
+            color: #33ff33;
+            line-height: 1.6;
+        }
+
+        .p-terminal .t-prompt {
+            color: #22cc22;
+        }
+
+        .p-terminal .t-cmd {
+            color: #55ff55;
+        }
+
+        .p-terminal .t-out {
+            color: #00bb00;
+        }
+
+        .p-terminal .t-warn {
+            color: #ffaa00;
+        }
+
+        .p-terminal .t-err {
+            color: #ff3333;
+        }
+
+        .p-terminal .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 14px;
+            background: #33ff33;
+            animation: blink 1s step-end infinite;
+            vertical-align: -2px;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: 0
+            }
+        }
+
+        /* 7. HIGH DENSITY (Bloomberg) */
+        .p-bloomberg {
+            background: #0d0d0d;
+            padding: 0;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 10px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .p-bloomberg .bb-topbar {
+            background: #ff6600;
+            padding: 3px 8px;
+            color: #000;
+            font-weight: 700;
+            font-size: 11px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .p-bloomberg .bb-tabs {
+            display: flex;
+            border-bottom: 1px solid #333;
+        }
+
+        .p-bloomberg .bb-tab {
+            padding: 3px 10px;
+            color: #aaa;
+            border-right: 1px solid #333;
+            font-size: 10px;
+        }
+
+        .p-bloomberg .bb-tab.act {
+            background: #1a1a1a;
+            color: #fff;
+            border-bottom: 2px solid #ff6600;
+        }
+
+        .p-bloomberg .bb-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .p-bloomberg .bb-table th {
+            padding: 3px 6px;
+            color: #888;
+            border-bottom: 1px solid #222;
+            text-align: right;
+        }
+
+        .p-bloomberg .bb-table th:first-child {
+            text-align: left;
+        }
+
+        .p-bloomberg .bb-table td {
+            padding: 2px 6px;
+            border-bottom: 1px solid #181818;
+            text-align: right;
+        }
+
+        .p-bloomberg .bb-table td:first-child {
+            text-align: left;
+            color: #ddd;
+        }
+
+        .p-bloomberg .up {
+            color: #00e676;
+        }
+
+        .p-bloomberg .dn {
+            color: #ff1744;
+        }
+
+        .p-bloomberg .bb-footer {
+            padding: 2px 8px;
+            background: #111;
+            color: #555;
+            font-size: 9px;
+            display: flex;
+            justify-content: space-between;
+            margin-top: auto;
+        }
+
+        /* 8. PIXEL ART */
+        .p-pixel {
+            background: #1a1a2e;
+            padding: 16px;
+            font-family: 'Press Start 2P', cursive;
+            image-rendering: pixelated;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .p-pixel .px-title {
+            color: #00ff41;
+            font-size: 10px;
+            text-shadow: 2px 2px 0 #003a00;
+            letter-spacing: 2px;
+        }
+
+        .p-pixel .px-score {
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .p-pixel .px-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .p-pixel .px-box {
+            width: 36px;
+            height: 36px;
+            background: #16213e;
+            border: 3px solid #0f3460;
+            box-shadow: 3px 3px 0 #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            image-rendering: pixelated;
+        }
+
+        .p-pixel .px-btn {
+            background: #e94560;
+            border: 3px solid #000;
+            box-shadow: 4px 4px 0 #000;
+            padding: 8px 14px;
+            color: #fff;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 8px;
+            cursor: pointer;
+            border-radius: 0;
+        }
+
+        .p-pixel .px-life {
+            display: flex;
+            gap: 4px;
+        }
+
+        .p-pixel .px-heart {
+            width: 12px;
+            height: 12px;
+            background: #e94560;
+            box-shadow: 2px 2px 0 #000;
+            clip-path: polygon(25% 0%, 75% 0%, 100% 25%, 100% 50%, 50% 100%, 0% 50%, 0% 25%);
+        }
+
+        .p-pixel .px-bar-wrap {
+            flex: 1;
+            background: #000;
+            border: 2px solid #333;
+            height: 14px;
+        }
+
+        .p-pixel .px-bar-fill {
+            height: 100%;
+            background: #00ff41;
+            width: 65%;
+        }
+
+        .p-pixel .px-label {
+            color: #888;
+            font-size: 7px;
+        }
+
+        /* 9. PREMIUM DARK (Linear/Vercel) */
+        .p-premium {
+            background: #08080a;
+            padding: 20px;
+            font-family: 'DM Sans', sans-serif;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .p-premium .pm-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .p-premium .pm-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .p-premium .pm-logo-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 6px;
+            background: linear-gradient(135deg, #7c5cff, #b79fff);
+        }
+
+        .p-premium .pm-logo-text {
+            font-size: 13px;
+            font-weight: 500;
+            color: #fff;
+            letter-spacing: -0.02em;
+        }
+
+        .p-premium .pm-navlinks {
+            display: flex;
+            gap: 16px;
+        }
+
+        .p-premium .pm-navlink {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .p-premium .pm-card {
+            background: #121214;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        .p-premium .pm-card-label {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.3);
+            margin-bottom: 6px;
+        }
+
+        .p-premium .pm-card-val {
+            font-size: 22px;
+            font-weight: 500;
+            background: linear-gradient(to right, #fff, #8a8a9a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .p-premium .pm-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .p-premium .pm-btn {
+            background: #7c5cff;
+            border: none;
+            color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 500;
+            font-family: 'DM Sans', sans-serif;
+            cursor: pointer;
+        }
+
+        /* 10. CLAYMORPHISM */
+        .p-clay {
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            padding: 20px;
+        }
+
+        .p-clay .cl-card {
+            background: #ff6b6b;
+            border-radius: 28px;
+            padding: 18px 22px;
+            width: 100%;
+            box-shadow: 0 12px 30px rgba(255, 107, 107, 0.4), inset 0 -4px 8px rgba(0, 0, 0, 0.1), inset 0 4px 8px rgba(255, 255, 255, 0.3);
+        }
+
+        .p-clay .cl-card.blue {
+            background: #4ecdc4;
+            box-shadow: 0 12px 30px rgba(78, 205, 196, 0.4), inset 0 -4px 8px rgba(0, 0, 0, 0.1), inset 0 4px 8px rgba(255, 255, 255, 0.3);
+        }
+
+        .p-clay .cl-card.purple {
+            background: #a29bfe;
+            box-shadow: 0 12px 30px rgba(162, 155, 254, 0.4), inset 0 -4px 8px rgba(0, 0, 0, 0.1), inset 0 4px 8px rgba(255, 255, 255, 0.3);
+        }
+
+        .p-clay .cl-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .p-clay .cl-half {
+            flex: 1;
+        }
+
+        .p-clay .cl-card-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+            font-family: 'Nunito', sans-serif;
+            margin-bottom: 4px;
+        }
+
+        .p-clay .cl-card-sub {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.7);
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .p-clay .cl-card-num {
+            font-size: 28px;
+            font-weight: 800;
+            color: #fff;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .p-clay .cl-btn {
+            background: #fff;
+            border-radius: 20px;
+            border: none;
+            padding: 10px 24px;
+            font-weight: 700;
+            color: #ff6b6b;
+            font-family: 'Nunito', sans-serif;
+            font-size: 13px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3), inset 0 2px 4px rgba(255, 255, 255, 0.8);
+        }
+
+        /* 11. CYBERPUNK GLOW */
+        .p-cyberpunk {
+            background: #0c051d;
+            padding: 16px;
+            font-family: 'Orbitron', monospace;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .p-cyberpunk::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            left: -40px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 0, 127, 0.15), transparent 60%);
+            pointer-events: none;
+        }
+
+        .p-cyberpunk::after {
+            content: '';
+            position: absolute;
+            bottom: -60px;
+            right: -40px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(0, 200, 255, 0.15), transparent 60%);
+            pointer-events: none;
+        }
+
+        .p-cyberpunk .cy-title {
+            font-size: 16px;
+            color: #ff007f;
+            filter: drop-shadow(0 0 8px #ff007f);
+            letter-spacing: 0.1em;
+        }
+
+        .p-cyberpunk .cy-sub {
+            font-size: 8px;
+            color: #00c8ff;
+            letter-spacing: 0.3em;
+            filter: drop-shadow(0 0 4px #00c8ff);
+        }
+
+        .p-cyberpunk .cy-line {
+            height: 1px;
+            background: linear-gradient(to right, #ff007f, transparent 50%, #00c8ff);
+        }
+
+        .p-cyberpunk .cy-stat {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .p-cyberpunk .cy-stat-label {
+            font-size: 8px;
+            color: rgba(255, 255, 255, 0.3);
+            letter-spacing: 0.2em;
+        }
+
+        .p-cyberpunk .cy-stat-val {
+            font-size: 18px;
+            color: #ff007f;
+            filter: drop-shadow(0 0 6px #ff007f);
+        }
+
+        .p-cyberpunk .cy-btn {
+            border: 1px solid #ff007f;
+            background: rgba(255, 0, 127, 0.08);
+            color: #ff007f;
+            padding: 8px 16px;
+            font-family: 'Orbitron', monospace;
+            font-size: 9px;
+            letter-spacing: 0.2em;
+            cursor: pointer;
+            filter: drop-shadow(0 0 4px rgba(255, 0, 127, 0.4));
+            clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+        }
+
+        /* 12. Y2K / FRUTIGER AERO */
+        .p-y2k {
+            background: linear-gradient(180deg, #c8e6ff 0%, #7fc4f0 100%);
+            padding: 16px;
+            font-family: 'Nunito', sans-serif;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            position: relative;
+        }
+
+        .p-y2k::before {
+            content: '✦';
+            position: absolute;
+            top: 12px;
+            right: 20px;
+            font-size: 28px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .p-y2k::after {
+            content: '✦';
+            position: absolute;
+            bottom: 40px;
+            left: 16px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .p-y2k .yk-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(200, 235, 255, 0.7));
+            border-radius: 18px;
+            padding: 12px 16px;
+            border: 1.5px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 20px rgba(0, 120, 220, 0.15), inset 0 1px 0 rgba(255, 255, 255, 1);
+            backdrop-filter: blur(8px);
+        }
+
+        .p-y2k .yk-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: #0060a0;
+        }
+
+        .p-y2k .yk-sub {
+            font-size: 10px;
+            color: #4090c0;
+        }
+
+        .p-y2k .yk-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .p-y2k .yk-pill {
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: linear-gradient(180deg, #aaddff, #60aadd);
+            border: 1.5px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 3px 8px rgba(0, 100, 200, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            color: #004080;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .p-y2k .yk-pill.green {
+            background: linear-gradient(180deg, #aaeeaa, #44cc44);
+            color: #004400;
+            border-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .p-y2k .yk-num {
+            font-size: 32px;
+            font-weight: 800;
+            color: #0060a0;
+        }
+
+        /* 13. VANITY NOIR */
+        .p-noir {
+            background: #fff;
+            padding: 36px 28px;
+            font-family: 'Playfair Display', serif;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            position: relative;
+        }
+
+        .p-noir .nr-eyebrow {
+            font-size: 9px;
+            letter-spacing: 0.4em;
+            color: #999;
+            text-transform: uppercase;
+            font-family: 'Roboto Condensed', sans-serif;
+            margin-bottom: 20px;
+        }
+
+        .p-noir .nr-title {
+            font-size: 32px;
+            font-weight: 900;
+            color: #000;
+            letter-spacing: -0.02em;
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        .p-noir .nr-line {
+            width: 100%;
+            height: 1px;
+            background: #000;
+            margin-bottom: 20px;
+        }
+
+        .p-noir .nr-body {
+            font-size: 11px;
+            color: #666;
+            font-family: 'Roboto Condensed', sans-serif;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .p-noir .nr-btn {
+            border: 1px solid #000;
+            background: transparent;
+            padding: 10px 24px;
+            font-size: 9px;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            cursor: pointer;
+            font-family: 'Roboto Condensed', sans-serif;
+        }
+
+        .p-noir .nr-aside {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #000;
+        }
+
+        /* 14. E-INK */
+        .p-eink {
+            background: #f4f4f2;
+            padding: 20px;
+            font-family: 'Playfair Display', serif;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .p-eink .ei-title {
+            font-size: 20px;
+            color: #222;
+            font-weight: 700;
+        }
+
+        .p-eink .ei-chapter {
+            font-size: 9px;
+            color: #888;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .p-eink .ei-body {
+            font-size: 12px;
+            color: #444;
+            line-height: 1.8;
+        }
+
+        .p-eink .ei-progress {
+            height: 3px;
+            background: #ddd;
+        }
+
+        .p-eink .ei-progress-fill {
+            height: 100%;
+            background: #222;
+            width: 35%;
+        }
+
+        .p-eink .ei-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .p-eink .ei-bar-label {
+            font-size: 10px;
+            color: #888;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .p-eink .ei-btn {
+            background: #222;
+            color: #f4f4f2;
+            border: none;
+            padding: 8px 18px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 11px;
+            cursor: pointer;
+        }
+
+        .p-eink .ei-btn.inv {
+            background: transparent;
+            color: #222;
+            border: 1px solid #222;
+        }
+
+        /* 15. BRUTALISMO WEB 1.0 */
+        .p-web1 {
+            background: #c0c0c0;
+            padding: 12px;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .p-web1 .w1-titlebar {
+            background: #000080;
+            color: #fff;
+            padding: 3px 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .p-web1 .w1-close {
+            background: #c0c0c0;
+            border-top: 2px solid #fff;
+            border-left: 2px solid #fff;
+            border-right: 2px solid #444;
+            border-bottom: 2px solid #444;
+            padding: 0 5px;
+            font-size: 11px;
+            cursor: pointer;
+            color: #000;
+        }
+
+        .p-web1 .w1-body {
+            background: #fff;
+            border-top: 2px solid #444;
+            border-left: 2px solid #444;
+            border-right: 2px solid #fff;
+            border-bottom: 2px solid #fff;
+            padding: 10px;
+        }
+
+        .p-web1 .w1-h {
+            font-size: 16px;
+            color: #000080;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .p-web1 .w1-hr {
+            border: 1px solid #444;
+            border-top-color: #fff;
+        }
+
+        .p-web1 .w1-p {
+            font-size: 12px;
+            color: #000;
+            line-height: 1.5;
+            margin: 4px 0;
+        }
+
+        .p-web1 .w1-link {
+            color: #0000ee;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .p-web1 .w1-btn {
+            background: #c0c0c0;
+            border-top: 2px solid #fff;
+            border-left: 2px solid #fff;
+            border-right: 2px solid #444;
+            border-bottom: 2px solid #444;
+            padding: 4px 12px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .p-web1 .w1-marquee {
+            font-size: 10px;
+            color: #ff0000;
+            font-weight: bold;
+            overflow: hidden;
+            white-space: nowrap;
+            animation: marquee 6s linear infinite;
+        }
+
+        @keyframes marquee {
+            from {
+                transform: translateX(100%)
+            }
+
+            to {
+                transform: translateX(-100%)
+            }
+        }
+
+        .w1-gif {
+            display: inline-block;
+            width: 88px;
+            height: 31px;
+            background: linear-gradient(45deg, #ff6600, #ffcc00, #00cc00, #0000ff);
+            font-size: 8px;
+            color: #fff;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #000;
+        }
+
+        /* 16. CHALKBOARD */
+        .p-chalk {
+            background: #1e3a2f;
+            padding: 20px;
+            font-family: 'Caveat', cursive;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            position: relative;
+        }
+
+        .p-chalk::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, transparent 60%, rgba(0, 0, 0, 0.3));
+            pointer-events: none;
+        }
+
+        .p-chalk .ch-title {
+            font-size: 24px;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .p-chalk .ch-line {
+            border: none;
+            border-top: 2px dashed rgba(255, 255, 255, 0.4);
+        }
+
+        .p-chalk .ch-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .p-chalk .ch-check {
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .p-chalk .ch-check.done {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .p-chalk .ch-check.done::after {
+            content: '✓';
+            color: #fff;
+            font-size: 12px;
+        }
+
+        .p-chalk .ch-text {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .p-chalk .ch-text.done {
+            color: rgba(255, 255, 255, 0.4);
+            text-decoration: line-through;
+        }
+
+        .p-chalk .ch-eq {
+            font-size: 18px;
+            color: #a8e0b0;
+            letter-spacing: 0.05em;
+        }
+
+        .p-chalk .ch-underline {
+            border-bottom: 2px solid rgba(168, 224, 176, 0.5);
+            display: inline-block;
+        }
+
+        /* ── MODAL OVERLAY ── */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.open {
+            display: flex;
+        }
+
+        .modal {
+            background: #111118;
+            border: 1px solid #2a2a3a;
+            border-radius: 20px;
+            max-width: 700px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .modal-preview {
+            width: 100%;
+            height: 340px;
+        }
+
+        .modal-body {
+            padding: 24px 28px;
+        }
+
+        .modal-body h2 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #e0e0f0;
+            margin-bottom: 8px;
+        }
+
+        .modal-body .modal-desc {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .modal-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .modal-tag {
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            border: 1px solid #2a2a3a;
+            color: #888;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-family: 'DM Sans', sans-serif;
+            cursor: pointer;
+            border: 1px solid #2a2a3a;
+            background: transparent;
+            color: #888;
+            transition: all 0.2s;
+        }
+
+        .modal-btn.primary {
+            background: #7060b0;
+            border-color: #7060b0;
+            color: #fff;
+        }
+
+        .modal-btn.primary:hover {
+            background: #8070c0;
+        }
+
+        .modal-close {
+            float: right;
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            font-size: 20px;
+            line-height: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="hero">
+        <div class="hero-label">Catálogo de Diseño Web</div>
+        <h1>Pasarela de Estilos</h1>
+        <p>Explora 15 estilos de interfaz distintos, cada uno fiel a su estética de referencia. Hacé clic para ver en
+            detalle.</p>
+    </div>
+
+    <div class="filters">
+        <button class="filter-btn active" onclick="filterCards('all', this)">Todos</button>
+        <button class="filter-btn" onclick="filterCards('dashboard', this)">Dashboards & Datos</button>
+        <button class="filter-btn" onclick="filterCards('editorial', this)">Editorial & Contenido</button>
+        <button class="filter-btn" onclick="filterCards('ui', this)">UI Modernas</button>
+        <button class="filter-btn" onclick="filterCards('niche', this)">Nicho</button>
+    </div>
+
+    <div class="grid" id="card-grid">
+
+        <!-- 1 BENTO -->
+        <div class="card-wrap" data-cat="dashboard" onclick="openModal('bento')">
+            <div class="card-preview">
+                <div class="p-bento" style="width:100%;height:100%">
+                    <div class="b b1">
+                        <div>
+                            <div class="title">Resumen del mes</div>
+                            <div class="sub">Actualizado hace 2 min</div>
+                        </div>
+                        <div class="num">$48,290</div>
+                    </div>
+                    <div class="b b2">
+                        <div class="ring" style="animation:spin 3s linear infinite"></div>
+                        <div class="label">Progreso</div>
+                    </div>
+                    <div class="b b3">
+                        <div class="bar" style="width:70%"></div>
+                        <div class="bar" style="width:50%;opacity:.7"></div>
+                        <div class="bar" style="width:85%;opacity:.5"></div>
+                    </div>
+                    <div class="b b4"><button class="btn">Exportar</button></div>
+                    <div class="b b5"></div>
+                </div>
+            </div>
+            <div class="card-info">
+                <h3>Bento Grid</h3>
+                <p>Tarjetas sólidas estilo Apple / Microsoft. Ordenado y de alto contraste.</p>
+                <span class="card-tag" style="background:#1e293b;color:#6366f1">Dashboard</span>
+            </div>
+        </div>
+
+        <!-- 2 NEO BRUTALISMO -->
+        <div class="card-wrap" data-cat="ui" onclick="openModal('neo')">
+            <div class="card-preview">
+                <div class="p-neo" style="width:100%;height:100%">
+                    <div class="neo-card">
+                        <h2>LANZAMIENTO 🔥</h2>
+                        <p>El producto que nadie esperaba</p>
+                        <div style="margin-top:6px"><span class="neo-tag">NUEVO</span></div>
+                    </div>
+                    <div class="neo-row">
+                        <button class="neo-btn">COMPRAR</button>
+                        <button class="neo-btn neo-btn2">↗ VER MÁS</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <h3>Neobrutalismo / Cyberpunk Pop</h3>
+                <p>Bordes gruesos, sombras rígidas, colores saturados. Anti-minimalismo.</p>
+                <span class="card-tag" style="background:#1a1a00;color:#ffeb3b">UI</span>
+            </div>
+        </div>
+
+        <!-- 3 SWISS -->
+        <div class="card-wrap" data-cat="editorial" onclick="openModal('swiss')">
+            <div class="card-preview" style="position:relative">
+                <div class="p-swiss" style="width:100%;height:100%">
+                    <div class="sw-aside">04</div>
+                    <div class="sw-eyebrow">Diseño tipográfico</div>
+                    <div class="sw-h">FORMA<br>SIGUE<br>FUNCIÓN</div>
+                    <div class="sw-div"></div>
+                    <div class="sw-body">El diseño suizo confía en la tipografía y el espacio en blanco sobre cualquier
+                        ornamento.</div>
+                    <button class="sw-cta">Descubrir →</button>
+                </div>
+            </div>
+            <div class="card-info">
+                <h3>Minimalismo Suizo</h3>
+                <p>Tipografía pura, asimetría funcional, espacio en blanco, acento de color.</p>
+                <span class="card-tag" style="background:#fff0ee;color:#ff3300">Editorial</span>
+            </div>
+        </div>
+
+        <!-- 4 NEUOMORPHISM -->
+        <div class="card-wrap" data-cat="ui" onclick="openModal('neumorphic')">
+            <div class="card-preview">
+                <div class="p-neumorphic" style="width:100%;height:100%">
+                    <div class="nm-card">
+                        <div class="nm-label">Temperatura</div>
+                        <div class="nm-val">21.4°C</div>
+                        <div class="nm-slider">
+                            <div class="nm-thumb"></div>
+                        </div>
+                    </div>
+                    <button class="nm-btn">Ajustar sistema</button>
+                </div>
+            </div>
+            <div class="card-info">
+                <h3>Neuomorphism / Skeuomorphism Moderno</h3>
+                <p>Volumen físico suave, sombras internas, superficies que parecen reales.</p>
+                <span class="card-tag" style="background:#d8e0ed;color:#4a5568">UI</span>
+            </div>
+        </div>
+
+        <!-- 5 HUD -->
+        <div class="card-wrap" data-cat="dashboard" onclick="openModal('hud')">
+            <div class="card-preview">
+                <div class="p-hud" style="width:100%;height:100%">
+                    <div class="hud-panel">
+                        <div class="hud-label">VELOCIDAD</div>
+                        <div class="hud-val">7.4K</div>
+                        <div class="hud-sub">UNIDADES/S</div>
+                    </div>
+                    <div class="hud-panel">
+                        <div class="hud-label">TEMPERATURA</div>
+                        <div class="hud-val">42.1°</div>
+                        <div class="hud-sub">NOMINAL</div>
+                    </div>
+                    <div class="hud-panel" style="grid-column:span 2">
+                        <div class="hud-label">INTEGRIDAD DEL SISTEMA</div>
+                        <div class="hud-wide" style="margin-top:6px">
+                            <div class="hud-status"></div>
+                            <div class="hud-bar-wrap">
+                                <div class="hud-bar-fill" style="width:78%"></div>
+                            </div>
+                            <div class="hud-pct">78%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <h3>Sci-Fi / HUD Militar</h3>
+                <p>Pantalla táctica futurista. Verde fósforo, resplandores, esquinas angulares.</p>
+                <span class="card-tag" style="background:#001a0f;color:#00ffcc">Dashboard</span>
+            </div>
+        </div>
+
+        <!-- 6 TERMINAL -->
+        <div class="card-wrap" data-cat="dashboard" onclick="openModal('terminal')">
+            <div class="card-preview">
+                <div class="p-terminal" style="width:100%;height:100%">
+                    <div class="t-line"><span class="t-prompt">user@system:~$</span> <span class="t-cmd">./deploy.sh
+                            production</span></div>
+                    <div class="t-line t-out">[OK] Compilando módulos...</div>
+                    <div class="t-line t-out">[OK] Tests pasados: 47/47</div>
+                    <div class="t-line t-warn">[WARN] Memoria: 87% utilizada</div>
+                    <div class="t-line t-out">[OK] Build: v2.4.1 listo</div>
+                    <div class="t-line t-out">[OK] Deploy exitoso → prod</div>
+                    <div class="t-line"><span class="t-prompt">user@system:~$</span> <span class="cursor"></span></div>
+                </div>
+            </div>
+            <div class="card-info">
+                <h3>Retro-Terminal / Estética Fallout</h3>
+                <p>CRT de los 80s. Texto verde fósforo, líneas de escaneo, cursor parpadeante.</p>
+                <span class="card-tag" style="background:#0a1a0a;color:#33ff33">Dashboard</span>
+            </div>
+        </div>
+
+        <!-- 7 BLOOMBERG -->
+        <div class="card-wrap" data-cat="dashboard" onclick="openModal('bloomberg')">
+            <div class="card-preview">
+                <div class="p-bloomberg" style="width:100%;height:100%">
+                    <div class="bb-topbar"><span>BLOOMBERG PRO</span><span>14:32:08</span></div>
+                    <div class="bb-tabs">
+                        <div class="bb-tab act">EQUITY</div>
+                        <div class="bb-tab">FOREX</div>
+                        <div class="bb-tab">CRYPTO</div>
+                    </div>
+                    <table class="bb-table">
+                        <tr>
+                            <th>TICKER</th>
+                            <th>PRECIO</th>
+                            <th>CHG%</th>
+                            <th>VOL</th>
+                        </tr>
+                        <tr>
+                            <td>AAPL</td>
+                            <td>194.32</td>
+                            <td class="up">+1.24%</td>
+                            <td>48.2M</td>
+                        </tr>
+                        <tr>
+                            <td>TSLA</td>
+                            <td>248.90</td>
+                            <td class="dn">-2.87%</td>
+                            <td>92.1M</td>
+                        </tr>
+                        <tr>
+                            <td>NVDA</td>
+                            <td>822.15</td>
+                            <td class="up">+3.41%</td>
+                            <td>67.8M</td>
+                        </tr>
+                        <tr>
+                            <td>AMZN</td>
+                            <td>186.40</td>
+                            <td class="up">+0.58%</td>
+                            <td>31.5M</td>
+                        </tr>
+                        <tr>
+                            <td>MSFT</td>
+                            <td>411.22</td>
+                            <td class="dn">-0.32%</td>
+                            <td>22.3M</td>
+                        </tr>
+                    </table>
+                    <div class="bb-footer"><span>DELAYED 15 MIN</span><span>NYSE:OPEN</span></div>
+                </div>
+            </div>
+            <div class="card-info">
+                <h3>High-Density / Estética Bloomberg</h3>
+                <p>Máxima información por pixel. Terminales financieras. Verde/rojo semántico.</p>
+                <span class="card-tag" style="background:#1a0d00;color:#ff6600">Dashboard</span>
+            </div>
+        </div>
+
+        <!-- 8 PIXEL ART -->
+        <div class="card-wrap" data-cat="niche" onclick="openModal('pixel')">
+            <div class="card-preview">
+                <div class="p-pixel" style="width:100%;height:100%">
+                    <div style="display:flex;justify-content:space-between;align-items:center">
+                        <div class="px-title">AVENTURA</div>
+                        <div class="px-life">
+                            <div class="px-heart"></div>
+                            <div class="px-heart"></div>
+                            <div class="px-heart" style="background:#333"></div>
+                        </div>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;align-items:center">
+                        <div class="px-label">SCORE</div>
+                        <div class="px-score">008340</div>
+                    </div>
+                    <div class="px-row">
+                        <div class="px-box">⚔</div>
+                        <div class="px-box">🛡</div>
+                        <div class="px-box" style="border-color:#e94560">🔥</div>
+                        <div style="flex:1">
+                            <div class="px-label" style="margin-bottom:4px">HP</div>
+                            <div class="px-bar-wrap">
+                                <div class="px-bar-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display:flex;gap:8px">
+                        <button class="px-btn">▶ JUGAR</button>
+                        <button class="px-btn" style="background:#16213e;color:#aaa">PAUSA</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <h3>Pixel Art / 8-Bit Nostalgia</h3>
+                <p>Consolas clásicas. Press Start 2P, bordes pixelados, sin suavizado.</p>
+                <span class="card-tag" style="background:#1a1a2e;color:#e94560">Nicho</span>
+            </div>
+        </div>
+
+        <!-- 9 PREMIUM DARK -->
+        <div class="card-wrap" data-cat="ui" onclick="openModal('premium')">
+            <div class="card-preview">
+                <div class="p-premium" style="width:100%;height:100%">
+                    <div class="pm-nav">
+                        <div class="pm-logo">
+                            <div class="pm-logo-dot"></div>
+                            <span class="pm-logo-text">Nexus</span>
+                        </div>
+                        <div class="pm-navlinks">
+                            <span class="pm-navlink">Docs</span>
+                            <span class="pm-navlink">Pricing</span>
+                        </div>
+                    </div>
+                    <div class="pm-grid">
+                        <div class="pm-card">
+                            <div class="pm-card-label">Ingresos</div>
+                            <div class="pm-card-val">$92,840</div>
+                        </div>
+                        <div class="pm-card">
+                            <div class="pm-card-label">Usuarios</div>
+                            <div class="pm-card-val">14.2K</div>
+                        </div>
+                    </div>
+                    <button class="pm-btn">Nuevo proyecto</button>
+                </div>
+            </div>
+            <div class="card-info">
+                <h3>Dark Mode Premium (Linear / Vercel)</h3>
+                <p>SaaS de lujo. Negro asfalto, bordes invisibles, gradientes de texto.</p>
+                <span class="card-tag" style="background:#0a0810;color:#7c5cff">UI</span>
+            </div>
+        </div>
+
+        <!-- 10 CLAYMORPHISM -->
+        <div class="card-wrap" data-cat="ui" onclick="openModal('clay')">
+            <div class="card-preview">
+                <div class="p-clay" style="width:100%;height:100%">
+                    <div class="cl-row">
+                        <div class="cl-half">
+                            <div class="cl-card">
+                                <div class="cl-card-title">Hoy</div>
+                                <div class="cl-card-num">24°</div>
+                                <div class="cl-card-sub">Soleado ☀️</div>
+                            </div>
+                        </div>
+                        <div class="cl-half" style="display:flex;flex-direction:column;gap:10px">
+                            <div class="cl-card blue">
+                                <div class="cl-card-title">Humedad</div>
+                                <div class="cl-card-num">62%</div>
+                            </div>
+                            <div class="cl-card purple">
+                                <div class="cl-card-title">Viento</div>
+                                <div class="cl-card-num">14 km/h</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="cl-btn">Ver pronóstico</button>
+                </div>
+            </div>
+            <div class="card-info">
+                <h3>Claymorphism</h3>
+                <p>Arcilla inflada. Esquinas extremas, doble sombra 3D, colores pastel.</p>
+                <span class="card-tag" style="background:#fff0ee;color:#ff6b6b">UI</span>
+            </div>
+        </div>
+
+        <!-- 11 CYBERPUNK GLOW -->
+        <div class="card-wrap" data-cat="ui" onclick="openModal('cyberpunk')">
+            <div class="card-preview">
+                <div class="p-cyberpunk" style="width:100%;height:100%">
+                    <div class="cy-sub">SISTEMA NEURAL v3.1</div>
+                    <div class="cy-title">SYNAPSE</div>
+                    <div class="cy-line"></div>
+                    <div class="cy-stat">
+                        <span class="cy-stat-label">POTENCIA DE NÚCLEO</span>
+                        <span class="cy-stat-val">98.4%</span>
+                    </div>
+                    <div class="cy-stat">
+                        <span class="cy-stat-label">LATENCIA RED</span>
+                        <span class="cy-stat-val" style="color:#00c8ff;filter:drop-shadow(0 0 6px #00c8ff)">4ms</span>
+                    </div>
+                    <div style="display:flex;gap:8px">
+                        <button class="cy-btn">ACTIVAR</button>
+                        <button class="cy-btn"
+                            style="border-color:#00c8ff;color:#00c8ff;background:rgba(0,200,255,0.08);filter:drop-shadow(0 0 4px rgba(0,200,255,0.4))">ESCANEAR</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <h3>Cyberpunk Glow / Neon Synthwave</h3>
+                <p>Magenta y azul eléctrico sobre fondo profundo. Todo brilla con neon.</p>
+                <span class="card-tag" style="background:#0c051d;color:#ff007f">UI</span>
+            </div>
+        </div>
+
+        <!-- 12 Y2K -->
+        <div class="card-wrap" data-cat="ui" onclick="openModal('y2k')">
+            <div class="card-preview">
+                <div class="p-y2k" style="width:100%;height:100%">
+                    <div class="yk-card">
+                        <div class="yk-title">✨ DigitalWorld</div>
+                        <div class="yk-sub">Tu portal al futuro — Bienvenido</div>
+                        <div style="margin-top:8px"><span class="yk-num">2024</span></div>
+                    </div>
+                    <div class="yk-row">
+                        <button class="yk-pill">🌐 Internet</button>
+                        <button class="yk-pill green">💾 Descargar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <h3>Y2K / Frutiger Aero</h3>
+                <p>iPod & Windows Vista. Botones de gel, destellos, gradientes circulares.</p>
+                <span class="card-tag" style="background:#e0f0ff;color:#0060a0">UI</span>
+            </div>
+        </div>
+
+        <!-- 13 VANITY NOIR -->
+        <div class="card-wrap" data-cat="niche" onclick="openModal('noir')">
+            <div class="card-preview" style="position:relative">
+                <div class="p-noir" style="width:100%;height:100%">
+                    <div class="nr-eyebrow">Maison Élite — Colección 2024</div>
+                    <div class="nr-title">L'ART<br>DU<br>DÉTAIL</div>
+                    <div class="nr-line"></div>
+                    <div class="nr-body">Cada pieza es una declaración. Cada costura, una firma. El lujo no se explica,
+                        se porta.</div>
+                    <button class="nr-btn">Découvrir</button>
+                    <div class="nr-aside"></div>
+                </div>
+            </div>
+            <div class="card-info">
+                <h3>Vanity Noir (Lujo / Moda)</h3>
+                <p>Alta costura web. Serif espaciada, blanco y negro absolutos, mínimo extremo.</p>
+                <span class="card-tag" style="background:#f0f0f0;color:#000">Nicho</span>
+            </div>
+        </div>
+
+        <!-- 14 E-INK -->
+        <div class="card-wrap" data-cat="niche" onclick="openModal('eink')">
+            <div class="card-preview">
+                <div class="p-eink" style="width:100%;height:100%">
+                    <div class="ei-chapter">Capítulo VII · La travesía</div>
+                    <div class="ei-title">El viento del norte</div>
+                    <div class="ei-body">Las olas rompían contra el casco con una fuerza que ninguno de los marineros
+                        había sentido antes. Rowan sujetó el mástil con ambas manos mientras el cielo se oscurecía...
+                    </div>
+                    <div>
+                        <div class="ei-bar"><span class="ei-bar-label">Progreso</span><span
+                                class="ei-bar-label">35%</span></div>
+                        <div class="ei-progress">
+                            <div class="ei-progress-fill"></div>
+                        </div>
+                    </div>
+                    <div style="display:flex;gap:8px">
+                        <button class="ei-btn">← Anterior</button>
+                        <button class="ei-btn">Siguiente →</button>
+                        <button class="ei-btn inv">⚙</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <h3>E-Ink / Estética Kindle</h3>
+                <p>Pantalla de tinta electrónica. Sin sombras ni gradientes. Cero fatiga visual.</p>
+                <span class="card-tag" style="background:#f4f4f2;color:#444">Nicho</span>
+            </div>
+        </div>
+
+        <!-- 15 WEB 1.0 -->
+        <div class="card-wrap" data-cat="niche" onclick="openModal('web1')">
+            <div class="card-preview">
+                <div class="p-web1" style="width:100%;height:100%">
+                    <div class="w1-titlebar">
+                        <span>🌐 Mi Página Web Personal</span>
+                        <button class="w1-close">✕</button>
+                    </div>
+                    <div
+                        style="background:#c0c0c0;padding:4px 8px;border-bottom:2px solid #444;font-size:11px;display:flex;align-items:center;gap:4px">
+                        <button class="w1-btn">◄</button>
+                        <button class="w1-btn">►</button>
+                        <div
+                            style="flex:1;background:#fff;border-top:2px solid #444;border-left:2px solid #444;border-right:2px solid #fff;border-bottom:2px solid #fff;padding:2px 6px;font-size:11px">
+                            http://www.mipagina.geocities.com</div>
+                    </div>
+                    <div class="w1-body">
+                        <div class="w1-marquee">★ BIENVENIDOS A MI SITIO WEB ★ Actualizado hoy ★</div>
+                        <hr class="w1-hr">
+                        <div class="w1-h">📁 Mis Proyectos</div>
+                        <p class="w1-p">Visitantes: <b>00001337</b> | <span class="w1-link">Firmar el libro de
+                                visitas</span></p>
+                        <div style="display:flex;gap:6px;margin-top:4px;align-items:center">
+                            <div class="w1-gif">NUEVO!</div>
+                            <span class="w1-p" style="font-size:10px">Esta página se ve mejor con<br><span
+                                    class="w1-link">Netscape Navigator 4.0</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <h3>Brutalismo Web 1.0 / HTML Puro</h3>
+                <p>Geocities revival. Bordes biselados del OS, marquees, contadores de visitas.</p>
+                <span class="card-tag" style="background:#e8e8e8;color:#000080">Nicho</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="modal" onclick="closeModalOnBg(event)">
+        <div class="modal">
+            <div class="modal-preview" id="modal-preview"></div>
+            <div class="modal-body">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start">
+                    <h2 id="modal-title"></h2>
+                    <button class="modal-close" onclick="closeModal()">×</button>
+                </div>
+                <p class="modal-desc" id="modal-desc"></p>
+                <div class="modal-tags" id="modal-tags"></div>
+                <div class="modal-actions">
+                    <button class="modal-btn" onclick="closeModal()">Cerrar</button>
+                    <button class="modal-btn primary" onclick="copyStyle()">Copiar nombre del estilo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        @keyframes spin {
+            from {
+                transform: rotate(0deg)
+            }
+
+            to {
+                transform: rotate(360deg)
+            }
+        }
+    </style>
+
+    <script>
+        const STYLES = {
+            bento: {
+                title: 'Bento Grid',
+                desc: 'Inspirado en las cajas de comida japonesa y popularizado por Apple y Microsoft. Paneles sólidos con esquinas redondeadas, sin transparencias. Ideal para dashboards de producto y apps SaaS.',
+                tags: ['#0f172a fondo', 'border-slate-800', 'shadow-md', 'Muy ordenado', 'Alto contraste'],
+                previewClass: 'p-bento'
+            },
+            neo: {
+                title: 'Neobrutalismo / Cyberpunk Pop',
+                desc: 'La antítesis del minimalismo corporativo. Colores saturados, bordes negros gruesos, tipografías pesadas y sombras rígidas sin desenfoque. Muy popular en landing pages disruptivas.',
+                tags: ['border-2 border-black', 'shadow 5px sólida', 'Space Mono', 'Amarillo / Cian / Naranja', 'Sin border-radius'],
+                previewClass: 'p-neo'
+            },
+            swiss: {
+                title: 'Minimalismo Suizo (Swiss Design)',
+                desc: 'Enfoque tipográfico puro, espacio en blanco masivo y asimetría funcional. Sin bordes innecesarios. Un único color de acento potente para los CTA. Intemporal y profesional.',
+                tags: ['Sin bordes', 'Padding masivo', 'Inter / Roboto / Helvetica', 'Monocromático + acento', 'Números decorativos'],
+                previewClass: 'p-swiss'
+            },
+            neumorphic: {
+                title: 'Neuomorphism / Skeuomorphism Moderno',
+                desc: 'Devuelve volumen físico a los elementos mediante doble sombra (exterior + interior). Los componentes parecen estar extruidos del mismo material que el fondo. Excelente para herramientas y dashboards técnicos.',
+                tags: ['bg-[#e0e5ec]', 'box-shadow dual', 'Gradientes lineales', 'Inset shadow', 'Sin bordes visibles'],
+                previewClass: 'p-neumorphic'
+            },
+            hud: {
+                title: 'Sci-Fi / HUD Militar',
+                desc: 'Interfaces de naves espaciales y sistemas tácticos. Fondo casi negro, texto en verde fósforo o cian brillante, bordes delgados con resplandor. Orbitron o fuentes monoespaciadas.',
+                tags: ['bg-[#050b14]', 'text-[#00ffcc]', 'Clip-path angular', 'Resplandor neon', 'Fuente Orbitron'],
+                previewClass: 'p-hud'
+            },
+            terminal: {
+                title: 'Retro-Terminal / Estética Fallout',
+                desc: 'Pantallas CRT de los años 70/80. Un solo color de texto (verde o ámbar), líneas de escaneo simuladas, cursor parpadeante. Cero curvas: esquinas completamente rectas.',
+                tags: ['text-green-500', 'animate-pulse cursor', 'Líneas de escaneo', 'rounded-none', 'Share Tech Mono'],
+                previewClass: 'p-terminal'
+            },
+            bloomberg: {
+                title: 'High-Density / Estética Bloomberg',
+                desc: 'Terminales financieras o de monitoreo de servidores. La prioridad es la cantidad de datos por pixel. Fuentes pequeñísimas, márgenes mínimos, colores semánticos de estado.',
+                tags: ['text-xs / text-[10px]', 'p-1 space-y-0.5', 'Verde activo / Rojo error', 'Tablas compactas', 'Fondo oscuro'],
+                previewClass: 'p-bloomberg'
+            },
+            pixel: {
+                title: 'Pixel Art / 8-Bit Nostalgia',
+                desc: 'Videojuegos clásicos de consola. Press Start 2P como tipografía icónica, bordes pixelados simulados con sombras múltiples, image-rendering: pixelated para iconos.',
+                tags: ['Press Start 2P', 'image-rendering: pixelated', 'Sombras de píxel', 'Sin suavizado', 'Bordes negros gruesos'],
+                previewClass: 'p-pixel'
+            },
+            premium: {
+                title: 'Dark Mode Premium (Linear / Vercel)',
+                desc: 'El estándar de la industria SaaS de lujo. Nunca negro puro: gris asfalto profundo. Bordes casi invisibles (white/6%). Gradientes de texto sutiles de blanco a gris.',
+                tags: ['bg-[#08080a]', 'border-white/[0.06]', 'Gradient text', 'bg-[#121214] cards', 'DM Sans'],
+                previewClass: 'p-premium'
+            },
+            clay: {
+                title: 'Claymorphism',
+                desc: 'Componentes que parecen hechos de plastilina inflada. Esquinas extremas (rounded-3xl), doble sombra (exterior normal + inset interior clara), colores pastel muy saturados.',
+                tags: ['rounded-3xl', 'Doble sombra clay', 'Colores pastel saturados', 'Sombra inset', 'Nunito / redondeado'],
+                previewClass: 'p-clay'
+            },
+            cyberpunk: {
+                title: 'Cyberpunk Glow / Neon Synthwave',
+                desc: 'Estética ochentera futurista. Rosa magenta (#ff007f) y azul eléctrico sobre fondo púrpura/negro. Todo elemento activo brilla con drop-shadow o filter CSS.',
+                tags: ['bg-[#0c051d]', '#ff007f magenta', 'drop-shadow neon', 'clip-path diagonal', 'Orbitron'],
+                previewClass: 'p-cyberpunk'
+            },
+            y2k: {
+                title: 'Y2K / Frutiger Aero',
+                desc: 'La estética de los primeros iPods y Windows Vista. Botones de gel con gradientes reflejados, destellos (✦), colores verde lima, azul brillante y plata metálico. Optimismo tecnológico del 2000.',
+                tags: ['Gradientes de gel', 'backdrop-filter blur', 'Destellos ✦', 'Verde lima + Azul brillante', 'Bordes glassmorphism'],
+                previewClass: 'p-y2k'
+            },
+            noir: {
+                title: 'Vanity Noir (Moda y Lujo)',
+                desc: 'Alta costura digital. Minimalismo llevado al extremo. Fuentes Serif espaciadas, tracking exagerado, blanco y negro absolutos. Un pixel de borde. Espaciados gigantes entre elementos.',
+                tags: ['tracking-[0.4em]', 'font-serif', 'Blanco #fff + Negro #000', '1px border exacto', 'Playfair Display'],
+                previewClass: 'p-noir'
+            },
+            eink: {
+                title: 'E-Ink / Estética Kindle',
+                desc: 'Simula una pantalla de tinta electrónica. Fondo gris claro texturizado, texto en gris oscuro (nunca negro puro). Sin sombras, sin gradientes. Los estados activos invierten los colores.',
+                tags: ['bg-[#f4f4f2]', 'text-[#222222]', 'Sin sombras', 'Sin gradientes', 'Playfair Display'],
+                previewClass: 'p-eink'
+            },
+            web1: {
+                title: 'Brutalismo Web 1.0 (HTML Puro)',
+                desc: 'Volver a las raíces de internet. No busca ser bonito, sino crudo y funcional. Bordes biselados del OS, tipografía Arial nativa, contadores de visitas, marquees y la estética Geocities.',
+                tags: ['bg-[#c0c0c0]', 'Bordes biselados Win95', 'Arial font', 'Marquee animation', 'bg-[#000080] titlebar'],
+                previewClass: 'p-web1'
+            }
+        };
+
+        let currentStyle = null;
+
+        function openModal(key) {
+            const s = STYLES[key];
+            currentStyle = key;
+            document.getElementById('modal-title').textContent = s.title;
+            document.getElementById('modal-desc').textContent = s.desc;
+
+            const tagsEl = document.getElementById('modal-tags');
+            tagsEl.innerHTML = s.tags.map(t => `<span class="modal-tag">${t}</span>`).join('');
+
+            const preview = document.getElementById('modal-preview');
+            // Clone the card's preview content
+            const sourceCard = document.querySelector(`.${s.previewClass}`);
+            if (sourceCard) {
+                preview.innerHTML = '';
+                const clone = sourceCard.parentElement.cloneNode(true);
+                const inner = clone.querySelector(`.${s.previewClass}`);
+                if (inner) {
+                    inner.style.width = '100%';
+                    inner.style.height = '340px';
+                    preview.appendChild(inner);
+                }
+            }
+
+            document.getElementById('modal').classList.add('open');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('open');
+        }
+
+        function closeModalOnBg(e) {
+            if (e.target === document.getElementById('modal')) closeModal();
+        }
+
+        function copyStyle() {
+            if (currentStyle) {
+                const name = STYLES[currentStyle].title;
+                navigator.clipboard.writeText(name).catch(() => { });
+                const btn = document.querySelector('.modal-btn.primary');
+                btn.textContent = '✓ Copiado';
+                setTimeout(() => btn.textContent = 'Copiar nombre del estilo', 2000);
+            }
+        }
+
+        function filterCards(cat, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.card-wrap').forEach(card => {
+                if (cat === 'all' || card.dataset.cat === cat) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+
+</html>
