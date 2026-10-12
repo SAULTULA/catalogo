@@ -39,6 +39,24 @@ const playersData = [
     title: 'Radio Player 2',
     url: 'https://catalogo.ksmservicios.com.ar/players/radio_player2.html',
     type: 'player'
+  },
+  {
+    id: 'p7',
+    title: 'Radio Gracia y Paz',
+    url: 'https://1mas2.vercel.app/',
+    type: 'player'
+  },
+  {
+    id: 'p8',
+    title: 'Celestial FM 106.7',
+    url: 'https://saultula.github.io/celestial2/',
+    type: 'player'
+  },
+  {
+    id: 'p9',
+    title: 'Celestial FM (Guitarra)',
+    url: 'https://guitarra-cyan.vercel.app/',
+    type: 'player'
   }
 ];
 
@@ -95,6 +113,36 @@ const websData = [
     id: 'w9',
     title: 'Catalogo 2',
     url: 'https://catalogo.ksmservicios.com.ar/webs/catalogo2.html',
+    type: 'web'
+  },
+  {
+    id: 'w10',
+    title: 'Radio Nova 88.5 FM',
+    url: 'https://muestra-ksm.vercel.app/',
+    type: 'web'
+  },
+  {
+    id: 'w11',
+    title: 'La Radio del Rincón (Muestra 1)',
+    url: 'https://muestra1-omega.vercel.app/',
+    type: 'web'
+  },
+  {
+    id: 'w12',
+    title: 'La Radio del Rincón (Muestra 2)',
+    url: 'https://muestra2-five.vercel.app/',
+    type: 'web'
+  },
+  {
+    id: 'w13',
+    title: 'POWER 104.1 FM (Apple Style)',
+    url: 'https://power2-six.vercel.app/',
+    type: 'web'
+  },
+  {
+    id: 'w14',
+    title: 'POWER 104.1 FM',
+    url: 'https://saultula.github.io/power/',
     type: 'web'
   }
 ];
